@@ -99,4 +99,79 @@ Type : SDK
 
 - 그 위치에 workspace를 지정하고 eclipse 실행
 
-- 
+<img src="./README_Img/Eclipse/2.png">
+
+---
+
+<img src="./README_Img/Eclipse/3.png">
+
+---
+
+<img src="./README_Img/Eclipse/4.png">
+
+---
+
+<img src="./README_Img/Eclipse/5.png">
+
+---
+
+<img src="./README_Img/Eclipse/6.png">
+
+---
+
+<img src="./README_Img/Eclipse/7.png">
+
+- Finish를 하고 나면 Eclipse 오른쪽 아래나 윈도우 창의 이클립스 아이콘에 `installing software`이라는 표시가 끝날때까지 기다려야 합니다. (초큼 시간 걸림)
+
+<img src="./README_Img/Eclipse/8.png">
+
+- 이 다운로드 시간 동안 scene builder 설치 권장합니다.
+
+---
+
+<img src="./README_Img/Eclipse/9.png">
+
+---
+
+<img src="./README_Img/Eclipse/10.png">
+
+---
+
+<img src="./README_Img/Eclipse/11.png">
+
+- 이제 여기까지 진행했으면, 기존 health_kiosk 프로젝트 폴더는 삭제 (실제로 할것은 javafx 프로젝트이므로)
+
+---
+
+<img src="./README_Img/Eclipse/12.png">
+
+---
+
+<img src="./README_Img/Eclipse/13.png">
+
+- 현재 쓰지 않는 Maven은 체크해제, JavaFX 체크
+
+- 세부 설정
+<img src="./README_Img/Eclipse/14.png">
+<img src="./README_Img/Eclipse/15.png">
+
+---
+
+<img src="./README_Img/Eclipse/16.png">
+
+---
+
+<img src="./README_Img/Eclipse/17.png">
+
+---
+
+<img src="./README_Img/Eclipse/18.png">
+
+---
+
+<img src="./README_Img/Eclipse/19.png">
+
+- 완료
+
+
+
