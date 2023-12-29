@@ -95,3 +95,8 @@ Type : SDK
 
 - 다음 과정을 따라하시면 됩니다.
 
+- 먼저 프로젝트를 진행할 workspace를 생성합니다. (아무위치)
+
+- 그 위치에 workspace를 지정하고 eclipse 실행
+
+- 
