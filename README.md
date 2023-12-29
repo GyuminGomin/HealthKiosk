@@ -58,3 +58,21 @@
 - 완료
 
 # Eclipse 설치
+1. 사이트 접속 후 설치 및 세팅 : <a href="https://www.eclipse.org/downloads/packages/">eclipse 패키지 설치</a>
+
+- 다음 과정을 따라하시면 됩니다.
+
+<img src="./README_Img/Eclipse/1.png">
+
+- zip파일 다운로드 클릭
+
+- 다운로드 받은 파일 C://Program Files 폴더 밑에다가 압축풀기
+
+- eclipse.exe 파일 바로가기 바탕화면으로 옮기기
+
+- eclipse.exe 실행
+
+- 완료
+
+# JavaFX 설치
+
