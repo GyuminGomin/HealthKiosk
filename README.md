@@ -57,7 +57,7 @@
 
 - 완료
 
-# Eclipse 설치
+## Eclipse 설치
 1. 사이트 접속 후 설치 및 세팅 : <a href="https://www.eclipse.org/downloads/packages/">eclipse 패키지 설치</a>
 
 - 다음 과정을 따라하시면 됩니다.
@@ -74,9 +74,9 @@
 
 - 완료
 
-# JavaFX 설치
+## JavaFX 설치
 
-1. 사이트 설정 후 설치 및 세팅 : <a href="https://gluonhq.com/products/javafx/">javafx gluon 설치</a>
+1. 사이트 접속 후 설치 및 세팅 : <a href="https://gluonhq.com/products/javafx/">javafx gluon 설치</a>
 
 - 다음 과정을 따라하시면 됩니다.
 
@@ -173,5 +173,40 @@ Type : SDK
 
 - 완료
 
+## Scene Builder 설치
 
+1. 사이트 접속 후 설치 및 세팅 : <a href="https://gluonhq.com/products/scene-builder/">scene builder gluon 설치</a>
+
+```
+Product : Scene Builder
+Platform : Windows Installer
+```
+
+- msi 파일 실행 후
+
+<img src="./README_Img/Eclipse/20.png">
+
+---
+
+<img src="./README_Img/Eclipse/21.png">
+
+---
+
+<img src="./README_Img/Eclipse/22.png">
+
+---
+
+<img src="./README_Img/Eclipse/23.png">
+
+---
+
+<img src="./README_Img/Eclipse/24.png">
+
+---
+
+- 위치 C:\Users\사용자\AppData\Local\SceneBuilder\SceneBuilder.exe
+
+<img src="./README_Img/Eclipse/25.png">
+
+- 완료
 
