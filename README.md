@@ -76,3 +76,22 @@
 
 # JavaFX 설치
 
+1. 사이트 설정 후 설치 및 세팅 : <a href="https://gluonhq.com/products/javafx/">javafx gluon 설치</a>
+
+- 다음 과정을 따라하시면 됩니다.
+
+```
+- Downloads 페이지에서
+
+JavaFX Version : 17.0.9 [LTS]
+Operating System : Windows
+Architecture : x64
+Type : SDK
+```
+
+- C:/Program Files/Java 폴더 아래에 압축 해제
+
+### eclipse 실행 후
+
+- 다음 과정을 따라하시면 됩니다.
+
