@@ -177,6 +177,8 @@ Type : SDK
 
 1. 사이트 접속 후 설치 및 세팅 : <a href="https://gluonhq.com/products/scene-builder/">scene builder gluon 설치</a>
 
+- 다음 과정을 따라하시면 됩니다.
+
 ```
 Product : Scene Builder
 Platform : Windows Installer
@@ -207,6 +209,45 @@ Platform : Windows Installer
 - 위치 C:\Users\사용자\AppData\Local\SceneBuilder\SceneBuilder.exe
 
 <img src="./README_Img/Eclipse/25.png">
+
+- 완료
+
+## JDBC 설치
+
+`DB 연동하는 작업은 제가 할 것 이기 때문에 mysql은 집에 안 깔아두셔도 될 것 같아요 - 만약 그래도 깔고 싶으시다면 집에 mysql workbench 꼭 깔아두시고 jdbc 설치를 진행해주세요. mysql 설치는 인터넷에 검색하면 많이 나옵니다`
+
+1. 사이트 접속 후 설치 및 세팅 : <a href="https://dev.mysql.com/downloads/">mysql Connector/J 설치</a>
+
+- 다음 과정을 따라하시면 됩니다.
+
+<img src="./README_Img/JDBC/1.png">
+
+---
+
+<img src="./README_Img/JDBC/2.png">
+
+---
+
+<img src="./README_Img/JDBC/3.png">
+
+- 다운 받은 파일을 C://Program Files/MySQL 폴더 아래에 압축 해제
+---
+
+- 이제 이클립스 실행 후, 빌드패스 설정
+
+<img src="./README_Img/JDBC/4.png">
+
+---
+
+<img src="./README_Img/JDBC/5.png">
+
+---
+
+<img src="./README_Img/JDBC/6.png">
+
+---
+
+<img src="./README_Img/JDBC/7.png">
 
 - 완료
 
