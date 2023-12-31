@@ -21,3 +21,12 @@ userId(12), userPasswd(12), userName(4)
 - 
 
 ```
+
+## 설명
+
+1. utils -> DB 초기 셋팅
+2. prop -> DB 연결 셋팅
+3. img -> ico 파일
+4. fxml -> fxml 파일
+5. controller -> Controller 파일
+6. css -> css 파일

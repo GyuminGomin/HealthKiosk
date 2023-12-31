@@ -1,4 +1,4 @@
-package application;
+package application.dto;
 
 // DB에서 받아온 데이터를 저장하는 객체 (VO)
 public class User {
@@ -46,7 +46,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [memberId=" + memberId + ", userId=" + userId + ", userName=" + userName + "]";
+        return "회원번호=" + memberId + "\n회원아이디=" + userId + "\n회원이름=" + userName;
     }
 
 }
