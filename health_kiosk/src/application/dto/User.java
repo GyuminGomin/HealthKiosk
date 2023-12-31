@@ -1,21 +1,49 @@
 package application.dto;
 
+import java.util.Date;
+
 // DB에서 받아온 데이터를 저장하는 객체 (VO)
 public class User {
     
-    private int memberId;
-    private String userId;
-    private String userPasswd;
-    private String userName;
-    
+    private int memberId; // 회원번호
+    private String userId; // 아이디
+    private String userPasswd; // 패스워드
+    private String userName; // 이름
+    private String userGender; // 성별 (남자, 여자)
+    private Date userBirth; // 생년월일
+    private String userEmail; // 이메일
+    private String phone; // 폰번호
+
     public User() {}
 
-    public User(int memberId, String userId, String userPasswd, String userName) {
+    public User(String userId, String userPasswd, String userName, String userGender) {
+        this.userId = userId;
+        this.userPasswd = userPasswd;
+        this.userName = userName;
+        this.userGender = userGender;
+    } // 회원가입 할 때, NN 필드만
+
+    public User(int memberId, String userId, String userPasswd, String userName, String userGender) {
         this.memberId = memberId;
         this.userId = userId;
         this.userPasswd = userPasswd;
         this.userName = userName;
+        this.userGender = userGender;
     }
+
+    public User(int memberId, String userId, String userPasswd, String userName, String userGender, Date userBirth,
+            String userEmail, String phone) {
+        this.memberId = memberId;
+        this.userId = userId;
+        this.userPasswd = userPasswd;
+        this.userName = userName;
+        this.userGender = userGender;
+        this.userBirth = userBirth;
+        this.userEmail = userEmail;
+        this.phone = phone;
+    } // 회원가입 필수적이지 않은 내용도 전부다
+
+    
     
     public int getMemberId() {
         return memberId;
@@ -44,9 +72,56 @@ public class User {
         this.userName = userName;
     }
 
+    public String getUserGender() {
+        return userGender;
+    }
+
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
+    }
+
+    public Date getUserBirth() {
+        return userBirth;
+    }
+
+    public void setUserBirth(Date userBirth) {
+        this.userBirth = userBirth;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
     @Override
     public String toString() {
         return "회원번호=" + memberId + "\n회원아이디=" + userId + "\n회원이름=" + userName;
     }
+
+
+    // 회원 정보의 Id와 passwd가 일치하면 동일한 객체로 인식
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof User) {
+            User u = (User)obj;
+            if (this.userId.equals(u.getUserId()) && this.userPasswd.equals(u.getUserPasswd())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
 
 }
