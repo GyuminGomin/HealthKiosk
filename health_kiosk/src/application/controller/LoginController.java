@@ -2,17 +2,11 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
+import application.dao.UserDAO;
+import application.dao.UserDAOImpl;
 import application.dto.User;
-import application.utils.DBUtil;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,15 +29,10 @@ public class LoginController implements Initializable{
     @FXML
     private Button logOn, logIn, searchIdandPasswd;
 
-    // DB와 연결하기 위한 객체 생성
-    Connection conn = null;
-    Statement stmt = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-
 
     // DB에서 받아온 데이터를 저장하는 객체(VO)
     private User member = null;
+    UserDAO dao = new UserDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle bundle) {
@@ -78,7 +67,7 @@ public class LoginController implements Initializable{
         // 로그인 버튼 클릭
         logIn.setOnAction(e -> {
             // 로그인 아이디랑 비밀번호 맞는지 확인하고 페이지 넘기기
-
+            
             // 만약 아이디랑 비밀번호가 틀리다면, 다시 입력 경고창 띄우기
                 // 아이디가 존재하지 않는다면, 존재하지 않는 아이디
                 // 비밀번호가 틀리다면, 비밀번호가 틀립니다

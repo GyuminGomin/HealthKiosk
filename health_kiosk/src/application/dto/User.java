@@ -42,7 +42,18 @@ public class User {
         this.phone = phone;
     } // 회원가입시 DB에 저장
 
-    
+    public User(int memberId, String userId, String userPasswd, String userName, String userGender, LocalDate userBirth,
+            String userEmail, String phone) {
+        this.memberId = memberId;
+        this.userId = userId;
+        this.userPasswd = userPasswd;
+        this.userName = userName;
+        this.userGender = userGender;
+        this.userBirth = userBirth;
+        this.userEmail = userEmail;
+        this.phone = phone;
+    } // DB에 있는 데이터 찾아오기
+
     
     public int getMemberId() {
         return memberId;
@@ -120,7 +131,5 @@ public class User {
         }
         return false;
     }
-
-    
 
 }
