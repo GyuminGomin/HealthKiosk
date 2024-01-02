@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="30.0" prefWidth="100.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="100.0" text="Locker" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="82.0" prefHeight="30.0" prefWidth="500.0" spacing="10.0">
+         <children>
+            <Label style="-fx-background-color: pink;" text="비활성화" />
+            <Label style="-fx-background-color: skyblue;" text="활성화" />
+            <Label style="-fx-background-color: orange;" text="선택됨" />
+         </children>
+      </HBox>
+      <GridPane alignment="CENTER" layoutY="39.0" prefHeight="300.0" prefWidth="600.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/닫힌자물쇠.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.rowIndex="1">
+               <children>
+                  <Label text="6" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: orange;" GridPane.columnIndex="1">
+               <children>
+                  <Label text="2" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="2">
+               <children>
+                  <Label text="3" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label text="7" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <Label text="8" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;">
+               <children>
+                  <Label text="6" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: skyblue;">
+               <children>
+                  <Label text="1" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="3">
+               <children>
+                  <Label text="4" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.rowIndex="2">
+               <children>
+                  <Label text="11" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label text="12" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <Label text="13" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <children>
+                  <Label text="9" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <children>
+                  <Label text="14" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="4">
+               <children>
+                  <Label text="5" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <children>
+                  <Label text="10" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: pink;" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <children>
+                  <Label text="15" />
+                  <ImageView fitHeight="115.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/닫힌자물쇠.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      <Line endX="502.5" layoutX="100.0" layoutY="30.0" startX="-100.0" />
+      <Line endX="-18.0" endY="-31.000015258789062" layoutX="100.0" layoutY="31.0" startX="-18.0" startY="-0.5" />
+   </children>
+</AnchorPane>
