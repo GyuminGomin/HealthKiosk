@@ -9,9 +9,9 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-import application.dao.UserDAO;
-import application.dao.UserDAOImpl;
-import application.dto.User;
+import application.dao.ManagerDAO;
+import application.dao.ManagerDAOImpl;
+import application.dto.Manager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -40,8 +40,8 @@ public class LogonController implements Initializable{
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
-    private UserDAO dao = new UserDAOImpl();
-    private User member;
+    private ManagerDAO dao = new ManagerDAOImpl();
+    private Manager member;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -98,7 +98,7 @@ public class LogonController implements Initializable{
             String str_email = email.getText();
             String str_phone = phoneNum.getText();
 
-            member = new User(str_id, str_pwd, str_name, str_gender, date_birthDate, str_email, str_phone);
+            member = new Manager(str_id, str_pwd, str_name, str_gender, date_birthDate, str_email, str_phone);
             // UserVO 에 저장
 
             dao.join(member); // DB에 유저 정보 넣기

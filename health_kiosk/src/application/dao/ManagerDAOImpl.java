@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-import application.dto.User;
+import application.dto.Manager;
 import application.utils.DBUtil;
 
-public class UserDAOImpl implements UserDAO{
+public class ManagerDAOImpl implements ManagerDAO{
 
     Connection conn = DBUtil.getConnection();
     Statement stmt;
@@ -19,14 +19,14 @@ public class UserDAOImpl implements UserDAO{
     ResultSet rs;
 
     @Override
-    public boolean selectMember(String userId) {
+    public boolean selectMember(String managerId) {
         boolean isChecked = true; // 존재하지 않으면
 
-        String sql = "SELECT userId, userPasswd FROM user WHERE userId = ?";
+        String sql = "SELECT managerId, managerPasswd FROM manager WHERE managerId = ?";
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userId);
+            pstmt.setString(1, managerId);
             rs = pstmt.executeQuery();
 
             if (rs.next()) { // 존재하면
@@ -41,64 +41,62 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public User join(User user) {
-        User u = null;
+    public Manager join(Manager manager) {
+        Manager m = null;
 
-        String sql = "INSERT INTO user (userId, userPasswd, userName, userGender, userBirth, userEmail, userPhone) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO manager (managerId, managerPasswd, managerName, managerGender, managerBirth, managerEmail, managerPhone) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, user.getUserId());
-            pstmt.setString(2, user.getUserPasswd());
-            pstmt.setString(3, user.getUserName());
-            pstmt.setString(4, user.getUserGender());
+            pstmt.setString(1, manager.getManagerId());
+            pstmt.setString(2, manager.getManagerPasswd());
+            pstmt.setString(3, manager.getManagerName());
+            pstmt.setString(4, manager.getManagerGender());
             Date date = null;
-            if (user.getUserBirth() != null) {
-                date = Date.valueOf(user.getUserBirth());
+            if (manager.getManagerBirth() != null) {
+                date = Date.valueOf(manager.getManagerBirth());
             }
             pstmt.setDate(5, date);
-            pstmt.setString(6, user.getUserEmail());
-            pstmt.setString(7, user.getPhone());
+            pstmt.setString(6, manager.getManagerEmail());
+            pstmt.setString(7, manager.getManagerPhone());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             DBUtil.close(pstmt);
         }
-        return u;
+        return m;
     }
 
-    // TODO
     @Override
-    public User selectMember(String userId, String userPasswd) {
-        User u = null;
+    public Manager selectMember(String managerId, String managerPasswd) {
+        Manager m = null;
 
-        String sql = "SELECT ? FROM user WHERE userId=? AND userPasswd=?";
+        String sql = "SELECT * FROM manager WHERE managerId=? AND managerPasswd=?";
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userId);
-            pstmt.setString(2, userPasswd);
+            pstmt.setString(1, managerId);
+            pstmt.setString(2, managerPasswd);
             rs = pstmt.executeQuery();
-            u = getMember(rs);
+            m = getMember(rs);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             DBUtil.close(rs, pstmt);
         }
-
-        return u;
+        return m;
     }
 
-    public User getMember(ResultSet rs) throws SQLException {
-        User u = null;
+    public Manager getMember(ResultSet rs) throws SQLException {
+        Manager m = null;
         LocalDate birth = null;
         if (rs.next()) {
             if (rs.getDate(6) != null) {
                 birth = rs.getDate(6).toLocalDate();
             }
-            u = new User(
-                rs.getInt(1), // memeber_id
+            m = new Manager(
+                rs.getInt(1), // managerCode
                 rs.getString(2), // id
                 rs.getString(3), // passwd
                 rs.getString(4), // name
@@ -108,7 +106,7 @@ public class UserDAOImpl implements UserDAO{
                 rs.getString(8) // phone
             );
         }
-        return u;
+        return m;
     }
     
 }
