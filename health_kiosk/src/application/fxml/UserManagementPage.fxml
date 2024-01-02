@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutY="125.0" prefHeight="674.0" prefWidth="900.0">
+        <columns>
+          <TableColumn minWidth="9.0" prefWidth="27.0">
+               <graphic>
+                  <CheckBox mnemonicParsing="false" />
+               </graphic>
+            </TableColumn>
+          <TableColumn prefWidth="39.0" text="NO" />
+            <TableColumn prefWidth="100.0" text="상태" />
+            <TableColumn prefWidth="113.0" text="이름" />
+            <TableColumn prefWidth="96.0" text="성별" />
+            <TableColumn prefWidth="94.0" text="연락처" />
+            <TableColumn prefWidth="144.0" text="최초등록일" />
+            <TableColumn prefWidth="138.0" text="시작일" />
+            <TableColumn minWidth="9.0" prefWidth="151.0" text="종료일" />
+        </columns>
+      </TableView>
+      <TextField layoutX="14.0" layoutY="69.0" prefHeight="34.0" prefWidth="161.0" promptText="이름, 연락처 검색" />
+      <Label layoutX="186.0" layoutY="79.0" prefHeight="14.0" prefWidth="72.0" text="전체 목록 : " />
+      <MenuBar layoutX="14.0" layoutY="36.0" prefHeight="25.0" prefWidth="323.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="전체 0000">
+          	</Menu>
+          <Menu mnemonicParsing="false" text="활성 000">
+          	</Menu>
+          <Menu mnemonicParsing="false" text="임박 00">
+          	</Menu>
+          <Menu mnemonicParsing="false" text="만료 00">
+          	</Menu>
+          <Menu mnemonicParsing="false" text="홀딩 0">
+          	</Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="15.0" layoutY="12.0" text="회원 목록" textFill="#ff9500" />
+   </children>
+</AnchorPane>
