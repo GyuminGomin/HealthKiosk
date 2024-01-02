@@ -21,14 +21,21 @@ public class HomeController implements Initializable {
     @FXML
     private Button logout;
     @FXML
-    private ImageView btnLayout1;
-    @FXML
-    private AnchorPane 고객관리;
+    private ImageView btnLayout1, btnLayout2;
     @FXML
     private VBox panel;
 
+    private AnchorPane custManage, attendance, salManage, salStatistic;
+    private boolean custFlag = true, salFlag = true;
+
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
+        custManage = (AnchorPane)panel.getChildren().get(2);
+        attendance = (AnchorPane)panel.getChildren().get(3);
+        salManage = (AnchorPane)panel.getChildren().get(6);
+        salStatistic = (AnchorPane)panel.getChildren().get(7);
 
         logout.setOnAction(e-> {
             Stage stage = null;
@@ -53,9 +60,29 @@ public class HomeController implements Initializable {
             }
         });
 
-        // 세모창 누르면 창 사라졌다가 생기게 하기
         btnLayout1.setOnMouseClicked(e -> {
+            if (custFlag) {
+                // custFlag가 true일 때
+                panel.getChildren().removeAll(custManage, attendance);
+            } else {
+                // custFlag가 false일 때
+                panel.getChildren().add(2, custManage);
+                panel.getChildren().add(3, attendance);
+            }
+            custFlag = !custFlag;
         });
+
+        btnLayout2.setOnMouseClicked(e -> {
+            if (salFlag) {
+                // salFlag가 true일 때
+                panel.getChildren().removeAll(salManage,salStatistic);
+            } else {
+                // salFlag가 false일 때
+                panel.getChildren().addAll(salManage, salStatistic);
+            }
+            salFlag = !salFlag;
+        });
+        
         
 
 

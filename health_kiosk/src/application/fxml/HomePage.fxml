@@ -141,7 +141,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="고객관리" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
+            <AnchorPane fx:id="custManage" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
                   <Label layoutX="51.0" prefHeight="30.0" prefWidth="80.0" text="고객관리">
                      <font>
@@ -151,7 +151,7 @@
                   <Circle fill="#1f93ff00" layoutX="33.0" layoutY="15.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
+            <AnchorPane fx:id="attendance" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
                   <Label layoutX="51.0" prefHeight="30.0" prefWidth="80.0" text="출석부">
                      <font>
@@ -177,7 +177,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="116.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="btnLayout2" fitHeight="30.0" fitWidth="30.0" layoutX="116.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/아래화살표.png" />
                      </image>
