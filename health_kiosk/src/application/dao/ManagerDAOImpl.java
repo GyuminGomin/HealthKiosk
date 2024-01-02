@@ -68,12 +68,11 @@ public class ManagerDAOImpl implements ManagerDAO{
         return m;
     }
 
-    // TODO
     @Override
     public Manager selectMember(String managerId, String managerPasswd) {
         Manager m = null;
 
-        String sql = "SELECT ? FROM manager WHERE managerId=? AND managerPasswd=?";
+        String sql = "SELECT * FROM manager WHERE managerId=? AND managerPasswd=?";
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -86,7 +85,6 @@ public class ManagerDAOImpl implements ManagerDAO{
         } finally {
             DBUtil.close(rs, pstmt);
         }
-
         return m;
     }
 
@@ -98,7 +96,7 @@ public class ManagerDAOImpl implements ManagerDAO{
                 birth = rs.getDate(6).toLocalDate();
             }
             m = new Manager(
-                rs.getInt(1), // memeber_id
+                rs.getInt(1), // managerCode
                 rs.getString(2), // id
                 rs.getString(3), // passwd
                 rs.getString(4), // name

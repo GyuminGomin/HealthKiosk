@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import application.dao.ManagerDAO;
 import application.dao.ManagerDAOImpl;
+import application.dto.Manager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,7 +14,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
@@ -31,6 +31,8 @@ public class LoginController implements Initializable{
 
     // DB에서 받아온 데이터를 저장하는 객체(VO)
     ManagerDAO dao = new ManagerDAOImpl();
+    // 로그인한 사람 정보 저장
+    Manager loginManager;
 
     @Override
     public void initialize(URL location, ResourceBundle bundle) {
@@ -65,7 +67,42 @@ public class LoginController implements Initializable{
         // 로그인 버튼 클릭
         logIn.setOnAction(e -> {
             // 로그인 아이디랑 비밀번호 맞는지 확인하고 페이지 넘기기
-            
+            Manager m = null;
+            String str_id = id.getText().trim();
+            String str_passwd = passwd.getText().trim();
+            m = dao.selectMember(str_id, str_passwd);
+            if (m == null) {
+                warnPage("아이디, 패스워드 오류", "존재하지 않는 아이디이거나 패스워드 입니다. 다시 입력해주세요.");
+                return;
+            }
+            loginManager = m;
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("로그인 완료");
+            alert.setHeaderText("로그인에 성공했습니다.");
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.showAndWait();
+
+            Stage stage = null;
+            FXMLLoader loader = null;
+            Parent homePage = null;
+            try {
+                stage = new Stage(StageStyle.DECORATED);
+
+                loader = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
+                homePage = loader.load();
+
+                stage.setScene(new Scene(homePage));
+                stage.setTitle("홈 페이지");
+                Stage loginPage = (Stage)logIn.getScene().getWindow();
+                stage.setResizable(false);
+                stage.show();
+                loginPage.close();
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
+            }
+
             // 만약 아이디랑 비밀번호가 틀리다면, 다시 입력 경고창 띄우기
                 // 아이디가 존재하지 않는다면, 존재하지 않는 아이디
                 // 비밀번호가 틀리다면, 비밀번호가 틀립니다
@@ -84,5 +121,14 @@ public class LoginController implements Initializable{
         });
 
     } // end initialize
+
+    // warn 페이지
+    public void warnPage(String title, String header) {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.show();
+    }
 
 }
