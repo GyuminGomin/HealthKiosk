@@ -11,7 +11,7 @@ public class TestMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/LockerPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/managementPage.fxml"));
             Parent root = loader.load(); 
             primaryStage.setScene(new Scene(root));
 //            primaryStage.setTitle("Login 페이지");
