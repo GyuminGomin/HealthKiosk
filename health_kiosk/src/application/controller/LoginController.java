@@ -33,7 +33,7 @@ public class LoginController implements Initializable{
     // DB에서 받아온 데이터를 저장하는 객체(VO)
     ManagerDAO dao = new ManagerDAOImpl();
     // 로그인한 사람 정보 저장
-    Manager loginManager;
+    static Manager loginManager;
 
     @Override
     public void initialize(URL location, ResourceBundle bundle) {

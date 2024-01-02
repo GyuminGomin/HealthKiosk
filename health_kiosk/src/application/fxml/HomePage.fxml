@@ -10,10 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
@@ -26,89 +23,98 @@
                <font>
                   <Font size="50.0" />
                </font></Label>
-            <GridPane layoutX="23.0" layoutY="96.0" prefHeight="600.0" prefWidth="800.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <PieChart layoutX="39.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" style="-fx-border-color: black;" />
+            <PieChart layoutX="316.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" style="-fx-border-color: black;" />
+            <VBox layoutX="39.0" layoutY="125.0" prefWidth="235.0">
                <children>
-                  <PieChart prefWidth="0.0" GridPane.rowIndex="1" GridPane.rowSpan="3" />
-                  <PieChart GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="3" />
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Slider>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Slider>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Slider>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Slider>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Slider>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Slider>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Slider>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Slider>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Slider>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Slider>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                     <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Slider>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Slider>
-                     </children>
-                  </VBox>
+                  <Label text="전체 회원 0명">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="만료를 포함한 등록된 회원은 총 0명 입니다." />
+                  <Slider>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Slider>
                </children>
-            </GridPane>
+            </VBox>
+            <VBox layoutX="322.0" layoutY="122.0" prefWidth="235.0">
+               <children>
+                  <Label text="활성 회원 0명">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="전체 회원 중 활성 회원은 0명 입니다." />
+                  <Slider>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Slider>
+               </children>
+            </VBox>
+            <VBox layoutX="588.0" layoutY="121.0" prefWidth="235.0">
+               <children>
+                  <Label text="비활성 회원 0명">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="전체 회원 중 비활성화 회원은 0명 입니다." />
+                  <Slider>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Slider>
+               </children>
+            </VBox>
+            <VBox layoutX="629.0" layoutY="414.0">
+               <children>
+                  <Label text="전체 락커 : 0개">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="총 락커 갯수" />
+                  <Slider>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Slider>
+               </children>
+            </VBox>
+            <VBox layoutX="628.0" layoutY="310.0">
+               <children>
+                  <Label text="활성 락커 : 0개">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="활성화 된 락커 갯수" />
+                  <Slider>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Slider>
+               </children>
+            </VBox>
+            <VBox layoutX="629.0" layoutY="523.0">
+               <children>
+                  <Label text="잔여 락커 : 0개">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="남아있는 락커 갯수" />
+                  <Slider>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Slider>
+               </children>
+            </VBox>
          </children>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -213,7 +219,7 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="585.0" layoutY="13.0" text="로그인한 회원 이름:id">
+            <Label fx:id="loginManager" layoutX="557.0" layoutY="13.0" text="로그인한 관리자 이름:id">
                <font>
                   <Font size="20.0" />
                </font></Label>

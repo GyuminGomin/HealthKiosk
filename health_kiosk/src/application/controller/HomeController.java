@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.dto.Manager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -24,13 +26,19 @@ public class HomeController implements Initializable {
     private ImageView btnLayout1, btnLayout2;
     @FXML
     private VBox panel;
+    @FXML
+    private Label loginManager;
 
     private AnchorPane custManage, attendance, salManage, salStatistic;
     private boolean custFlag = true, salFlag = true;
-
+    Manager m = LoginController.loginManager; // 현재 로그인한 매니저
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+        
+        // 현재 로그인 한 매니저의 이름과 id를 가져와서 저장
+        String loginM = m.getManagerId() + " : " + m.getManagerName();
+        loginManager.setText(loginM);
 
         custManage = (AnchorPane)panel.getChildren().get(2);
         attendance = (AnchorPane)panel.getChildren().get(3);
