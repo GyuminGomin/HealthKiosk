@@ -10,9 +10,10 @@ public class TestMain extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/AttendancePage.fxml"));
 			Parent root = loader.load();
 			primaryStage.setScene(new Scene(root));
+			root.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setTitle("Login 페이지");
 			primaryStage.setResizable(false);
 			primaryStage.show();
