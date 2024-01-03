@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import application.dao.ManagerDAO;
 import application.dao.ManagerDAOImpl;
 import application.dto.Manager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -20,6 +21,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
@@ -33,19 +36,46 @@ public class LogonController implements Initializable{
     private ToggleGroup gender; // 성별
     @FXML
     private Button reg; // 가입하기 버튼
-
-    // DB와 연결하기 위한 객체 생성
-    Connection conn = null;
-    Statement stmt = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
+    @FXML
+    private AnchorPane window; // 가장 최상위
 
     private ManagerDAO dao = new ManagerDAOImpl();
-    private Manager member;
+    private Manager manager;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
+        // 배경에서 마우스 클릭되거나 엔터버튼이 눌러져서 다른 걸로 넘어갈 때 border를 지우기
+        
+
+        // id를 Focus로 시작
+        Platform.runLater(()->{
+        	id.requestFocus();
+        });
+
+        // Enter Key가 눌려지면 다음 창으로 Focus 
+        id.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) passwd.requestFocus();
+        });
+        
+        passwd.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) chkPasswd.requestFocus();
+        });
+        chkPasswd.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) name.requestFocus();
+        });
+        name.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) email.requestFocus();
+        });
+        email.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) phoneNum.requestFocus();
+        });
+        // 마지막 phoneNum 에서 Enter 키 누를 시 가입하기 강제 시작
+        phoneNum.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) { reg.fire();
+        		}
+        });
+
         // 가입 버튼 클릭
         reg.setOnAction(e-> {
             boolean chkFlag = false;
@@ -67,19 +97,19 @@ public class LogonController implements Initializable{
             if (chkFlag) return; // 비밀번호 문제 발생하면 종료
 
             if (!dao.selectMember(id.getText())) {
-                warnPage(id, "아이디 중복", "아이디가 이미 존재합니다. 다른 아이디를 입력해주세요.");
+                warnPage("아이디 중복", "아이디가 이미 존재합니다. 다른 아이디를 입력해주세요.", id);
                 return;
             } else if (!passwd.getText().equals(chkPasswd.getText())) {
-                warnPage(chkPasswd, "비밀번호 불일치", "비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+                warnPage("비밀번호 불일치", "비밀번호가 일치하지 않습니다. 다시 입력해주세요.", chkPasswd);
                 return;
             } // 아이디 중복, 비밀번호 불일치 체크 완료
 
             // 한글이 아닌경우
             if (string_name != null &&!Pattern.matches("[가-힣]*", string_name)) {
-                warnPage(name, "이름 잘못입력", "이름은 한글로만 작성해주세요.");
+                warnPage("이름 잘못입력", "이름은 한글로만 작성해주세요.", name);
                 return;
             } else if (string_name.length() > 4 || string_name.equals("")) {
-                warnPage(name, "이름 조건 알림", "이름은 공백이거나 4자리를 초과할 수 없습니다.");
+                warnPage("이름 조건 알림", "이름은 공백이거나 4자리를 초과할 수 없습니다.", name);
                 return;
             } // 이름 조건 체크 완료
 
@@ -98,10 +128,10 @@ public class LogonController implements Initializable{
             String str_email = email.getText();
             String str_phone = phoneNum.getText();
 
-            member = new Manager(str_id, str_pwd, str_name, str_gender, date_birthDate, str_email, str_phone);
+            manager = new Manager(str_id, str_pwd, str_name, str_gender, date_birthDate, str_email, str_phone);
             // UserVO 에 저장
 
-            dao.join(member); // DB에 유저 정보 넣기
+            dao.join(manager); // DB에 유저 정보 넣기
 
             Alert info = new Alert(AlertType.INFORMATION);
             info.setHeaderText("회원가입 완료");
@@ -110,6 +140,8 @@ public class LogonController implements Initializable{
             Stage stage = (Stage)reg.getScene().getWindow();
             stage.close(); // DB에 유저 넣고 나면, 창 종료
         }); // 가입버튼 클릭
+
+        
         
     } // end initialize
     
@@ -118,28 +150,49 @@ public class LogonController implements Initializable{
     public boolean chk(char[] charArray, TextField textField, String... text) {
         for (char c : charArray) {
                 if (!((c>=48 && c<=57) || (c>=97 && c<=122))) {
-                    warnPage(textField,text[0], text[1]);
+                    warnPage(text[0], text[1], textField);
                     return true;
                 }
             }
         if (textField.getText().trim().equals("")) {
-            warnPage(textField,text[2], text[3]);
+            warnPage(text[2], text[3],textField);
             return true;
         } else if (textField.getText().trim().length()>12) {
-            warnPage(textField,text[4], text[5]);
+            warnPage(text[4], text[5], textField);
             return true;
         } // ID 체크, Passwd 체크
         return false; // ID 문제 없음
     }
 
-    // warn 페이지
-    public void warnPage(TextField textField,String title, String header) {
+    // warn 페이지 (textfield)
+    public static void warnPage(String title, String header,TextField... textFields) {
         Alert warn = new Alert(AlertType.WARNING);
         warn.setTitle(title);
         warn.setHeaderText(header);
         warn.show();
-        textField.clear();
-        textField.requestFocus();
+        textFields[0].clear();
+        textFields[0].requestFocus();
+        textFields[0].setStyle("-fx-border-color:red;");
+        if (textFields.length >= 2) {
+            for (int i=1; i<textFields.length; i++) {
+                textFields[i].clear();
+            }
+        }
+    }
+
+    // warn 페이지 (datepickers)
+    public static void warnPage(String title, String header,DatePicker... datePickers) {
+        Alert warn = new Alert(AlertType.WARNING);
+        warn.setTitle(title);
+        warn.setHeaderText(header);
+        warn.show();
+        datePickers[0].setValue(LocalDate.now());
+        datePickers[0].requestFocus();
+        if (datePickers.length >= 2) {
+            for (int i=1; i<datePickers.length; i++) {
+                datePickers[i].setValue(null);
+            }
+        }
     }
 
 

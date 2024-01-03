@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LogonController">
+<AnchorPane fx:id="window" prefHeight="600.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LogonController">
    <children>
       <Label layoutX="11.0" layoutY="86.0" text="아이디" />
       <Label layoutX="63.0" layoutY="26.0" prefHeight="37.0" prefWidth="174.0" text="Health Kiosk">

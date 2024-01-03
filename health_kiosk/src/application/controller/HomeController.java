@@ -23,13 +23,13 @@ import javafx.stage.StageStyle;
 public class HomeController implements Initializable {
 
     @FXML
-    private Button logout;
+    private Button logout, btnAddUser;
     @FXML
     private ImageView btnLayout1, btnLayout2;
     @FXML
     private VBox panel;
     @FXML
-    private Label loginManager, totalUser;
+    private Label loginManager, totalUser, activateUser, inactivateUser;
 
     // DB에서 받아온 데이터를 저장하는 객체(VO)
     UserDAO dao = new UserDAOImpl();
@@ -50,15 +50,21 @@ public class HomeController implements Initializable {
         // 밑에 표시 창을 변경해야 하는데 (미션)
         String countUser = "전체 회원 "+dao.countUser()+"명";
         totalUser.setText(countUser);
-
-        // 현재 활성화된 회원, 비활성화 된 회원
         
+        // 현재 활성화된 회원, 비활성화 된 회원
+        String activateU = "활성 회원 "+dao.statusUserNum(true)+"명";
+        activateUser.setText(activateU);
+
+        String inactivateU = "비활성 회원 "+dao.statusUserNum(false)+"명";
+        inactivateUser.setText(inactivateU);
+
 
         custManage = (AnchorPane)panel.getChildren().get(2);
         attendance = (AnchorPane)panel.getChildren().get(3);
         salManage = (AnchorPane)panel.getChildren().get(6);
         salStatistic = (AnchorPane)panel.getChildren().get(7);
 
+        // 로그아웃 버튼 클릭
         logout.setOnAction(e-> {
             Stage stage = null;
             FXMLLoader loader = null;
@@ -80,8 +86,9 @@ public class HomeController implements Initializable {
                 e1.printStackTrace();
                 return;
             }
-        });
+        }); // 로그아웃 버튼 클릭
 
+        // 회원 세모박스 클릭
         btnLayout1.setOnMouseClicked(e -> {
             if (custFlag) {
                 // custFlag가 true일 때
@@ -92,8 +99,9 @@ public class HomeController implements Initializable {
                 panel.getChildren().add(3, attendance);
             }
             custFlag = !custFlag;
-        });
+        }); // 회원 세모박스 클릭
 
+        // 회계 세모박스 클릭
         btnLayout2.setOnMouseClicked(e -> {
             if (salFlag) {
                 // salFlag가 true일 때
@@ -103,13 +111,30 @@ public class HomeController implements Initializable {
                 panel.getChildren().addAll(salManage, salStatistic);
             }
             salFlag = !salFlag;
-        });
+        }); // 회계 세모박스 클릭
+
+        // 회원 등록 버튼 클릭
+        btnAddUser.setOnAction(e -> {
+            Stage stage = null;
+            FXMLLoader loader = null;
+            Parent createUserPage = null;
+            try {
+                stage = new Stage(StageStyle.DECORATED);
+
+                loader = new FXMLLoader(getClass().getResource("/application/fxml/CreateUser.fxml"));
+                createUserPage = loader.load();
+
+                stage.setScene(new Scene(createUserPage));
+                stage.setTitle("회원 등록 페이지");
+                stage.setResizable(false);
+                stage.show();
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
+            }
+        }); // 회원 등록 버튼 클릭
         
-        
-
-
-
-
 	}
 
 }

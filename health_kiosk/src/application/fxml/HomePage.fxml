@@ -42,7 +42,7 @@
             </VBox>
             <VBox layoutX="322.0" layoutY="122.0" prefWidth="235.0">
                <children>
-                  <Label text="활성 회원 0명">
+                  <Label fx:id="activateUser" text="활성 회원 0명">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -57,7 +57,7 @@
             </VBox>
             <VBox layoutX="588.0" layoutY="121.0" prefWidth="235.0">
                <children>
-                  <Label text="비활성 회원 0명">
+                  <Label fx:id="inactivateUser" text="비활성 회원 0명">
                      <font>
                         <Font size="15.0" />
                      </font>

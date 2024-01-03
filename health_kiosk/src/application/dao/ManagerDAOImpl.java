@@ -41,8 +41,7 @@ public class ManagerDAOImpl implements ManagerDAO{
     }
 
     @Override
-    public Manager join(Manager manager) {
-        Manager m = null;
+    public void join(Manager manager) {
 
         String sql = "INSERT INTO manager (managerId, managerPasswd, managerName, managerGender, managerBirth, managerEmail, managerPhone) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -65,7 +64,6 @@ public class ManagerDAOImpl implements ManagerDAO{
         } finally {
             DBUtil.close(pstmt);
         }
-        return m;
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import application.dao.ManagerDAO;
 import application.dao.ManagerDAOImpl;
 import application.dto.Manager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -37,6 +39,22 @@ public class LoginController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle bundle) {
         
+        // 시작시 id에 Focus
+    	Platform.runLater(()->{
+        	id.requestFocus();
+        });
+    	
+    	// id에서 Enter키 누를 시 passwd로 Focus 
+    	id.setOnKeyPressed(e1->{
+    		if(e1.getCode() == KeyCode.ENTER) passwd.requestFocus();
+    	});
+    	// passwd 에서 Enter 키 누를 시 로그인 강제 시작
+    	passwd.setOnKeyPressed(e1->{
+    		if(e1.getCode() == KeyCode.ENTER){
+    			logIn.fire();
+    		}
+    	});
+
         // 회원가입 버튼 클릭
         logOn.setOnAction(e-> {
             Stage stage = null;
@@ -72,7 +90,7 @@ public class LoginController implements Initializable{
             String str_passwd = passwd.getText().trim();
             m = dao.selectMember(str_id, str_passwd);
             if (m == null) {
-                warnPage("아이디, 패스워드 오류", "존재하지 않는 아이디이거나 패스워드 입니다. 다시 입력해주세요.");
+                LogonController.warnPage("아이디, 패스워드 오류", "존재하지 않는 아이디이거나 패스워드 입니다. 다시 입력해주세요.", id, passwd);
                 return;
             }
             loginManager = m;
@@ -121,14 +139,5 @@ public class LoginController implements Initializable{
         });
 
     } // end initialize
-
-    // warn 페이지
-    public void warnPage(String title, String header) {
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.initModality(Modality.APPLICATION_MODAL);
-        alert.show();
-    }
 
 }
