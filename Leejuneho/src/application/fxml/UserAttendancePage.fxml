@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutY="76.0" prefHeight="524.0" prefWidth="800.0">
+        <columns>
+          <TableColumn prefWidth="45.0">
+               <graphic>
+                  <CheckBox fx:id="checkBox" mnemonicParsing="false" />
+               </graphic>
+            </TableColumn>
+          <TableColumn fx:id="mdmberId" prefWidth="55.0" text="NO" />
+            <TableColumn fx:id="userName" prefWidth="125.0" text="이름" />
+            <TableColumn fx:id="userGender" prefWidth="75.0" text="성별" />
+            <TableColumn fx:id="phone" prefWidth="252.0" text="전화번호" />
+            <TableColumn fx:id="attendStartDay" prefWidth="247.0" text="출석시작일" />
+        </columns>
+      </TableView>
+      <Label fx:id="label" layoutX="6.0" layoutY="5.0" text="출석부" textAlignment="CENTER" textFill="#f8a602">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <font>
+            <Font name="Arial Black" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="people" layoutX="6.0" layoutY="46.0" prefHeight="22.0" prefWidth="72.0" text="전체 목록 : ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Button fx:id="today" layoutX="752.0" layoutY="3.0" mnemonicParsing="false" text="오늘" />
+      <Button fx:id="searching" layoutX="712.0" layoutY="3.0" mnemonicParsing="false" text="검색" />
+      <DatePicker fx:id="endDate" layoutX="569.0" layoutY="4.0" prefHeight="22.0" prefWidth="140.0" promptText="종료 날짜" />
+      <DatePicker fx:id="startDate" layoutX="429.0" layoutY="4.0" prefHeight="22.0" prefWidth="140.0" promptText="시작 날짜" />
+   </children>
+</AnchorPane>

@@ -12,7 +12,7 @@ import java.util.Properties;
 public class DBUtil {
 
 	private static Connection conn;
-
+	
 	public static Connection getConnection() {
 		// conn field에서 참조하는 객체값이 없으면 Connection 객체 생성
 		if (conn == null) {
@@ -20,13 +20,13 @@ public class DBUtil {
 				File file = new File("src/application/prop/mysql.properties");
 				Properties prop = new Properties();
 				prop.load(new FileReader(file));
-
+				
 				String driver = prop.getProperty("driver");
 				String url = prop.getProperty("url");
-
+				
 				Class.forName(driver);
 				conn = DriverManager.getConnection(url, prop);
-
+				
 			} catch (FileNotFoundException e) {
 				System.out.println("properties 파일을 찾을 수 없음");
 			} catch (IOException e) {
@@ -40,15 +40,14 @@ public class DBUtil {
 		return conn;
 	}
 
-	public static void close(AutoCloseable... closer) {
-		for (AutoCloseable c : closer) {
-			if (closer != null) {
-				try {
-					c.close();
-				} catch (Exception e) {
-				}
-			}
-		}
-	}
-	// 외부에서 받아오는 라이브러리들은 모두다 autocloseable 인터페이스를 구현하고 있음
+    public static void close(AutoCloseable... closer) {
+        for (AutoCloseable c : closer) {
+            if (closer != null) {
+                try {
+                    c.close();
+                } catch (Exception e) {}
+            }
+        }
+    }
+    // 외부에서 받아오는 라이브러리들은 모두다 autocloseable 인터페이스를 구현하고 있음
 }
