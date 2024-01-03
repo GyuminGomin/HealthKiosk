@@ -9,18 +9,18 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-import application.dao.UserDAO;
-import application.dao.UserDAOImpl;
-import application.dto.User;
+import application.dao.ManagerDAO;
+import application.dao.ManagerDAOImpl;
+import application.dto.Manager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class LogonController implements Initializable{
@@ -40,8 +40,8 @@ public class LogonController implements Initializable{
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
-    private UserDAO dao = new UserDAOImpl();
-    private User member;
+    private ManagerDAO dao = new ManagerDAOImpl();
+    private Manager member;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,6 +57,8 @@ public class LogonController implements Initializable{
             char[] char_id= id.getText().trim().toCharArray();
             char[] char_passwd = passwd.getText().trim().toCharArray();
             String string_name = name.getText().trim();
+            String string_email = email.getText().trim();
+            String string_phoneNum = phoneNum.getText().trim(); 
 
             chkFlag = chk(char_id, id, "아이디 조건 알림", "아이디는 영문(소문자) 또는 숫자로만 이루어질 수 있습니다.", "아이디 입력 필수", "아이디는 공백일 수 없습니다.", "아이디 다시 입력", "아이디는 12자 이내로 작성해주세요."); // id 체크 완료
             
@@ -65,6 +67,7 @@ public class LogonController implements Initializable{
             chkFlag = chk(char_passwd, passwd, "비밀번호 조건 알림", "비밀번호는 영문(소문자) 또는 숫자로만 이루어질 수 있습니다.", "비밀번호 입력 필수", "비밀번호는 공백일 수 없습니다.", "비밀번호 다시 입력", "비밀번호는 12자 이내로 작성해주세요."); // 비밀번호 체크 완료
 
             if (chkFlag) return; // 비밀번호 문제 발생하면 종료
+            
 
             if (!dao.selectMember(id.getText())) {
                 warnPage(id, "아이디 중복", "아이디가 이미 존재합니다. 다른 아이디를 입력해주세요.");
@@ -82,7 +85,17 @@ public class LogonController implements Initializable{
                 warnPage(name, "이름 조건 알림", "이름은 공백이거나 4자리를 초과할 수 없습니다.");
                 return;
             } // 이름 조건 체크 완료
-
+            
+            if (string_email.length() > 20) {
+            	warnPage(email, "이메일 조건 알림", "이메일은 20자리를 초과할 수 없습니다. ");
+            	return;
+            }
+            
+            if (string_phoneNum.length() > 13) {
+            	warnPage(phoneNum, "휴대전화번호 조건 알림", "휴대전화번호는 13자리를 초과활 수 없습니다.");
+            	return;
+            }
+            
             // email, phoneNum, birthDate가 공백이어도 회원가입 가능하므로 이름조건 까지 체크 완료하면, 회원가입 가능
             
             // ------------------------------------------------
@@ -98,7 +111,8 @@ public class LogonController implements Initializable{
             String str_email = email.getText();
             String str_phone = phoneNum.getText();
 
-            member = new User(str_id, str_pwd, str_name, str_gender, date_birthDate, str_email, str_phone);
+            
+            member = new Manager(str_id, str_pwd, str_name, str_gender, date_birthDate, str_email, str_phone);
             // UserVO 에 저장
 
             dao.join(member); // DB에 유저 정보 넣기
@@ -112,6 +126,7 @@ public class LogonController implements Initializable{
         }); // 가입버튼 클릭
         
     } // end initialize
+    
     
     
     // ID 체크, Passwd 체크
@@ -139,6 +154,7 @@ public class LogonController implements Initializable{
         warn.setHeaderText(header);
         warn.show();
         textField.clear();
+        
         textField.requestFocus();
     }
 
