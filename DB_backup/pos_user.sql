@@ -25,12 +25,12 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userCode` int NOT NULL AUTO_INCREMENT,
   `userName` varchar(20) NOT NULL,
-  `userPhoneNum` varchar(13) NOT NULL,
   `userStartDate` date NOT NULL,
   `userGender` char(2) NOT NULL,
   `phoneHeader` varchar(3) DEFAULT NULL,
   `phoneMiddle` varchar(4) DEFAULT NULL,
   `phoneTail` varchar(4) DEFAULT NULL,
+  `userStatus` tinyint NOT NULL,
   PRIMARY KEY (`userCode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,7 +41,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'송상엽','010-1234-5678','2024-01-01','남자','010','1234','5678'),(2,'이준호','010-2345-6789','2024-01-02','남자','010','2345','6789'),(3,'김규민','010-3456-7890','2024-01-03','남자','010','3456','7890');
+INSERT INTO `user` VALUES (1,'송상엽','2024-01-01','남자','010','1234','5678',1),(2,'이준호','2024-01-02','남자','010','2345','6789',1),(3,'김규민','2024-01-03','남자','010','3456','7890',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-03 10:03:20
+-- Dump completed on 2024-01-03 11:14:41
