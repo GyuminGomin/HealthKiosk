@@ -1,6 +1,6 @@
 package application.dao;
 
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -108,5 +108,4 @@ public class ManagerDAOImpl implements ManagerDAO{
         }
         return m;
     }
-    
 }

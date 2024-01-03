@@ -19,7 +19,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.graphics.Circle;
 
 public class LoginController implements Initializable{
 

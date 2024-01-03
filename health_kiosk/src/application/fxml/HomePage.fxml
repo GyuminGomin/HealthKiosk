@@ -27,7 +27,7 @@
             <PieChart layoutX="316.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" style="-fx-border-color: black;" />
             <VBox layoutX="39.0" layoutY="125.0" prefWidth="235.0">
                <children>
-                  <Label text="전체 회원 0명">
+                  <Label fx:id="totalUser" text="전체 회원 0명">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -115,6 +115,7 @@
                   </Slider>
                </children>
             </VBox>
+            <Button fx:id="btnAddUser" layoutX="635.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="회원추가" />
          </children>
          <cursor>
             <Cursor fx:constant="HAND" />
