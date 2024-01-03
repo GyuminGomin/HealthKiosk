@@ -45,8 +45,8 @@ public class LogonController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
-        // 배경에서 마우스 클릭되거나 엔터버튼이 눌러져서 다른 걸로 넘어갈 때 border를 지우기
-        
+        // 포커스 이동될 때, border color를 null로 설정
+        focusMove(id, passwd, chkPasswd, name, email, phoneNum);
 
         // id를 Focus로 시작
         Platform.runLater(()->{
@@ -87,6 +87,8 @@ public class LogonController implements Initializable{
             char[] char_id= id.getText().trim().toCharArray();
             char[] char_passwd = passwd.getText().trim().toCharArray();
             String string_name = name.getText().trim();
+            String string_email = email.getText().trim();
+            String string_phoneNum = phoneNum.getText().trim();
 
             chkFlag = chk(char_id, id, "아이디 조건 알림", "아이디는 영문(소문자) 또는 숫자로만 이루어질 수 있습니다.", "아이디 입력 필수", "아이디는 공백일 수 없습니다.", "아이디 다시 입력", "아이디는 12자 이내로 작성해주세요."); // id 체크 완료
             
@@ -113,12 +115,15 @@ public class LogonController implements Initializable{
                 return;
             } // 이름 조건 체크 완료
 
-            // email, phoneNum, birthDate가 공백이어도 회원가입 가능하므로 이름조건 까지 체크 완료하면, 회원가입 가능
+            if (string_email.length() > 20) {
+            	warnPage("이메일 조건 알림", "이메일은 20자리를 초과할 수 없습니다. ", email);
+            	return;
+            }
             
-            // ------------------------------------------------
-            // 근데 여기서 또 추가로 email은 20자 이내, 휴대전화는 13자 이내로 만들어야 함
-            // 또 처음 시작할 때 id 버튼으로 포커스 이동하고 Enter 클릭하면 다른 포커스로 이동하는 것 구현
-            // ------------------------------------------------
+            if (string_phoneNum.length() > 13) {
+            	warnPage("휴대전화번호 조건 알림", "휴대전화번호는 13자리를 초과활 수 없습니다.", phoneNum);
+            	return;
+            }
 
             String str_id = id.getText().trim();
             String str_pwd = passwd.getText().trim();
@@ -141,8 +146,6 @@ public class LogonController implements Initializable{
             stage.close(); // DB에 유저 넣고 나면, 창 종료
         }); // 가입버튼 클릭
 
-        
-        
     } // end initialize
     
     
@@ -185,9 +188,9 @@ public class LogonController implements Initializable{
         Alert warn = new Alert(AlertType.WARNING);
         warn.setTitle(title);
         warn.setHeaderText(header);
-        warn.show();
         datePickers[0].setValue(LocalDate.now());
         datePickers[0].requestFocus();
+        warn.show();
         if (datePickers.length >= 2) {
             for (int i=1; i<datePickers.length; i++) {
                 datePickers[i].setValue(null);
@@ -195,5 +198,12 @@ public class LogonController implements Initializable{
         }
     }
 
-
+    // textfield의 포커스가 이동될 때, border 색깔을 null로 설정
+    public static void focusMove(TextField... textField) {
+        for (TextField t : textField) {
+            t.focusedProperty().addListener((obser, o, n) -> {
+                t.setStyle("-fx-border-color:null;");
+            });
+        }
+    }
 }

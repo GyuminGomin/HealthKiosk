@@ -39,6 +39,8 @@ public class LoginController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle bundle) {
         
+        LogonController.focusMove(id, passwd);
+
         // 시작시 id에 Focus
     	Platform.runLater(()->{
         	id.requestFocus();
@@ -120,12 +122,6 @@ public class LoginController implements Initializable{
                 e1.printStackTrace();
                 return;
             }
-
-            // 만약 아이디랑 비밀번호가 틀리다면, 다시 입력 경고창 띄우기
-                // 아이디가 존재하지 않는다면, 존재하지 않는 아이디
-                // 비밀번호가 틀리다면, 비밀번호가 틀립니다
-                // 위 처럼 구현하면 보안에 별로 안좋기 때문에
-                // 아이디 비밀번호 둘 중 하나라도 맞지 않으면, 아이디 또는 비밀번호가 틀립니다.
         });
 
         // 아이디/비밀번호 찾기 버튼 클릭

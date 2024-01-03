@@ -37,6 +37,9 @@ public class CreateUserController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        LogonController.focusMove(txtName, firstNum, middleNum, lastNum);
+
         // 회원 추가 버튼 클릭
         btnNext.setOnAction(e -> {
 
@@ -95,6 +98,7 @@ public class CreateUserController implements Initializable{
             info.showAndWait();
             
             Stage stage = (Stage)btnNext.getScene().getWindow();
+            
             stage.close(); // DB에 유저 넣고 나면, 창 종료
 
         }); // 회원 추가 버튼 클릭
