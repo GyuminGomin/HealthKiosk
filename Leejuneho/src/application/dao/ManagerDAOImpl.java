@@ -1,6 +1,6 @@
 package application.dao;
 
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -41,8 +41,7 @@ public class ManagerDAOImpl implements ManagerDAO{
     }
 
     @Override
-    public Manager join(Manager manager) {
-        Manager m = null;
+    public void join(Manager manager) {
 
         String sql = "INSERT INTO manager (managerId, managerPasswd, managerName, managerGender, managerBirth, managerEmail, managerPhone) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -65,7 +64,6 @@ public class ManagerDAOImpl implements ManagerDAO{
         } finally {
             DBUtil.close(pstmt);
         }
-        return m;
     }
 
     @Override
@@ -108,5 +106,4 @@ public class ManagerDAOImpl implements ManagerDAO{
         }
         return m;
     }
-    
 }

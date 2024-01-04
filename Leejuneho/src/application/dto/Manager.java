@@ -38,22 +38,6 @@ public class Manager {
         this.managerEmail = managerEmail;
         this.managerPhone = managerPhone;
     } // 회원가입시 DB에 저장
-
-    public Manager(int managerCode, String managerId, String managerPasswd, String managerName, String managerGender) {
-        this.managerCode = managerCode;
-        this.managerId = managerId;
-        this.managerPasswd = managerPasswd;
-        this.managerName = managerName;
-        this.managerGender = managerGender;
-    }
-
-    public Manager(String managerId, String managerPasswd, String managerName, String managerGender) {
-        this.managerId = managerId;
-        this.managerPasswd = managerPasswd;
-        this.managerName = managerName;
-        this.managerGender = managerGender;
-    }
-
     
     @Override
     public String toString() {

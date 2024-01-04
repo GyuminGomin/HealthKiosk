@@ -5,15 +5,14 @@ import java.time.LocalDate;
 public class User {
     
     private int userCode;
-    private String userName, userPhoneNum, userGender, phoneHeader, phoneMiddle, phoneTail;
+    private String userName, userGender, phoneHeader, phoneMiddle, phoneTail;
     private LocalDate userStartDate;
     private Boolean userStatus; // user 활성화 비활성화 상태
 
     
-    public User(String userName, String userPhoneNum, String userGender, String phoneHeader,
-            String phoneMiddle, String phoneTail, LocalDate userStartDate) {
+    public User(String userName, LocalDate userStartDate, String userGender, String phoneHeader,
+            String phoneMiddle, String phoneTail) {
         this.userName = userName;
-        this.userPhoneNum = userPhoneNum;
         this.userGender = userGender;
         this.phoneHeader = phoneHeader;
         this.phoneMiddle = phoneMiddle;
@@ -34,12 +33,7 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    public String getUserPhoneNum() {
-        return userPhoneNum;
-    }
-    public void setUserPhoneNum(String userPhoneNum) {
-        this.userPhoneNum = userPhoneNum;
-    }
+
     public String getUserGender() {
         return userGender;
     }
@@ -69,6 +63,14 @@ public class User {
     }
     public void setUserStartDate(LocalDate userStartDate) {
         this.userStartDate = userStartDate;
+    }
+
+    public Boolean getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(Boolean userStatus) {
+        this.userStatus = userStatus;
     }
 
     

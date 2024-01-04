@@ -39,7 +39,9 @@ public class LoginController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle bundle) {
         
-    	// 시작시 id에 Focus
+        LogonController.focusMove(id, passwd);
+
+        // 시작시 id에 Focus
     	Platform.runLater(()->{
         	id.requestFocus();
         });
@@ -54,7 +56,7 @@ public class LoginController implements Initializable{
     			logIn.fire();
     		}
     	});
-    	
+
         // 회원가입 버튼 클릭
         logOn.setOnAction(e-> {
             Stage stage = null;
@@ -90,7 +92,7 @@ public class LoginController implements Initializable{
             String str_passwd = passwd.getText().trim();
             m = dao.selectMember(str_id, str_passwd);
             if (m == null) {
-                warnPage("아이디, 패스워드 오류", "존재하지 않는 아이디이거나 패스워드 입니다. 다시 입력해주세요.");
+                LogonController.warnPage("아이디, 패스워드 오류", "존재하지 않는 아이디이거나 패스워드 입니다. 다시 입력해주세요.", id, passwd);
                 return;
             }
             loginManager = m;
@@ -120,12 +122,6 @@ public class LoginController implements Initializable{
                 e1.printStackTrace();
                 return;
             }
-
-            // 만약 아이디랑 비밀번호가 틀리다면, 다시 입력 경고창 띄우기
-                // 아이디가 존재하지 않는다면, 존재하지 않는 아이디
-                // 비밀번호가 틀리다면, 비밀번호가 틀립니다
-                // 위 처럼 구현하면 보안에 별로 안좋기 때문에
-                // 아이디 비밀번호 둘 중 하나라도 맞지 않으면, 아이디 또는 비밀번호가 틀립니다.
         });
 
         // 아이디/비밀번호 찾기 버튼 클릭
@@ -139,14 +135,5 @@ public class LoginController implements Initializable{
         });
 
     } // end initialize
-
-    // warn 페이지
-    public void warnPage(String title, String header) {
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.initModality(Modality.APPLICATION_MODAL);
-        alert.show();
-    }
 
 }

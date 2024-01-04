@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UserAttendanceController">
    <children>
-      <TableView layoutY="76.0" prefHeight="524.0" prefWidth="800.0">
+      <TableView fx:id="tableView" layoutY="76.0" prefHeight="524.0" prefWidth="800.0">
         <columns>
           <TableColumn prefWidth="45.0">
                <graphic>
@@ -32,7 +32,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
          <font>
-            <Font name="Arial Black" size="15.0" />
+            <Font name="Arial Black" size="20.0" />
          </font>
       </Label>
       <TextField fx:id="people" layoutX="6.0" layoutY="46.0" prefHeight="22.0" prefWidth="72.0" text="전체 목록 : ">
@@ -40,9 +40,14 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <Button fx:id="today" layoutX="752.0" layoutY="3.0" mnemonicParsing="false" text="오늘" />
-      <Button fx:id="searching" layoutX="712.0" layoutY="3.0" mnemonicParsing="false" text="검색" />
-      <DatePicker fx:id="endDate" layoutX="569.0" layoutY="4.0" prefHeight="22.0" prefWidth="140.0" promptText="종료 날짜" />
-      <DatePicker fx:id="startDate" layoutX="429.0" layoutY="4.0" prefHeight="22.0" prefWidth="140.0" promptText="시작 날짜" />
+      <Button fx:id="today" layoutX="752.0" layoutY="48.0" mnemonicParsing="false" text="오늘" />
+      <Button fx:id="searching" layoutX="712.0" layoutY="48.0" mnemonicParsing="false" text="검색" />
+      <DatePicker fx:id="endDate" layoutX="569.0" layoutY="49.0" prefHeight="22.0" prefWidth="140.0" promptText="종료 날짜" />
+      <DatePicker fx:id="startDate" layoutX="429.0" layoutY="49.0" prefHeight="22.0" prefWidth="140.0" promptText="시작 날짜" />
+      <Label fx:id="labelHome" layoutX="315.0" layoutY="9.0" text="Health Kiosk">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
