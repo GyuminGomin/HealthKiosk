@@ -4,10 +4,12 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import application.dao.UserDAO;
 import application.dao.UserDAOImpl;
 import application.dto.User;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -17,6 +19,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 public class CreateUserController implements Initializable{
@@ -40,6 +43,26 @@ public class CreateUserController implements Initializable{
         
         LogonController.focusMove(txtName, firstNum, middleNum, lastNum);
 
+        Platform.runLater(()->{
+        	txtName.requestFocus();
+        });
+
+        txtName.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) firstNum.requestFocus();
+        });
+        firstNum.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) middleNum.requestFocus();
+        });
+        middleNum.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) lastNum.requestFocus();
+        });
+        lastNum.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) startDate.requestFocus();
+        });
+        startDate.setOnKeyPressed(e1->{
+        	if(e1.getCode() == KeyCode.ENTER) btnNext.fire();
+        });
+
         // 회원 추가 버튼 클릭
         btnNext.setOnAction(e -> {
 
@@ -47,22 +70,34 @@ public class CreateUserController implements Initializable{
             if (txtName.getText().trim().length() < 2 || txtName.getText().trim().length()>20) {
                 LogonController.warnPage("이름 입력 잘못", "이름은 2글자 이상 20글자 이하로 제한됩니다.", txtName);
                 return;
-            }
+            } else if (txtName.getText().trim() != null && !Pattern.matches("^[가-힣a-zA-Z0-9]*$", txtName.getText().trim())) {
+            	LogonController.warnPage("특수문자 입력 불가","이름을 영어, 한글, 숫자로만 작성해주세요.",txtName);
+            	return;
+            };
 
             // 휴대폰 설정 // 미션 -> 숫자만 입력가능하게 설정
             if (firstNum.getText().trim().length() != 3) {
                 LogonController.warnPage("휴대폰 앞자리 3자리", "대한민국 휴대폰 앞자리는 010, 011, 016, 017, 019 등이 존재합니다.", firstNum);
                 return;
+            } else if (firstNum.getText().trim() != null && !Pattern.matches("^[\\d]*$", firstNum.getText().trim())) {
+            	LogonController.warnPage("번호 재입력", "전화번호는 숫자로만 작성해주세요.", firstNum, middleNum, lastNum);
+            	return;
             }
 
             if (middleNum.getText().trim().length() != 4) {
                 LogonController.warnPage("휴대폰 지역별 할당번호는 4자리", "휴대폰 지역별 할당번호는 4자리입니다.", middleNum);
                 return;
+            } else if (middleNum.getText().trim() != null && !Pattern.matches("^[\\d]*$", middleNum.getText().trim())) {
+            	LogonController.warnPage("번호 재입력", "전화번호는 숫자로만 작성해주세요.", middleNum, lastNum);
+            	return;
             }
 
             if (lastNum.getText().trim().length() != 4) {
                 LogonController.warnPage("휴대폰 끝자리 4자리", "휴대폰 끝자리는 4자리입니다.", lastNum);
                 return;
+            } else if (lastNum.getText().trim() != null && !Pattern.matches("^[\\d]*$", lastNum.getText().trim())) {
+            	LogonController.warnPage("번호 재입력", "전화번호는 숫자로만 작성해주세요.", lastNum);
+            	return;
             }
 
             // 시작 날짜 설정

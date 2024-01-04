@@ -15,18 +15,23 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -122,29 +127,78 @@ public class HomeController implements Initializable {
         glist.add(new PieChart.Data("여자", dao.UserGenderNum("여자")));
         pieChartGender.setData(glist);
 
+        
+        // PieChartGender 마우스 이동시
         Platform.runLater(() -> {
             Label caption = new Label("");
+            caption.setFont(new Font(20));
+            caption.setStyle("-fx-background-color: rgba(0,0,0,0);");
+            caption.setTextAlignment(TextAlignment.CENTER);
+
+            Stage s = new Stage(StageStyle.TRANSPARENT);
+            AnchorPane a = new AnchorPane();
+            a.setStyle("-fx-background-color: rgba(0,0,0,0);");
+            Scene scene = new Scene(a);
+            scene.setFill(Color.TRANSPARENT);
+            a.getChildren().add(caption);
+            s.setScene(scene);
+            
             for (PieChart.Data d : pieChartGender.getData()) {
-                d.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
-                    caption.setText(String.format("%.1f%%",d.getPieValue()));
+                d.getNode().setOnMouseMoved((e) -> {
+                    caption.setText(String.format("%.1f%%",d.getPieValue()/dao.countUser()*100));
+
+                    s.setX(e.getScreenX()+20);
+                    s.setY(e.getScreenY());
+                    
+                    if (!s.isShowing()) {
+                        s.show();
+                    }
+                });
+                d.getNode().setOnMouseExited(e -> {
+                    s.close();
                 });
             }
-
-            StackPane stackPane = new StackPane();
-            stackPane.getChildren().add(caption);
-
-            Scene scene = pieChartGender.getScene();
-            if (scene == null) {
-                scene = new Scene(stackPane); // 적절한 크기로 변경
-                pieChartGender.setScene(scene);
-            } else {
-                ((StackPane) scene.getRoot()).getChildren().add(caption);
-            }
-        });
-        
+        }); // pieChartGender 마우스 이동시
 
         // pieChartLocker View
+        pieChartLocker.setTitle("락커 현황");
+        ObservableList<PieChart.Data> llist = FXCollections.observableArrayList();
+        llist.add(new PieChart.Data("활성", ldao.statusActivatedNum(true)));
+        llist.add(new PieChart.Data("비활성", ldao.statusActivatedNum(false)));
+        pieChartLocker.setData(llist);
 
+        
+        // PieChartLocker 마우스 이동시
+        Platform.runLater(() -> {
+            Label caption = new Label("");
+            caption.setFont(new Font(20));
+            caption.setStyle("-fx-background-color: rgba(0,0,0,0);");
+            caption.setTextAlignment(TextAlignment.CENTER);
+
+            Stage s = new Stage(StageStyle.TRANSPARENT);
+            AnchorPane a = new AnchorPane();
+            a.setStyle("-fx-background-color: rgba(0,0,0,0);");
+            Scene scene = new Scene(a);
+            scene.setFill(Color.TRANSPARENT);
+            a.getChildren().add(caption);
+            s.setScene(scene);
+            
+            for (PieChart.Data d : pieChartLocker.getData()) {
+                d.getNode().setOnMouseMoved((e) -> {
+                    caption.setText(String.format("%.1f%%",d.getPieValue()/ldao.countLocker()*100));
+
+                    s.setX(e.getScreenX()+20);
+                    s.setY(e.getScreenY());
+                    
+                    if (!s.isShowing()) {
+                        s.show();
+                    }
+                });
+                d.getNode().setOnMouseExited(e -> {
+                    s.close();
+                });
+            }
+        });
 
         // f5를 눌러서 Stage 리다이렉트
         Platform.runLater(()-> {

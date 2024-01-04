@@ -87,12 +87,14 @@ public class LoginController implements Initializable{
         // 로그인 버튼 클릭
         logIn.setOnAction(e -> {
             // 로그인 아이디랑 비밀번호 맞는지 확인하고 페이지 넘기기
+            Stage s = (Stage)id.getScene().getWindow();
+
             Manager m = null;
             String str_id = id.getText().trim();
             String str_passwd = passwd.getText().trim();
             m = dao.selectMember(str_id, str_passwd);
             if (m == null) {
-                LogonController.warnPage("아이디, 패스워드 오류", "존재하지 않는 아이디이거나 패스워드 입니다. 다시 입력해주세요.", id, passwd);
+                LogonController.warnPage(s, "아이디, 패스워드 오류", "존재하지 않는 아이디이거나 패스워드 입니다. 다시 입력해주세요.", id, passwd);
                 return;
             }
             loginManager = m;

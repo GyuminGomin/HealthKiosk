@@ -170,8 +170,28 @@ public class LogonController implements Initializable{
     // warn 페이지 (textfield)
     public static void warnPage(String title, String header,TextField... textFields) {
         Alert warn = new Alert(AlertType.WARNING);
+        warn.getDialogPane().setStyle("-fx-pref-width: 500px; -fx-pref-height: 100px");
         warn.setTitle(title);
         warn.setHeaderText(header);
+        warn.show();
+        textFields[0].clear();
+        textFields[0].requestFocus();
+        textFields[0].setStyle("-fx-border-color:red;");
+        if (textFields.length >= 2) {
+            for (int i=1; i<textFields.length; i++) {
+                textFields[i].clear();
+            }
+        }
+    }
+
+    // warn 페이지 (textfield)
+    public static void warnPage(Stage stage, String title, String header,TextField... textFields) {
+        Alert warn = new Alert(AlertType.WARNING);
+        warn.getDialogPane().setStyle("-fx-pref-width: 500px; -fx-pref-height: 100px");
+        warn.setTitle(title);
+        warn.setHeaderText(header);
+        warn.setX(stage.getX() - warn.getWidth()/2);
+        warn.setY(stage.getY() - warn.getHeight());
         warn.show();
         textFields[0].clear();
         textFields[0].requestFocus();
