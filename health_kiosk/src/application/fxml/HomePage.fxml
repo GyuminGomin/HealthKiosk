@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomeController">
+<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomeController">
    <center>
       <AnchorPane style="-fx-border-color: black; -fx-border-width: 1 0 1 1;" BorderPane.alignment="CENTER">
          <children>
@@ -58,37 +58,37 @@
                   <ProgressBar fx:id="inactUserBar" layoutX="583.0" layoutY="162.0" prefHeight="20.0" prefWidth="232.0" progress="0.0" />
                </children>
             </VBox>
-            <VBox layoutX="629.0" layoutY="414.0">
+            <VBox layoutX="629.0" layoutY="315.0">
                <children>
-                  <Label text="전체 락커 : 0개">
+                  <Label fx:id="totalLocker" text="전체 락커 : 0개">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <Label text="총 락커 갯수" />
-                  <ProgressBar layoutX="625.0" layoutY="348.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
+                  <ProgressBar fx:id="allLockerBar" layoutX="625.0" layoutY="348.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
-            <VBox layoutX="628.0" layoutY="310.0">
+            <VBox layoutX="629.0" layoutY="421.0">
                <children>
-                  <Label text="활성 락커 : 0개">
+                  <Label fx:id="activateLocker" text="활성 락커 : 0개">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <Label text="활성화 된 락커 갯수" />
-                  <ProgressBar layoutX="625.0" layoutY="454.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
+                  <ProgressBar fx:id="actLockerBar" layoutX="625.0" layoutY="454.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
-            <VBox layoutX="629.0" layoutY="523.0">
+            <VBox layoutX="629.0" layoutY="534.0">
                <children>
-                  <Label text="잔여 락커 : 0개">
+                  <Label fx:id="inactivateLocker" text="비활성화 락커 : 0개">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="남아있는 락커 갯수" />
-                  <ProgressBar layoutX="626.0" layoutY="565.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
+                  <Label text="비활성화 락커 갯수" />
+                  <ProgressBar fx:id="inactLockerBar" layoutX="626.0" layoutY="565.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
             <Button fx:id="btnAddUser" layoutX="635.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="회원추가" />

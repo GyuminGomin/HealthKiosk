@@ -88,7 +88,14 @@ public class UserDAOImpl implements UserDAO {
             }
             if (activated == true) {
                 userStatusInt = userStatusNum.get(0);
-            } else userStatusInt = userStatusNum.get(1);
+                if (userStatusNum.size() == 1) return userStatusInt;
+            } else {
+                if (userStatusNum.size() == 1) {
+                    userStatusInt = userStatusNum.get(0);
+                    return userStatusInt;  
+                }
+                userStatusInt = userStatusNum.get(1);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

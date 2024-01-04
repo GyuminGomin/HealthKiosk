@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.dao.LockerDAO;
+import application.dao.LockerDAOImpl;
 import application.dao.UserDAO;
 import application.dao.UserDAOImpl;
 import application.dto.Manager;
@@ -20,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -32,21 +35,24 @@ public class HomeController implements Initializable {
     @FXML
     private VBox panel;
     @FXML
-    private Label loginManager, totalUser, activateUser, inactivateUser, allUser, actUser, inactUser;
+    private Label loginManager, totalUser, activateUser, inactivateUser, allUser, actUser, inactUser, totalLocker, activateLocker, inactivateLocker;
     @FXML
-    private ProgressBar allUserBar, actUserBar, inactUserBar;
+    private ProgressBar allUserBar, actUserBar, inactUserBar, allLockerBar, actLockerBar, inactLockerBar;
 
-    // DB에서 받아온 데이터를 저장하는 객체(VO)
+    // DB에서 받아온 데이터를 저장하는 User객체(VO)
     UserDAO dao = new UserDAOImpl();
 
-    private AnchorPane custManage, attendance, salManage, salStatistic;
+    // DB에서 받아온 데이터를 저장하는 Locker객체(VO)
+    LockerDAO ldao = new LockerDAOImpl();
+
+    private AnchorPane custManage, attendance, salManage, salStatistic, locker;
     private boolean custFlag = true, salFlag = true;
     Manager m = LoginController.loginManager; // 현재 로그인한 매니저
     
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-        
+
         // 현재 로그인 한 매니저의 이름과 id를 가져와서 저장
         String loginM = m.getManagerId() + " : " + m.getManagerName();
         loginManager.setText(loginM);
@@ -79,6 +85,29 @@ public class HomeController implements Initializable {
 		count = "전체 회원 중 비활성화 회원은 " +dao.statusUserNum(false)+ "명 입니다";
 		inactUser.setText(count);
 
+
+        // 락커 수 출력 해주기
+        String countLocker = "전체 락커 : "+ldao.countLocker()+"개";
+        totalLocker.setText(countLocker);
+        // ProgressBar 전체 락커 수
+        maxValue = 15;
+        progress = ldao.countLocker() / maxValue;
+        allLockerBar.setProgress(progress);
+
+        // 현재 활성화된 회원, 비활성화 된 회원
+        String activateL = "활성 락커 : "+ldao.statusActivatedNum(true)+"개";
+        activateLocker.setText(activateL);
+        // ProgressBar 활성 락커 수
+        maxValue = ldao.countLocker();
+        progress = ldao.statusActivatedNum(true) / maxValue;
+        actLockerBar.setProgress(progress);
+
+        String inactivateL = "비활성화 락커 : "+ldao.statusActivatedNum(false)+"개";
+        inactivateLocker.setText(inactivateL);
+        // ProgressBar 비활성 락커 수
+        progress = ldao.statusActivatedNum(false) / maxValue;
+        inactLockerBar.setProgress(progress);
+
         // f5를 눌러서 Stage 리다이렉트
         Platform.runLater(()-> {
             Stage curStage = (Stage)panel.getScene().getWindow();
@@ -106,6 +135,7 @@ public class HomeController implements Initializable {
         attendance = (AnchorPane)panel.getChildren().get(3);
         salManage = (AnchorPane)panel.getChildren().get(6);
         salStatistic = (AnchorPane)panel.getChildren().get(7);
+        locker = (AnchorPane)panel.getChildren().get(4);
 
         // 로그아웃 버튼 클릭
         logout.setOnAction(e-> {
@@ -164,12 +194,13 @@ public class HomeController implements Initializable {
             try {
                 stage = new Stage(StageStyle.DECORATED);
 
-                loader = new FXMLLoader(getClass().getResource("/application/fxml/CreateUser.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/application/fxml/CreateUserPage.fxml"));
                 createUserPage = loader.load();
 
                 stage.setScene(new Scene(createUserPage));
                 stage.setTitle("회원 등록 페이지");
                 stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
 
             } catch (IOException e1) {
@@ -177,6 +208,80 @@ public class HomeController implements Initializable {
                 return;
             }
         }); // 회원 등록 버튼 클릭
+
+        // 고객 관리 버튼 클릭
+        custManage.setOnMouseClicked(e-> {
+            Stage stage = null;
+            FXMLLoader loader = null;
+            Parent managementPage = null;
+            
+            try {
+                stage = new Stage(StageStyle.DECORATED);
+
+                loader = new FXMLLoader(getClass().getResource("/application/fxml/UserManagementPage.fxml"));
+                managementPage = loader.load();
+
+                stage.setScene(new Scene(managementPage));
+                stage.setTitle("고객 관리 페이지");
+                stage.setResizable(false);
+                stage.show();
+                Stage homePage = (Stage)logout.getScene().getWindow();
+                homePage.close();
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
+            }
+        }); // 고객 관리 버튼 클릭
+
+        // 출석부 버튼 클릭
+        attendance.setOnMouseClicked(e-> {
+            Stage stage = null;
+            FXMLLoader loader = null;
+            Parent attendancePage = null;
+            
+            try {
+                stage = new Stage(StageStyle.DECORATED);
+
+                loader = new FXMLLoader(getClass().getResource("/application/fxml/UserAttendancePage.fxml"));
+                attendancePage = loader.load();
+
+                stage.setScene(new Scene(attendancePage));
+                stage.setTitle("출석부 페이지");
+                stage.setResizable(false);
+                stage.show();
+                Stage homePage = (Stage)logout.getScene().getWindow();
+                homePage.close();
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
+            }
+        }); // 출석부 버튼 클릭
+
+        // 락커 버튼 클릭
+        locker.setOnMouseClicked(e-> {
+            Stage stage = null;
+            FXMLLoader loader = null;
+            Parent lockerPage = null;
+            
+            try {
+                stage = new Stage(StageStyle.DECORATED);
+
+                loader = new FXMLLoader(getClass().getResource("/application/fxml/LockerPage.fxml"));
+                lockerPage = loader.load();
+
+                stage.setScene(new Scene(lockerPage));
+                stage.setTitle("락커 페이지");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
+            }
+        }); // 락커 버튼 클릭
         
 	}
 
