@@ -7,9 +7,22 @@ public class User {
     private int userCode;
     private String userName, userGender, phoneHeader, phoneMiddle, phoneTail;
     private LocalDate userStartDate;
-    private Boolean userStatus; // user 활성화 비활성화 상태
+    private Boolean userStatus = true; // user 활성화 비활성화 상태
 
-    
+    public User() {}
+
+    public User(int userCode, String userName, String userGender, String phoneHeader, String phoneMiddle,
+            String phoneTail, LocalDate userStartDate, Boolean userStatus) {
+        this.userCode = userCode;
+        this.userName = userName;
+        this.userGender = userGender;
+        this.phoneHeader = phoneHeader;
+        this.phoneMiddle = phoneMiddle;
+        this.phoneTail = phoneTail;
+        this.userStartDate = userStartDate;
+        this.userStatus = userStatus;
+    } // 회원 조회할 때 필요
+
     public User(String userName, LocalDate userStartDate, String userGender, String phoneHeader,
             String phoneMiddle, String phoneTail) {
         this.userName = userName;
@@ -18,7 +31,6 @@ public class User {
         this.phoneMiddle = phoneMiddle;
         this.phoneTail = phoneTail;
         this.userStartDate = userStartDate;
-        this.userStatus = true;
     } // 회원 생성할 때 필요
 
     public int getUserCode() {
@@ -71,6 +83,14 @@ public class User {
 
     public void setUserStatus(Boolean userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public LocalDate getUserEndDate() {
+        return userEndDate;
+    }
+
+    public void setUserEndDate(LocalDate userEndDate) {
+        this.userEndDate = userEndDate;
     }
 
     
