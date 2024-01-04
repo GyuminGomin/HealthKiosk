@@ -1,10 +1,6 @@
 package application.controller;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
@@ -16,6 +12,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -23,7 +20,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class LogonController implements Initializable{
@@ -89,7 +85,7 @@ public class LogonController implements Initializable{
             String string_name = name.getText().trim();
             String string_email = email.getText().trim();
             String string_phoneNum = phoneNum.getText().trim();
-
+            
             chkFlag = chk(char_id, id, "아이디 조건 알림", "아이디는 영문(소문자) 또는 숫자로만 이루어질 수 있습니다.", "아이디 입력 필수", "아이디는 공백일 수 없습니다.", "아이디 다시 입력", "아이디는 12자 이내로 작성해주세요."); // id 체크 완료
             
             if (chkFlag) return; // id 문제 발생하면 종료
@@ -97,7 +93,8 @@ public class LogonController implements Initializable{
             chkFlag = chk(char_passwd, passwd, "비밀번호 조건 알림", "비밀번호는 영문(소문자) 또는 숫자로만 이루어질 수 있습니다.", "비밀번호 입력 필수", "비밀번호는 공백일 수 없습니다.", "비밀번호 다시 입력", "비밀번호는 12자 이내로 작성해주세요."); // 비밀번호 체크 완료
 
             if (chkFlag) return; // 비밀번호 문제 발생하면 종료
-
+            
+            
             if (!dao.selectMember(id.getText())) {
                 warnPage("아이디 중복", "아이디가 이미 존재합니다. 다른 아이디를 입력해주세요.", id);
                 return;
@@ -151,17 +148,18 @@ public class LogonController implements Initializable{
     
     // ID 체크, Passwd 체크
     public boolean chk(char[] charArray, TextField textField, String... text) {
+    	Stage stage1 = (Stage)id.getScene().getWindow();
         for (char c : charArray) {
                 if (!((c>=48 && c<=57) || (c>=97 && c<=122))) {
-                    warnPage(text[0], text[1], textField);
+                    warnPage(stage1, text[0], text[1], textField);
                     return true;
                 }
             }
         if (textField.getText().trim().equals("")) {
-            warnPage(text[2], text[3],textField);
+            warnPage(stage1, text[2], text[3],textField);
             return true;
         } else if (textField.getText().trim().length()>12) {
-            warnPage(text[4], text[5], textField);
+            warnPage(stage1, text[4], text[5], textField);
             return true;
         } // ID 체크, Passwd 체크
         return false; // ID 문제 없음
@@ -172,6 +170,24 @@ public class LogonController implements Initializable{
         Alert warn = new Alert(AlertType.WARNING);
         warn.setTitle(title);
         warn.setHeaderText(header);
+        warn.show();
+        textFields[0].clear();
+        textFields[0].requestFocus();
+        textFields[0].setStyle("-fx-border-color:red;");
+        if (textFields.length >= 2) {
+            for (int i=1; i<textFields.length; i++) {
+                textFields[i].clear();
+            }
+        }
+    }
+ // warn 페이지 (textfield)
+    public static void warnPage(Stage stage, String title, String header,TextField... textFields) {
+        Alert warn = new Alert(AlertType.WARNING);
+        warn.setTitle(title);
+        warn.setHeaderText(header);
+        double y = stage.getY();
+        warn.setX(stage.getX() - (stage.getWidth()/2));
+        warn.setY(y - warn.getHeight());
         warn.show();
         textFields[0].clear();
         textFields[0].requestFocus();

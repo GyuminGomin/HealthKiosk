@@ -4,6 +4,5 @@ open module health_care {
 	requires java.sql;
 	requires java.desktop;
 	
-	
 	exports application;
 }
