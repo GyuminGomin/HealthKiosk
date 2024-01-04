@@ -2,19 +2,20 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateUserController">
    <children>
-      <Separator layoutX="1.0" layoutY="8.0" prefHeight="8.0" prefWidth="500.0" 
-      style="-fx-background-color: peachpuff;" />
+      <Separator layoutX="1.0" layoutY="8.0" prefHeight="8.0" prefWidth="500.0" style="-fx-background-color: peachpuff;" />
       <Label layoutX="174.0" layoutY="24.0" prefHeight="25.0" prefWidth="137.0" text="신규 회원추가">
          <font>
             <Font name="휴먼고딕" size="20.0" />
@@ -46,6 +47,11 @@
             <Font size="15.0" />
          </font>
       </TextField>
+      <TextField fx:id="middleNum" layoutX="81.0" layoutY="196.0" prefHeight="33.0" prefWidth="131.0" promptText="중간 4자리">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
       <TextField fx:id="lastNum" layoutX="223.0" layoutY="196.0" prefHeight="33.0" prefWidth="121.0" promptText="뒷 4자리">
          <font>
             <Font size="15.0" />
@@ -61,27 +67,30 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="62.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="62.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/man.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="296.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="296.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/women.png" />
          </image>
       </ImageView>
-      <CheckBox fx:id="man" layoutX="96.0" layoutY="504.0" mnemonicParsing="false" text="남성">
+      <RadioButton layoutX="93.0" layoutY="456.0" mnemonicParsing="false" selected="true" text="남자">
          <font>
             <Font size="15.0" />
          </font>
-      </CheckBox>
-      <CheckBox fx:id="woman" layoutX="345.0" layoutY="504.0" mnemonicParsing="false" text="여성">
+         <toggleGroup>
+            <ToggleGroup fx:id="gender" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="343.0" layoutY="456.0" mnemonicParsing="false" text="여자" toggleGroup="$gender">
          <font>
             <Font size="15.0" />
          </font>
-      </CheckBox>
-      <Button fx:id="btnNext" alignment="CENTER" layoutX="1.0" layoutY="557.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="500.0" style="-fx-background-color: crimson;" text="다음" textFill="WHITE">
+      </RadioButton>
+      <Button fx:id="btnNext" alignment="CENTER" layoutX="1.0" layoutY="557.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="500.0" style="-fx-background-color: crimson;" text="회원 추가" textFill="WHITE">
          <font>
             <Font name="태 나무" size="15.0" />
          </font>
@@ -89,12 +98,18 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="middleNum1" layoutX="81.0" layoutY="196.0" prefHeight="33.0" prefWidth="131.0" promptText="중간 4자리">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
       <Label layoutX="71.0" layoutY="206.0" text="-" />
       <Label layoutX="215.0" layoutY="207.0" text="-" />
+      <DatePicker fx:id="startDate" layoutX="211.0" layoutY="507.0" prefHeight="22.0" prefWidth="280.0" />
+      <Label layoutX="11.0" layoutY="509.0" text="시작날짜를 선택해주세요">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="165.0" layoutY="510.0" text="(필수)" textFill="#da8064">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

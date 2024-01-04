@@ -33,65 +33,65 @@
                      </font>
                   </Label>
                   <Label fx:id="allUser" text="만료를 포함한 등록된 회원은 총 0명 입니다." />
+                  <ProgressBar fx:id="allUserBar" layoutX="38.0" layoutY="162.0" prefHeight="20.0" prefWidth="227.0" progress="0.0" />
                </children>
             </VBox>
             <VBox layoutX="322.0" layoutY="122.0" prefWidth="235.0">
                <children>
-                  <Label text="활성 회원 0명">
+                  <Label fx:id="activateUser" text="활성 회원 0명">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="전체 회원 중 활성 회원은 0명 입니다." />
+                  <Label fx:id="actUser" text="전체 회원 중 활성 회원은 0명 입니다." />
+                  <ProgressBar fx:id="actUserBar" layoutX="316.0" layoutY="162.0" prefHeight="20.0" prefWidth="227.0" progress="0.0" />
                </children>
             </VBox>
             <VBox layoutX="588.0" layoutY="121.0" prefWidth="235.0">
                <children>
-                  <Label text="비활성 회원 0명">
+                  <Label fx:id="inactivateUser" text="비활성 회원 0명">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="전체 회원 중 비활성화 회원은 0명 입니다." />
+                  <Label fx:id="inactUser" text="전체 회원 중 비활성화 회원은 0명 입니다." />
+                  <ProgressBar fx:id="inactUserBar" layoutX="583.0" layoutY="162.0" prefHeight="20.0" prefWidth="232.0" progress="0.0" />
                </children>
             </VBox>
-            <VBox layoutX="629.0" layoutY="414.0">
+            <VBox layoutX="629.0" layoutY="315.0">
                <children>
-                  <Label text="전체 락커 : 0개">
+                  <Label fx:id="totalLocker" text="전체 락커 : 0개">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <Label text="총 락커 갯수" />
+                  <ProgressBar fx:id="allLockerBar" layoutX="625.0" layoutY="348.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
-            <VBox layoutX="628.0" layoutY="310.0">
+            <VBox layoutX="629.0" layoutY="421.0">
                <children>
-                  <Label text="활성 락커 : 0개">
+                  <Label fx:id="activateLocker" text="활성 락커 : 0개">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <Label text="활성화 된 락커 갯수" />
+                  <ProgressBar fx:id="actLockerBar" layoutX="625.0" layoutY="454.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
-            <VBox layoutX="629.0" layoutY="523.0">
+            <VBox layoutX="629.0" layoutY="534.0">
                <children>
-                  <Label text="잔여 락커 : 0개">
+                  <Label fx:id="inactivateLocker" text="비활성화 락커 : 0개">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="남아있는 락커 갯수" />
+                  <Label text="비활성화 락커 갯수" />
+                  <ProgressBar fx:id="inactLockerBar" layoutX="626.0" layoutY="565.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
             <Button fx:id="btnAddUser" layoutX="635.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="회원추가" />
-            <ProgressBar fx:id="allUserBar" layoutX="38.0" layoutY="162.0" prefHeight="20.0" prefWidth="227.0" progress="0.0" />
-            <ProgressBar layoutX="316.0" layoutY="162.0" prefHeight="20.0" prefWidth="227.0" progress="0.0" />
-            <ProgressBar layoutX="583.0" layoutY="162.0" prefHeight="20.0" prefWidth="232.0" progress="0.0" />
-            <ProgressBar layoutX="625.0" layoutY="348.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
-            <ProgressBar layoutX="625.0" layoutY="454.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
-            <ProgressBar layoutX="626.0" layoutY="565.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
          </children>
          <cursor>
             <Cursor fx:constant="HAND" />
