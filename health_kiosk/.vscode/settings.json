@@ -21,5 +21,8 @@
             "lib/javafx.swing.jar",
             "lib/javafx.web.jar"
         ]
-    }
+    },
+    "java.project.sourcePaths": [
+        "src"
+    ]
 }

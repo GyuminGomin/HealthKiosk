@@ -252,6 +252,14 @@ public class HomeController implements Initializable {
                 return;
             }
         }); // 로그아웃 버튼 클릭
+//------------------------------------------------------------------
+//        locker.setOnMouseMoved(new EventHandler<Event>() {
+//            @Override
+//            public void handle(MouseDragEvent event) {
+//            	locker.setStyle("-fx-background-color: red;");
+//            }
+//        });
+//------------------------------------------------------------------
 
         // 회원 세모박스 클릭
         btnLayout1.setOnMouseClicked(e -> {
