@@ -3,13 +3,16 @@ package application.dao;
 import application.dto.User;
 
 public interface UserDAO {
+
+
+    // 회원 등록
+    void join(User user);
+
+    // 현재 회원 수 조회 (탈퇴한 회원은 조회 안함)
+    int countUser();
+
+    // 활성화 된 회원 비 활성 회원 설정
     
-    // 회원가입
-    User join(User user);
-
-    // 아이디가 기존에 존재하는지 확인
-	boolean selectMember(String userId);
-
-    // Id와 Passwd가 일치하는 사용자 검색
-    User selectMember(String userId, String userPasswd);
+    // 활성화, 비활성화 회원 수 조회
+    int statusUserNum(Boolean activated);
 }

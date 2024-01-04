@@ -1,114 +1,99 @@
 package application.dao;
 
-import java.beans.Statement;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 import application.dto.User;
 import application.utils.DBUtil;
 
-public class UserDAOImpl implements UserDAO{
-
+public class UserDAOImpl implements UserDAO {
+    
     Connection conn = DBUtil.getConnection();
     Statement stmt;
     PreparedStatement pstmt;
     ResultSet rs;
 
+    // User 등록 구현 중
     @Override
-    public boolean selectMember(String userId) {
-        boolean isChecked = true; // 존재하지 않으면
+    public void join(User user) {
 
-        String sql = "SELECT userId, userPasswd FROM user WHERE userId = ?";
+        String sql = "INSERT INTO user (userName, userstartDate, userGender, phoneHeader, phoneMiddle, phoneTail, userStatus) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userId);
-            rs = pstmt.executeQuery();
-
-            if (rs.next()) { // 존재하면
-                isChecked = false;
-            }
-        } catch (SQLException e) { // 쿼리 에러
-            isChecked = false;
-        } finally {
-            DBUtil.close(rs, pstmt);
-        }
-        return isChecked;
-    }
-
-    @Override
-    public User join(User user) {
-        User u = null;
-
-        String sql = "INSERT INTO user (userId, userPasswd, userName, userGender, userBirth, userEmail, userPhone) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, user.getUserId());
-            pstmt.setString(2, user.getUserPasswd());
-            pstmt.setString(3, user.getUserName());
-            pstmt.setString(4, user.getUserGender());
+            pstmt.setString(1, user.getUserName());
             Date date = null;
-            if (user.getUserBirth() != null) {
-                date = Date.valueOf(user.getUserBirth());
+            if (user.getUserStartDate() != null) {
+                date = Date.valueOf(user.getUserStartDate());
             }
-            pstmt.setDate(5, date);
-            pstmt.setString(6, user.getUserEmail());
-            pstmt.setString(7, user.getPhone());
+            pstmt.setDate(2, date);
+            pstmt.setString(3, user.getUserGender());
+            pstmt.setString(4, user.getPhoneHeader());
+            pstmt.setString(5, user.getPhoneMiddle());
+            pstmt.setString(6, user.getPhoneTail());
+            pstmt.setBoolean(7, user.getUserStatus());
+
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             DBUtil.close(pstmt);
         }
-        return u;
     }
 
-    // TODO
     @Override
-    public User selectMember(String userId, String userPasswd) {
-        User u = null;
+    public int countUser() {
+        int count = 0;
 
-        String sql = "SELECT ? FROM user WHERE userId=? AND userPasswd=?";
+        String sql = "SELECT count(*) FROM user";
 
         try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userId);
-            pstmt.setString(2, userPasswd);
-            rs = pstmt.executeQuery();
-            u = getMember(rs);
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                count = rs.getInt(1); // 숫자만 가져와서
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DBUtil.close(rs, pstmt);
+            DBUtil.close(rs, stmt);
         }
 
-        return u;
+        return count;
+
     }
 
-    public User getMember(ResultSet rs) throws SQLException {
-        User u = null;
-        LocalDate birth = null;
-        if (rs.next()) {
-            if (rs.getDate(6) != null) {
-                birth = rs.getDate(6).toLocalDate();
+    @Override
+    public int statusUserNum(Boolean activated) {
+
+        List<Integer> userStatusNum = new ArrayList<>();
+        int userStatusInt = 0;
+
+        String sql = "SELECT count(userStatus) FROM user GROUP BY userStatus";
+
+
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                userStatusNum.add(rs.getInt(1));
             }
-            u = new User(
-                rs.getInt(1), // memeber_id
-                rs.getString(2), // id
-                rs.getString(3), // passwd
-                rs.getString(4), // name
-                rs.getString(5), // Gender
-                birth,
-                rs.getString(7), // email
-                rs.getString(8) // phone
-            );
+            if (activated == true) {
+                userStatusInt = userStatusNum.get(0);
+            } else userStatusInt = userStatusNum.get(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(rs, stmt);
         }
-        return u;
+        return userStatusInt;
     }
-    
 }
