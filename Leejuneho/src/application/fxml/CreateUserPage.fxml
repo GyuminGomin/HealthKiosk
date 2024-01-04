@@ -47,11 +47,6 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="middleNum" layoutX="81.0" layoutY="196.0" prefHeight="33.0" prefWidth="131.0" promptText="중간 4자리">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
       <TextField fx:id="lastNum" layoutX="223.0" layoutY="196.0" prefHeight="33.0" prefWidth="121.0" promptText="뒷 4자리">
          <font>
             <Font size="15.0" />
@@ -98,6 +93,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <TextField fx:id="middleNum" layoutX="81.0" layoutY="196.0" prefHeight="33.0" prefWidth="131.0" promptText="중간 4자리">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
       <Label layoutX="71.0" layoutY="206.0" text="-" />
       <Label layoutX="215.0" layoutY="207.0" text="-" />
       <DatePicker fx:id="startDate" layoutX="211.0" layoutY="507.0" prefHeight="22.0" prefWidth="280.0" />
