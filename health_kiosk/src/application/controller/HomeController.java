@@ -10,17 +10,22 @@ import application.dao.UserDAO;
 import application.dao.UserDAOImpl;
 import application.dto.Manager;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,6 +43,8 @@ public class HomeController implements Initializable {
     private Label loginManager, totalUser, activateUser, inactivateUser, allUser, actUser, inactUser, totalLocker, activateLocker, inactivateLocker;
     @FXML
     private ProgressBar allUserBar, actUserBar, inactUserBar, allLockerBar, actLockerBar, inactLockerBar;
+    @FXML
+    private PieChart pieChartGender, pieChartLocker;
 
     // DB에서 받아온 데이터를 저장하는 User객체(VO)
     UserDAO dao = new UserDAOImpl();
@@ -107,6 +114,37 @@ public class HomeController implements Initializable {
         // ProgressBar 비활성 락커 수
         progress = ldao.statusActivatedNum(false) / maxValue;
         inactLockerBar.setProgress(progress);
+
+        // pieChartGender View
+        pieChartGender.setTitle("활성 회원 성별 비");
+        ObservableList<PieChart.Data> glist = FXCollections.observableArrayList();
+        glist.add(new PieChart.Data("남자", dao.UserGenderNum("남자")));
+        glist.add(new PieChart.Data("여자", dao.UserGenderNum("여자")));
+        pieChartGender.setData(glist);
+
+        Platform.runLater(() -> {
+            Label caption = new Label("");
+            for (PieChart.Data d : pieChartGender.getData()) {
+                d.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                    caption.setText(String.format("%.1f%%",d.getPieValue()));
+                });
+            }
+
+            StackPane stackPane = new StackPane();
+            stackPane.getChildren().add(caption);
+
+            Scene scene = pieChartGender.getScene();
+            if (scene == null) {
+                scene = new Scene(stackPane); // 적절한 크기로 변경
+                pieChartGender.setScene(scene);
+            } else {
+                ((StackPane) scene.getRoot()).getChildren().add(caption);
+            }
+        });
+        
+
+        // pieChartLocker View
+
 
         // f5를 눌러서 Stage 리다이렉트
         Platform.runLater(()-> {

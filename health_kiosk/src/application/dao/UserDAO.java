@@ -15,4 +15,7 @@ public interface UserDAO {
     
     // 활성화, 비활성화 회원 수 조회
     int statusUserNum(Boolean activated);
+
+    // 활성화 된 회원 중 성별비 조회
+    int UserGenderNum(String gen);
 }

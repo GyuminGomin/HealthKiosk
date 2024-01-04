@@ -23,8 +23,8 @@
                <font>
                   <Font size="50.0" />
                </font></Label>
-            <PieChart layoutX="39.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" style="-fx-border-color: black;" />
-            <PieChart layoutX="316.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" style="-fx-border-color: black;" />
+            <PieChart fx:id="pieChartGender" layoutX="39.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" startAngle="90.0" />
+            <PieChart fx:id="pieChartLocker" layoutX="316.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" startAngle="90.0" />
             <VBox layoutX="39.0" layoutY="125.0" prefWidth="235.0">
                <children>
                   <Label fx:id="totalUser" text="전체 회원 0명">

@@ -41,27 +41,26 @@ public class LockerDAOImpl implements LockerDAO{
 
     @Override
     public int statusActivatedNum(Boolean activated) {
-        List<Integer> actStatusNum = new ArrayList<>();
         int actStatusInt = 0;
+        int actTrue = 0;
+        int actFalse = 0;
 
-        String sql = "SELECT count(lockerActivated) FROM locker GROUP BY lockerActivated";
+        String sql = "SELECT sum(CASE WHEN lockerActivated=1 THEN 1 ELSE 0 END), sum(CASE WHEN lockerActivated=0 THEN 1 ELSE 0 END) FROM locker";
 
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                actStatusNum.add(rs.getInt(1));
+                actTrue = rs.getInt(1);
+                actFalse = rs.getInt(2);
             }
             if (activated == true) {
-                actStatusInt = actStatusNum.get(0);
-                if (actStatusNum.size() == 1) return actStatusInt;
+                actStatusInt = actTrue;
+                return actStatusInt;
             } else {
-                if (actStatusNum.size() == 1) {
-                    return 0;  
-                }
-                actStatusInt = actStatusNum.get(1);
-
+                actStatusInt = actFalse;
+                return actStatusInt;
             }
         } catch (SQLException e) {
             e.printStackTrace();
