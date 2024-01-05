@@ -85,13 +85,5 @@ public class User {
         this.userStatus = userStatus;
     }
 
-    public LocalDate getUserEndDate() {
-        return userEndDate;
-    }
-
-    public void setUserEndDate(LocalDate userEndDate) {
-        this.userEndDate = userEndDate;
-    }
-
     
 }

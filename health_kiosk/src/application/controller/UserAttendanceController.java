@@ -1,29 +1,135 @@
 package application.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
-import application.dto.User;
+import application.dao.UserDAO;
+import application.dao.UserDAOImpl;
+import application.dto.UserAtten;
+import application.dto.UserChild;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class UserAttendanceController implements Initializable{
 
     @FXML
-    private Label labelHome;
+    private Label labelHome, totalAtten;
     @FXML
-    private TableView<User> tableView; 
+    private TableView<UserAtten> tableView; 
+    @FXML
+    private TextField searchField;
+
+    private UserDAO dao = new UserDAOImpl();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // tableView Data 설정
+        Platform.runLater(() -> {
+            ObservableList<UserAtten> userList = FXCollections.observableArrayList();
+            for (UserAtten u : dao.userAtten()) {
+                userList.add(u);
+            }
+            // 첫 번째 TableColumn에 CheckBox 추가
+            TableColumn<UserAtten, Boolean> checkBoxColumn = (TableColumn<UserAtten, Boolean>)tableView.getColumns().get(0);
+
+            checkBoxColumn.setCellValueFactory(new PropertyValueFactory<>("checked"));
+
+            // 체크박스 셀의 내용을 표시하는 방법 지정 (옵션)
+            checkBoxColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkBoxColumn));
+
+            checkBoxColumn.setEditable(false);
+
+            ObservableList<TableColumn<UserAtten, ?>> columnList = tableView.getColumns();
+            Field[] fields = UserAtten.class.getDeclaredFields();
+            for (int i=1; i<fields.length-1; i++) {
+                String fieldName = fields[i].getName();
+                TableColumn<UserAtten, ?> columnName = columnList.get(i);
+                columnName.setCellValueFactory(new PropertyValueFactory<>(fieldName));
+            }
+
+            tableView.setItems(userList);
+
+            // 테이블 뷰를 (한번) 클릭
+            tableView.setOnMouseClicked(e -> {
+                MouseButton btn = e.getButton();
+                // 체크 표시
+                if (btn == MouseButton.PRIMARY && e.getClickCount() == 1) {
+                    UserAtten u = tableView.getSelectionModel().getSelectedItem();
+                    if (u != null) {
+                        u.setChecked(!u.isChecked());
+
+                        tableView.refresh();
+                    }
+                }
+            });
+
+            // txt 이름으로, 전화번호 뒷자리로 검색
+            // 테이블 필터링
+            FilteredList<UserAtten> filteredList = new FilteredList<>(userList, p -> true);
+
+            searchField.textProperty().addListener((obs, o, n) -> {
+                filteredList.setPredicate(user -> {
+                    if (n == null || n.isEmpty()) {
+                        return true;
+                    }
+                    if (Pattern.matches("^[0-9]*$", n)) {
+                        return user.getUserPhone().contains(n);
+                    }
+                    return user.getUserName().toLowerCase().contains(n.toLowerCase());
+                });
+                Platform.runLater(() -> {
+                    tableView.setItems(filteredList);
+                });
+            }); // txt 이름으로, 전화번호 뒷자리로 검색
+
+
+            // TableCell에 대한 업데이트를 처리하는 셀 팩토리 설정
+            checkBoxColumn.setCellFactory(col -> new CheckBoxTableCell<UserAtten, Boolean>(){
+                @Override
+                public void updateItem(Boolean item, boolean empty) {
+                    super.updateItem(item, empty);
+                    
+                    if (empty || getIndex() < 0) {
+                        setGraphic(null);
+                    } else {
+                        UserAtten user = getTableView().getItems().get(getIndex());
+                        CheckBox checkBox = (CheckBox)getGraphic();
+                        if (checkBox != null && user != null) {
+                            checkBox.setSelected(user.isChecked());
+                        }
+                    }
+                }
+            });
+
+            // 검색 날짜를 입력하면 그 날짜의 대상만 입력할 수 있게 수정 해야 함
+            // 전체 목록에 현재 뜨고 있는 tableView의 인원 수 구하기
+            int tableNum = tableView.getItems().size();
+            String s = "전체 목록 : "+tableNum;
+            totalAtten.setText(s);
+
+        }); // tableView Data 설정
+
         // HealthKiosk 버튼 클릭
         labelHome.setOnMouseClicked(e-> {
             Stage stage = null;

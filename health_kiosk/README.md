@@ -36,3 +36,9 @@
 4. fxml -> fxml 파일
 5. controller -> Controller 파일
 6. css -> css 파일
+
+
+
+# 고객 관리 페이지
+
+체크박스 : 단체로 휴대폰으로 문자 기능 (필수 x)

@@ -2,6 +2,7 @@ package application.dao;
 
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -11,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.dto.User;
+import application.dto.UserAtten;
 import application.dto.UserChild;
 import application.utils.DBUtil;
 
@@ -133,43 +135,6 @@ public class UserDAOImpl implements UserDAO {
         return userStatusInt;
     }
 
-    /*
-    @Override
-    public List<User> userManage() {
-        List<User> userList = new ArrayList<>();
-
-        String sql = "SELECT * FROM user";
-        try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                int userCode = rs.getInt(1);
-                String userName = rs.getString(2);
-                Date userStartDate = rs.getDate(3);
-                String userGender = rs.getString(4);
-                String phoneHeader = rs.getString(5);
-                String phoneMiddle = rs.getString(6);
-                String phoneTail = rs.getString(7);
-                Boolean userStatus = rs.getBoolean(8);
-                Date userEndDate = rs.getDate(9);
-                
-                LocalDate starDate = userStartDate.toLocalDate();
-                LocalDate endDate = (userEndDate != null) ? userEndDate.toLocalDate() : null;
-
-                User u = new User(userCode, userName, userGender, phoneHeader, phoneMiddle, phoneTail, starDate, userStatus, endDate);
-                userList.add(u);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DBUtil.close(rs, stmt);
-        }
-        return userList;
-    }
-     */
-
-
     // 수정해야함
     @Override
     public List<UserChild> userManage() {
@@ -189,15 +154,54 @@ public class UserDAOImpl implements UserDAO {
                 String phoneMiddle = rs.getString(6);
                 String phoneTail = rs.getString(7);
                 Boolean userStatus = rs.getBoolean(8);
-                
-                LocalDate startDate = userStartDate.toLocalDate();
+
+                LocalDate userReg = userStartDate.toLocalDate();
+                LocalDate startDate = null;
                 LocalDate endDate = null;
 
                 String phone = phoneHeader+"-"+phoneMiddle+"-"+phoneTail;
 
                 String status = (userStatus == true) ? "활성화" : "비활성화";
 
-                UserChild u = new UserChild(false, userCode, status, userName, userGender, phone, startDate, endDate);
+                UserChild u = new UserChild(false, userCode, status, userName, userGender, phone, userReg, startDate, endDate);
+                userList.add(u);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(rs, stmt);
+        }
+        return userList;
+    }
+
+    // 수정해야함
+    @Override
+    public List<UserAtten> userAtten() {
+        List<UserAtten> userList = new ArrayList<>();
+
+        String sql = "SELECT * FROM user";
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int userCode = rs.getInt(1);
+                String userName = rs.getString(2);
+                String userGender = rs.getString(4);
+                String phoneHeader = rs.getString(5);
+                String phoneMiddle = rs.getString(6);
+                String phoneTail = rs.getString(7);
+
+                
+                LocalDate doHealthDate = null;
+                LocalDateTime doHealthTime = null;
+                if (doHealthTime != null) {
+                    doHealthDate = doHealthTime.toLocalDate();
+                }
+                
+                String phone = phoneHeader+"-"+phoneMiddle+"-"+phoneTail;
+
+                UserAtten u = new UserAtten(false, userCode, userName,userGender, phone, doHealthTime, doHealthDate);
                 userList.add(u);
             }
         } catch (SQLException e) {

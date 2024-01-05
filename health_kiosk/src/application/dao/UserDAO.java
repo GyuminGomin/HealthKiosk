@@ -3,6 +3,7 @@ package application.dao;
 import java.util.List;
 
 import application.dto.User;
+import application.dto.UserAtten;
 import application.dto.UserChild;
 
 public interface UserDAO {
@@ -25,4 +26,7 @@ public interface UserDAO {
 
     // userManagement 페이지의 테이블 뷰에 넣기 위해 조회 후 저장
     List<UserChild> userManage();
+
+    // userAttendance 페이지의 테이블 뷰에 넣기 위해 조회 후 저장
+    List<UserAtten> userAtten();
 }

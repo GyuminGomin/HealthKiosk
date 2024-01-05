@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -13,25 +15,35 @@
    <children>
       <TableView fx:id="tableView" layoutY="125.0" prefHeight="674.0" prefWidth="900.0">
         <columns>
-          <TableColumn prefWidth="40.0" text="NO" />
+          <TableColumn fx:id="checkBox" prefWidth="30.0">
+               <graphic>
+                  <CheckBox disable="true" mnemonicParsing="false" />
+               </graphic></TableColumn>
+            <TableColumn prefWidth="40.0" text="NO" />
             <TableColumn prefWidth="100.0" text="상태" />
-            <TableColumn prefWidth="160.0" text="이름" />
+            <TableColumn prefWidth="130.0" text="이름" />
             <TableColumn prefWidth="90.0" text="성별" />
-            <TableColumn prefWidth="160.0" text="연락처" />
-            <TableColumn prefWidth="160.0" text="시작일" />
-            <TableColumn minWidth="9.0" prefWidth="160.0" text="종료일" />
+            <TableColumn prefWidth="130.0" text="연락처" />
+            <TableColumn prefWidth="120.0" text="회원등록일" />
+            <TableColumn prefWidth="130.0" text="시작일" />
+            <TableColumn minWidth="9.0" prefWidth="130.0" text="종료일" />
         </columns>
       </TableView>
-      <TextField layoutX="14.0" layoutY="69.0" prefHeight="34.0" prefWidth="161.0" promptText="이름, 연락처 검색" />
-      <Label layoutX="186.0" layoutY="79.0" prefHeight="14.0" prefWidth="72.0" text="전체 목록 : " />
-      <MenuBar layoutX="14.0" layoutY="36.0" prefHeight="25.0" prefWidth="204.0">
+      <TextField fx:id="searchField" layoutX="14.0" layoutY="69.0" prefHeight="34.0" prefWidth="161.0" promptText="이름, 연락처 검색" />
+      <MenuBar fx:id="menuBar" layoutX="14.0" layoutY="36.0" prefHeight="25.0" prefWidth="204.0">
         <menus>
           <Menu mnemonicParsing="false" text="전체 00">
-          	</Menu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="조회" />
+               </items></Menu>
           <Menu mnemonicParsing="false" text="활성 00">
-          	</Menu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="조회" />
+               </items></Menu>
           <Menu mnemonicParsing="false" text="비활성 00">
-          	</Menu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="조회" />
+               </items></Menu>
         </menus>
       </MenuBar>
       <Label layoutX="15.0" layoutY="9.0" text="회원 목록" textFill="#ff9500">

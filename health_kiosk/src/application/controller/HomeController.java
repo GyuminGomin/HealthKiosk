@@ -327,7 +327,24 @@ public class HomeController implements Initializable {
                 stage.show();
                 Stage homePage = (Stage)logout.getScene().getWindow();
                 homePage.close();
-
+                // 고객관리에서 종료키 클릭시 homePage로 돌아감
+                stage.setOnCloseRequest(e1->{
+                	Stage stage1 = null;
+                	FXMLLoader loader1 = null;
+        			Parent homePage1 = null;
+        			try {
+        				stage1 = new Stage(StageStyle.DECORATED);
+        				loader1 = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
+        				homePage1 = loader1.load();
+        				
+        				stage1.setScene(new Scene(homePage1));
+        				stage1.setTitle("홈 페이지");
+        				stage1.setResizable(false);
+        				stage1.show();
+        			} catch (IOException e2) {
+        				e2.printStackTrace();
+        			}
+                });
             } catch (IOException e1) {
                 e1.printStackTrace();
                 return;
@@ -352,7 +369,24 @@ public class HomeController implements Initializable {
                 stage.show();
                 Stage homePage = (Stage)logout.getScene().getWindow();
                 homePage.close();
-
+                // 출석부에서 종료키 클릭시 homePage로 돌아감
+                stage.setOnCloseRequest(e1->{
+                	Stage stage1 = null;
+                	FXMLLoader loader1 = null;
+        			Parent homePage1 = null;
+        			try {
+        				stage1 = new Stage(StageStyle.DECORATED);
+        				loader1 = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
+        				homePage1 = loader1.load();
+        				
+        				stage1.setScene(new Scene(homePage1));
+        				stage1.setTitle("홈 페이지");
+        				stage1.setResizable(false);
+        				stage1.show();
+        			} catch (IOException e2) {
+        				e2.printStackTrace();
+        			}
+                });
             } catch (IOException e1) {
                 e1.printStackTrace();
                 return;
