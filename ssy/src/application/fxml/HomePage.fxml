@@ -23,8 +23,8 @@
                <font>
                   <Font size="50.0" />
                </font></Label>
-            <PieChart layoutX="39.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" style="-fx-border-color: black;" />
-            <PieChart layoutX="316.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" style="-fx-border-color: black;" />
+            <PieChart fx:id="pieChartGender" layoutX="39.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" startAngle="90.0" />
+            <PieChart fx:id="pieChartLocker" layoutX="316.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" startAngle="90.0" />
             <VBox layoutX="39.0" layoutY="125.0" prefWidth="235.0">
                <children>
                   <Label fx:id="totalUser" text="전체 회원 0명">
@@ -58,43 +58,43 @@
                   <ProgressBar fx:id="inactUserBar" layoutX="583.0" layoutY="162.0" prefHeight="20.0" prefWidth="232.0" progress="0.0" />
                </children>
             </VBox>
-            <VBox layoutX="629.0" layoutY="414.0">
+            <VBox layoutX="629.0" layoutY="315.0">
                <children>
-                  <Label text="전체 락커 : 0개">
+                  <Label fx:id="totalLocker" text="전체 락커 : 0개">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <Label text="총 락커 갯수" />
-                  <ProgressBar layoutX="625.0" layoutY="348.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
+                  <ProgressBar fx:id="allLockerBar" layoutX="625.0" layoutY="348.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
-            <VBox layoutX="628.0" layoutY="310.0">
+            <VBox layoutX="629.0" layoutY="421.0">
                <children>
-                  <Label text="활성 락커 : 0개">
+                  <Label fx:id="activateLocker" text="활성 락커 : 0개">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                   <Label text="활성화 된 락커 갯수" />
-                  <ProgressBar layoutX="625.0" layoutY="454.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
+                  <ProgressBar fx:id="actLockerBar" layoutX="625.0" layoutY="454.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
-            <VBox layoutX="629.0" layoutY="523.0">
+            <VBox layoutX="629.0" layoutY="534.0">
                <children>
-                  <Label text="잔여 락커 : 0개">
+                  <Label fx:id="inactivateLocker" text="비활성화 락커 : 0개">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="남아있는 락커 갯수" />
-                  <ProgressBar layoutX="626.0" layoutY="565.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
+                  <Label text="비활성화 락커 갯수" />
+                  <ProgressBar fx:id="inactLockerBar" layoutX="626.0" layoutY="565.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
-            <Button fx:id="btnAddUser" layoutX="635.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="회원추가" />
+            <Button fx:id="btnAddUser" focusTraversable="false" layoutX="635.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="회원추가" />
          </children>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </AnchorPane>
    </center>
@@ -109,6 +109,9 @@
                      </font>
                   </Label>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </HBox>
             <AnchorPane prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
@@ -127,7 +130,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="custManage" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
+            <AnchorPane prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
                   <Label layoutX="51.0" prefHeight="30.0" prefWidth="80.0" text="고객관리">
                      <font>
@@ -153,9 +156,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
-            <AnchorPane fx:id="locker" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
+            <AnchorPane prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
-                  <Label layoutX="11.0" layoutY="3.0" text="락커">
+                  <Label layoutX="11.0" text="락커">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -221,7 +224,7 @@
                <font>
                   <Font size="20.0" />
                </font></Label>
-            <Button fx:id="logout" layoutX="786.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="로그아웃" />
+            <Button fx:id="logout" focusTraversable="false" layoutX="786.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="로그아웃" />
             <Label layoutX="14.0" layoutY="7.0" text="Health Kiosk">
                <font>
                   <Font size="30.0" />

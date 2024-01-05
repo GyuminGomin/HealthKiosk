@@ -1,6 +1,7 @@
 package application.dao;
 
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.dto.User;
+import application.dto.UserChild;
 import application.utils.DBUtil;
 
 public class UserDAOImpl implements UserDAO {
@@ -72,11 +74,10 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public int statusUserNum(Boolean activated) {
-
-        List<Integer> userStatusNum = new ArrayList<>();
         int userStatusInt = 0;
-
-        String sql = "SELECT count(userStatus) FROM user GROUP BY userStatus";
+        int actTrue = 0;
+        int actFalse = 0;
+        String sql = "SELECT sum(CASE WHEN userStatus=1 THEN 1 ELSE 0 END), sum(CASE WHEN userStatus=0 THEN 1 ELSE 0 END) FROM user";
 
 
         try {
@@ -84,11 +85,16 @@ public class UserDAOImpl implements UserDAO {
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                userStatusNum.add(rs.getInt(1));
+                actTrue = rs.getInt(1);
+                actFalse = rs.getInt(2);
             }
             if (activated == true) {
-                userStatusInt = userStatusNum.get(0);
-            } else userStatusInt = userStatusNum.get(1);
+                userStatusInt = actTrue;
+                return userStatusInt;
+            } else {
+                userStatusInt = actFalse;
+                return userStatusInt;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -96,4 +102,110 @@ public class UserDAOImpl implements UserDAO {
         }
         return userStatusInt;
     }
+
+    @Override
+    public int UserGenderNum(String gen) {
+        int userStatusInt = 0;
+        int actTrue = 0;
+        int actFalse = 0;
+        String sql = "SELECT sum(CASE WHEN userGender='남자' THEN 1 ELSE 0 END), sum(CASE WHEN userGender='여자' THEN 1 ELSE 0 END) from user";
+        
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                actTrue = rs.getInt(1);
+                actFalse = rs.getInt(2);
+            }
+            if (gen.equals("남자")) {
+                userStatusInt = actTrue;
+                return userStatusInt;
+            } else if (gen.equals("여자")) {
+                userStatusInt = actFalse;
+                return userStatusInt;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(rs, stmt);
+        }
+        return userStatusInt;
+    }
+
+    /*
+    @Override
+    public List<User> userManage() {
+        List<User> userList = new ArrayList<>();
+
+        String sql = "SELECT * FROM user";
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int userCode = rs.getInt(1);
+                String userName = rs.getString(2);
+                Date userStartDate = rs.getDate(3);
+                String userGender = rs.getString(4);
+                String phoneHeader = rs.getString(5);
+                String phoneMiddle = rs.getString(6);
+                String phoneTail = rs.getString(7);
+                Boolean userStatus = rs.getBoolean(8);
+                Date userEndDate = rs.getDate(9);
+                
+                LocalDate starDate = userStartDate.toLocalDate();
+                LocalDate endDate = (userEndDate != null) ? userEndDate.toLocalDate() : null;
+
+                User u = new User(userCode, userName, userGender, phoneHeader, phoneMiddle, phoneTail, starDate, userStatus, endDate);
+                userList.add(u);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(rs, stmt);
+        }
+        return userList;
+    }
+     */
+
+
+    // 수정해야함
+    @Override
+    public List<UserChild> userManage() {
+        List<UserChild> userList = new ArrayList<>();
+
+        String sql = "SELECT * FROM user";
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                int userCode = rs.getInt(1);
+                String userName = rs.getString(2);
+                Date userStartDate = rs.getDate(3);
+                String userGender = rs.getString(4);
+                String phoneHeader = rs.getString(5);
+                String phoneMiddle = rs.getString(6);
+                String phoneTail = rs.getString(7);
+                Boolean userStatus = rs.getBoolean(8);
+                
+                LocalDate startDate = userStartDate.toLocalDate();
+                LocalDate endDate = null;
+
+                String phone = phoneHeader+"-"+phoneMiddle+"-"+phoneTail;
+
+                String status = (userStatus == true) ? "활성화" : "비활성화";
+
+                UserChild u = new UserChild(false, userCode, status, userName, userGender, phone, startDate, endDate);
+                userList.add(u);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(rs, stmt);
+        }
+        return userList;
+    }
+    
 }
