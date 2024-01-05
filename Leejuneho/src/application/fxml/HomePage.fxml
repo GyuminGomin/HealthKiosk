@@ -94,7 +94,7 @@
             <Button fx:id="btnAddUser" layoutX="635.0" layoutY="9.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="회원추가" />
          </children>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </AnchorPane>
    </center>
