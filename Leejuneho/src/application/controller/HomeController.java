@@ -15,18 +15,23 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -123,9 +128,77 @@ public class HomeController implements Initializable {
         pieChartGender.setData(glist);
 
         
+        // PieChartGender 마우스 이동시
+        Platform.runLater(() -> {
+            Label caption = new Label("");
+            caption.setFont(new Font(20));
+            caption.setStyle("-fx-background-color: rgba(0,0,0,0);");
+            caption.setTextAlignment(TextAlignment.CENTER);
+
+            Stage s = new Stage(StageStyle.TRANSPARENT);
+            AnchorPane a = new AnchorPane();
+            a.setStyle("-fx-background-color: rgba(0,0,0,0);");
+            Scene scene = new Scene(a);
+            scene.setFill(Color.TRANSPARENT);
+            a.getChildren().add(caption);
+            s.setScene(scene);
+            
+            for (PieChart.Data d : pieChartGender.getData()) {
+                d.getNode().setOnMouseMoved((e) -> {
+                    caption.setText(String.format("%.1f%%",d.getPieValue()/dao.countUser()*100));
+
+                    s.setX(e.getScreenX()+20);
+                    s.setY(e.getScreenY());
+                    
+                    if (!s.isShowing()) {
+                        s.show();
+                    }
+                });
+                d.getNode().setOnMouseExited(e -> {
+                    s.close();
+                });
+            }
+        }); // pieChartGender 마우스 이동시
 
         // pieChartLocker View
+        pieChartLocker.setTitle("락커 현황");
+        ObservableList<PieChart.Data> llist = FXCollections.observableArrayList();
+        llist.add(new PieChart.Data("활성", ldao.statusActivatedNum(true)));
+        llist.add(new PieChart.Data("비활성", ldao.statusActivatedNum(false)));
+        pieChartLocker.setData(llist);
 
+        
+        // PieChartLocker 마우스 이동시
+        Platform.runLater(() -> {
+            Label caption = new Label("");
+            caption.setFont(new Font(20));
+            caption.setStyle("-fx-background-color: rgba(0,0,0,0);");
+            caption.setTextAlignment(TextAlignment.CENTER);
+
+            Stage s = new Stage(StageStyle.TRANSPARENT);
+            AnchorPane a = new AnchorPane();
+            a.setStyle("-fx-background-color: rgba(0,0,0,0);");
+            Scene scene = new Scene(a);
+            scene.setFill(Color.TRANSPARENT);
+            a.getChildren().add(caption);
+            s.setScene(scene);
+            
+            for (PieChart.Data d : pieChartLocker.getData()) {
+                d.getNode().setOnMouseMoved((e) -> {
+                    caption.setText(String.format("%.1f%%",d.getPieValue()/ldao.countLocker()*100));
+
+                    s.setX(e.getScreenX()+20);
+                    s.setY(e.getScreenY());
+                    
+                    if (!s.isShowing()) {
+                        s.show();
+                    }
+                });
+                d.getNode().setOnMouseExited(e -> {
+                    s.close();
+                });
+            }
+        });
 
         // f5를 눌러서 Stage 리다이렉트
         Platform.runLater(()-> {
@@ -179,6 +252,14 @@ public class HomeController implements Initializable {
                 return;
             }
         }); // 로그아웃 버튼 클릭
+//------------------------------------------------------------------
+//        locker.setOnMouseMoved(new EventHandler<Event>() {
+//            @Override
+//            public void handle(MouseDragEvent event) {
+//            	locker.setStyle("-fx-background-color: red;");
+//            }
+//        });
+//------------------------------------------------------------------
 
         // 회원 세모박스 클릭
         btnLayout1.setOnMouseClicked(e -> {
@@ -246,7 +327,27 @@ public class HomeController implements Initializable {
                 stage.show();
                 Stage homePage = (Stage)logout.getScene().getWindow();
                 homePage.close();
-
+                // -----------------------------------------------//
+                // 고객관리에서 종료키 클릭시 homePage로 돌아감
+                stage.setOnCloseRequest(e1->{
+                	Stage stage1 = null;
+                	FXMLLoader loader1 = null;
+        			Parent homePage1 = null;
+        			try {
+        				stage1 = new Stage(StageStyle.DECORATED);
+        				loader1 = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
+        				homePage1 = loader1.load();
+        				
+        				stage1.setScene(new Scene(homePage1));
+        				stage1.setTitle("홈 페이지");
+        				stage1.setResizable(false);
+        				stage1.show();
+        			} catch (IOException e2) {
+        				e2.printStackTrace();
+        			}
+                });
+             // -----------------------------------------------//
+                
             } catch (IOException e1) {
                 e1.printStackTrace();
                 return;
@@ -257,6 +358,7 @@ public class HomeController implements Initializable {
         attendance.setOnMouseClicked(e-> {
             Stage stage = null;
             FXMLLoader loader = null;
+            
             Parent attendancePage = null;
             
             try {
@@ -271,7 +373,27 @@ public class HomeController implements Initializable {
                 stage.show();
                 Stage homePage = (Stage)logout.getScene().getWindow();
                 homePage.close();
-
+             // -----------------------------------------------//
+                // 출석부에서 종료키 클릭시 homePage로 돌아감
+                stage.setOnCloseRequest(e1->{
+                	Stage stage1 = null;
+                	FXMLLoader loader1 = null;
+        			Parent homePage1 = null;
+        			try {
+        				stage1 = new Stage(StageStyle.DECORATED);
+        				loader1 = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
+        				homePage1 = loader1.load();
+        				
+        				stage1.setScene(new Scene(homePage1));
+        				stage1.setTitle("홈 페이지");
+        				stage1.setResizable(false);
+        				stage1.show();
+        			} catch (IOException e2) {
+        				e2.printStackTrace();
+        			}
+                });
+             // -----------------------------------------------//
+                
             } catch (IOException e1) {
                 e1.printStackTrace();
                 return;
