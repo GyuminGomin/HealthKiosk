@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "JavaFX Run",
+            "request": "launch",
+            "vmArgs": "--module-path 'c:\\Program Files\\Java\\javafx-sdk-17.0.9\\lib' --add-modules javafx.controls,javafx.fxml,javafx.web,javafx.media,java.desktop,javafx.swing,javafx.graphics"
+        }
+    ] 
+}

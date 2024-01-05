@@ -1,0 +1,28 @@
+{
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "c:\\Program Files\\Java\\javafx-sdk-17.0.9\\lib\\javafx.base.jar",
+            "c:\\Program Files\\Java\\javafx-sdk-17.0.9\\lib\\javafx.controls.jar",
+            "c:\\Program Files\\Java\\javafx-sdk-17.0.9\\lib\\javafx.fxml.jar",
+            "c:\\Program Files\\Java\\javafx-sdk-17.0.9\\lib\\javafx.graphics.jar",
+            "c:\\Program Files\\Java\\javafx-sdk-17.0.9\\lib\\javafx.media.jar",
+            "c:\\Program Files\\Java\\javafx-sdk-17.0.9\\lib\\javafx.swing.jar",
+            "c:\\Program Files\\Java\\javafx-sdk-17.0.9\\lib\\javafx.web.jar",
+            "c:\\Program Files\\Java\\javafx-sdk-17.0.9\\lib\\javafx-swt.jar"
+        ],
+        "exclude": [
+            "lib/javafx-swt.jar",
+            "lib/javafx.base.jar",
+            "lib/javafx.controls.jar",
+            "lib/javafx.fxml.jar",
+            "lib/javafx.graphics.jar",
+            "lib/javafx.media.jar",
+            "lib/javafx.swing.jar",
+            "lib/javafx.web.jar"
+        ]
+    },
+    "java.project.sourcePaths": [
+        "src"
+    ]
+}

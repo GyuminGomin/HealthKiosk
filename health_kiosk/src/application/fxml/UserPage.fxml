@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+   <children>
+      <TabPane layoutY="200.0" prefHeight="350.0" prefWidth="800.0" style="-fx-border-color: silver;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="대시보드">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <AnchorPane prefHeight="90.0" prefWidth="800.0" style="-fx-background-color: ivory;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/티켓.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="18.0" layoutY="70.0" text="회원권">
+                                 <font>
+                                    <Font name="굵은안상수체" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar layoutX="83.0" layoutY="19.0" prefHeight="18.0" prefWidth="687.0" progress="0.0" />
+                              <Label layoutX="83.0" layoutY="3.0" text="2024-01-05">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" layoutX="92.0" layoutY="37.0" prefHeight="49.0" prefWidth="685.0">
+                                 <children>
+                                    <ComboBox prefHeight="22.0" prefWidth="170.0" promptText="프리미엄 통합 회원권" />
+                                    <TextField alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="153.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="~" />
+                                    <TextField prefHeight="23.0" prefWidth="180.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label prefHeight="14.0" prefWidth="77.0" text="31일 남음" textFill="#6f6e6e" />
+                                    <ProgressIndicator prefHeight="49.0" prefWidth="35.0" progress="0.0" scaleX="1.15" scaleY="1.15" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="90.0" prefWidth="800.0" style="-fx-background-color: ivory;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="115.0">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/락커.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="18.0" layoutY="70.0" text="락 커">
+                                 <font>
+                                    <Font name="굵은안상수체" size="17.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" layoutX="93.0" layoutY="21.0" prefHeight="49.0" prefWidth="685.0">
+                                 <children>
+                                    <ComboBox prefHeight="22.0" prefWidth="170.0" promptText="락커이용권 [ 1 ]" />
+                                    <TextField alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="153.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="~" />
+                                    <TextField prefHeight="23.0" prefWidth="108.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label prefHeight="14.0" prefWidth="70.0" text="미배정" underline="true" />
+                                    <Label prefHeight="14.0" prefWidth="77.0" text="31일 남음" textFill="#6f6e6e" />
+                                    <ProgressIndicator prefHeight="49.0" prefWidth="35.0" progress="0.0" scaleX="1.15" scaleY="1.15" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="90.0" prefWidth="800.0" style="-fx-background-color: ivory;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="220.0">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/운동복.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="24.0" layoutY="70.0" text="운동복">
+                                 <font>
+                                    <Font name="굵은안상수체" size="17.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar layoutX="83.0" layoutY="19.0" prefHeight="18.0" prefWidth="687.0" progress="0.0" />
+                              <Label layoutX="83.0" layoutY="3.0" text="2024-01-05">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER_LEFT" layoutX="92.0" layoutY="37.0" prefHeight="49.0" prefWidth="685.0">
+                                 <children>
+                                    <ComboBox prefHeight="22.0" prefWidth="170.0" promptText="운동복" visibleRowCount="1" />
+                                    <TextField alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="153.0" promptText="2024-01-05" style="-fx-background-color: ivory;" text="무제한">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="~" visible="false" />
+                                    <TextField prefHeight="23.0" prefWidth="180.0" style="-fx-background-color: ivory;">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="출석내역">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <DatePicker layoutX="14.0" layoutY="4.0" />
+                        <AnchorPane layoutX="10.0" layoutY="32.0" prefHeight="95.0" prefWidth="800.0" style="-fx-background-color: ivory;" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                           <children>
+                              <Label layoutX="141.0" layoutY="34.0" text="년" translateX="80.0" />
+                              <Label layoutX="211.0" layoutY="34.0" text="월" translateX="80.0" />
+                              <Label layoutX="432.0" layoutY="56.0" text="퇴실 시간  :" translateX="50.0" />
+                              <Label layoutX="432.0" layoutY="12.0" text="입실 시간  :" translateX="50.0" />
+                              <Separator layoutX="448.0" layoutY="29.0" orientation="VERTICAL" prefHeight="24.0" prefWidth="17.0" translateX="50.0" />
+                              <Label layoutX="292.0" layoutY="34.0" text="일" translateX="80.0" />
+                              <TextField layoutX="64.0" layoutY="30.0" prefHeight="22.0" prefWidth="73.0" translateX="80.0" />
+                              <TextField layoutX="162.0" layoutY="30.0" prefHeight="22.0" prefWidth="48.0" translateX="80.0" />
+                              <TextField layoutX="233.0" layoutY="29.0" prefHeight="22.0" prefWidth="54.0" translateX="80.0" />
+                              <Label layoutX="60.0" layoutY="31.0" text="날짜 :" translateX="40.0">
+                                 <font>
+                                    <Font name="휴먼중간팸체" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Separator layoutX="343.0" layoutY="34.0" prefHeight="14.0" prefWidth="112.0" translateX="50.0" />
+                              <TextField layoutX="502.0" layoutY="8.0" translateX="50.0" />
+                              <TextField layoutX="502.0" layoutY="52.0" translateX="50.0" />
+                              <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="13.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/달력.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" layoutX="618.0" layoutY="35.0" text="~" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="-1.0" layoutY="164.0" prefHeight="152.0" prefWidth="800.0" style="-fx-background-color: ivory;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="157.0">
+                           <children>
+                              <LineChart layoutX="-1.0" layoutY="-4.0" prefHeight="136.0" prefWidth="778.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="10.0" layoutY="134.0" prefHeight="21.0" prefWidth="118.0" text="▷일별 출석률">
+                           <font>
+                              <Font name="휴먼중간팸체" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <AnchorPane prefHeight="200.0" prefWidth="253.0" style="-fx-border-color: silver;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="2.0" prefHeight="20.0" prefWidth="79.0" style="-fx-border-color: silver; -fx-border-radius: 5 5 0 0;" text="이준호 님">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="89.0" fitWidth="87.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/프로필아이콘.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="97.0" layoutY="33.0" prefHeight="21.0" prefWidth="73.0" style="-fx-font-color: red;" text="※인적사항 " textFill="#141414">
+               <font>
+                  <Font name="휴먼중간팸체" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="101.0" layoutY="71.0" style="-fx-font-color: red;" text="성별" textFill="#867f7f">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label layoutX="94.0" layoutY="116.0" style="-fx-font-color: red;" text="연락처" textFill="#867f7f">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label layoutX="94.0" layoutY="161.0" style="-fx-font-color: red;" text="가입일" textFill="#867f7f">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <ToggleButton layoutX="5.0" layoutY="21.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="79.0" style="-fx-background-color: lightblue;" text="활 성" />
+            <Label layoutX="5.0" layoutY="162.0" text="No." textFill="#8d8888">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextField fx:id="userNo" layoutX="26.0" layoutY="158.0" prefHeight="22.0" prefWidth="61.0" style="-fx-border-color: white;" />
+            <ImageView fitHeight="54.0" fitWidth="61.0" layoutX="186.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/헬스2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="userGender" layoutX="138.0" layoutY="67.0" prefHeight="22.0" prefWidth="55.0" style="-fx-border-color: white;" />
+      <TextField fx:id="userPhone" layoutX="137.0" layoutY="112.0" prefHeight="22.0" prefWidth="105.0" style="-fx-border-color: white;" />
+      <TextField fx:id="userDate" layoutX="137.0" layoutY="157.0" prefHeight="22.0" prefWidth="87.0" style="-fx-border-color: white;" />
+      <TextArea layoutX="253.0" opacity="0.64" prefHeight="200.0" prefWidth="547.0" promptText="특이사항">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </TextArea>
+   </children>
+</AnchorPane>
