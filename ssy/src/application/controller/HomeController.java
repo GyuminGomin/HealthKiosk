@@ -255,12 +255,14 @@ public class HomeController implements Initializable {
             if (custFlag) {
                 // custFlag가 true일 때
                 panel.getChildren().removeAll(custManage, attendance);
-
-                btnLayout1.setImage(new Image("/application/img/윗방향화살표.png"));
+                // 세모박스를 클릭했을때 색(이미지) 변환
+                btnLayout1.setImage(new Image("/application/img/아래화살표_빨강.png"));
             } else {
                 // custFlag가 false일 때
                 panel.getChildren().add(2, custManage);
                 panel.getChildren().add(3, attendance);
+                // 세모박스를 클릭했을때 원래이미지로 돌아옴
+                btnLayout1.setImage(new Image("/application/img/아래화살표.png"));
             }
             custFlag = !custFlag;
         }); // 회원 세모박스 클릭
@@ -270,9 +272,15 @@ public class HomeController implements Initializable {
             if (salFlag) {
                 // salFlag가 true일 때
                 panel.getChildren().removeAll(salManage,salStatistic);
+                // 세모박스를 클릭했을때 색(이미지) 변환
+                btnLayout2.setImage(new Image("/application/img/아래화살표_빨강.png"));
+
             } else {
                 // salFlag가 false일 때
                 panel.getChildren().addAll(salManage, salStatistic);
+                // 세모박스를 클릭했을때 원래이미지로 돌아옴
+                btnLayout2.setImage(new Image("/application/img/아래화살표.png"));
+
             }
             salFlag = !salFlag;
         }); // 회계 세모박스 클릭

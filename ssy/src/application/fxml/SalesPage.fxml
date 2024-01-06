@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="labelHome" layoutX="353.0" layoutY="14.0" text="Health Kiosk">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="387.0" layoutY="65.0" prefHeight="32.0" prefWidth="127.0" text="2023년 12월">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <VBox layoutX="50.0" layoutY="116.0" prefHeight="85.0" prefWidth="320.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/돈주머니.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="allUser" text="총 매출 : 0,000,000원" />
+            <Label text="전체 총 매출 현황">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <ProgressBar fx:id="allUserBar" layoutX="40.0" layoutY="160.0" prefHeight="20.0" prefWidth="320.0" progress="0.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="510.0" layoutY="116.0" prefHeight="85.0" prefWidth="320.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/현금.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="allUser1" text="현금 : 0,000,000원" />
+            <Label text="현금 매출 현황 ">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <ProgressBar fx:id="allUserBar1" layoutX="40.0" layoutY="160.0" prefHeight="20.0" prefWidth="320.0" progress="0.0" />
+         </children>
+      </VBox>
+      <LineChart layoutX="-1.0" layoutY="257.0" prefHeight="440.0" prefWidth="900.0">
+        <xAxis>
+          <CategoryAxis prefWidth="843.0" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <ToggleButton layoutX="50.0" layoutY="65.0" mnemonicParsing="false" text="&lt;" />
+      <ToggleButton layoutX="830.0" layoutY="65.0" mnemonicParsing="false" text="&gt;" />
+   </children>
+</AnchorPane>
