@@ -255,12 +255,14 @@ public class HomeController implements Initializable {
             if (custFlag) {
                 // custFlag가 true일 때
                 panel.getChildren().removeAll(custManage, attendance);
-
-                btnLayout1.setImage(new Image("/application/img/윗방향화살표.png"));
+                // 세모박스를 클릭했을때 색(이미지) 변환
+                btnLayout1.setImage(new Image("/application/img/아래화살표_빨강.png"));
             } else {
                 // custFlag가 false일 때
                 panel.getChildren().add(2, custManage);
                 panel.getChildren().add(3, attendance);
+                // 세모박스를 클릭했을때 원래이미지로 돌아옴
+                btnLayout1.setImage(new Image("/application/img/아래화살표.png"));
             }
             custFlag = !custFlag;
         }); // 회원 세모박스 클릭
@@ -270,9 +272,13 @@ public class HomeController implements Initializable {
             if (salFlag) {
                 // salFlag가 true일 때
                 panel.getChildren().removeAll(salManage,salStatistic);
+                // 세모박스를 클릭했을때 색(이미지) 변환
+                btnLayout2.setImage(new Image("/application/img/아래화살표_빨강.png"));
             } else {
                 // salFlag가 false일 때
                 panel.getChildren().addAll(salManage, salStatistic);
+                // 세모박스를 클릭했을때 원래이미지로 돌아옴
+                btnLayout2.setImage(new Image("/application/img/아래화살표.png"));
             }
             salFlag = !salFlag;
         }); // 회계 세모박스 클릭
@@ -406,6 +412,31 @@ public class HomeController implements Initializable {
             }
         }); // 락커 버튼 클릭
         
+        // 매출통계 버튼 클릭
+        salStatistic.setOnMouseClicked(e-> {
+            Stage stage = null;
+            FXMLLoader loader = null;
+            Parent lockerPage = null;
+            
+            try {
+                stage = new Stage(StageStyle.DECORATED);
+
+                loader = new FXMLLoader(getClass().getResource("/application/fxml/SalesPage.fxml"));
+                lockerPage = loader.load();
+
+                stage.setScene(new Scene(lockerPage));
+                stage.setTitle("매출 통계 페이지");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
+            }
+        });
+
+
         // 마우스 이벤트 (들어왔을 때)
         custManage.setOnMouseEntered(e -> {
         	custManage.setStyle("-fx-background-color : yellowgreen; -fx-border-width : 0 0 1 0; -fx-border-color : black;");

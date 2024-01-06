@@ -16,33 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `attendance`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `attendance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `userCode` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `attendance` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `userTail` varchar(4) NOT NULL,
   `userName` varchar(20) NOT NULL,
-  `userStartDate` date NOT NULL,
-  `userGender` char(2) NOT NULL,
-  `phoneHeader` varchar(3) NOT NULL,
-  `phoneMiddle` varchar(4) NOT NULL,
-  `phoneTail` varchar(4) NOT NULL,
-  `userStatus` tinyint NOT NULL,
-  PRIMARY KEY (`userCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `doHealthDate` date NOT NULL,
+  `doHealthTime` time NOT NULL,
+  `userCode` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userCode_idx` (`userCode`),
+  CONSTRAINT `userCode` FOREIGN KEY (`userCode`) REFERENCES `user` (`userCode`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `attendance`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'송상엽','2024-01-01','남자','010','1234','5678',1),(2,'이준호','2024-01-02','남자','010','2345','6789',1),(3,'김규민','2024-01-03','남자','010','3456','7890',0),(4,'최기근','2024-01-04','여자','010','1233','5678',0);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `attendance` WRITE;
+/*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
+INSERT INTO `attendance` VALUES (1,'5678','송상엽','2024-01-07','12:00:00',1),(2,'6789','이준호','2024-01-07','01:23:44',2),(3,'7890','김규민','2024-01-07','01:27:35',3);
+/*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

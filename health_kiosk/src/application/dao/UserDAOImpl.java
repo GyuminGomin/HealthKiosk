@@ -1,8 +1,11 @@
 package application.dao;
 
 import java.sql.Statement;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -174,12 +177,12 @@ public class UserDAOImpl implements UserDAO {
         return userList;
     }
 
-    // 수정해야함
     @Override
     public List<UserAtten> userAtten() {
         List<UserAtten> userList = new ArrayList<>();
 
-        String sql = "SELECT * FROM user";
+        String sql = "SELECT a.userCode, a.userName, a.userGender, concat(a.phoneHeader,'-',a.phoneMiddle,'-',a.phoneTail), b.doHealthTime, b.doHealthDate FROM user a inner join attendance b on a.userCode = b.userCode";
+
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -187,21 +190,15 @@ public class UserDAOImpl implements UserDAO {
             while (rs.next()) {
                 int userCode = rs.getInt(1);
                 String userName = rs.getString(2);
-                String userGender = rs.getString(4);
-                String phoneHeader = rs.getString(5);
-                String phoneMiddle = rs.getString(6);
-                String phoneTail = rs.getString(7);
+                String userGender = rs.getString(3);
+                String phone = rs.getString(4);
+                Time time = rs.getTime(5);
+                Date date = rs.getDate(6);
 
-                
-                LocalDate doHealthDate = null;
-                LocalDateTime doHealthTime = null;
-                if (doHealthTime != null) {
-                    doHealthDate = doHealthTime.toLocalDate();
-                }
-                
-                String phone = phoneHeader+"-"+phoneMiddle+"-"+phoneTail;
+                LocalDate doHealthDate = date.toLocalDate();
+                LocalTime doHealthTime = time.toLocalTime();
 
-                UserAtten u = new UserAtten(false, userCode, userName,userGender, phone, doHealthTime, doHealthDate);
+                UserAtten u = new UserAtten(false, userCode, userName, userGender, phone, doHealthTime, doHealthDate);
                 userList.add(u);
             }
         } catch (SQLException e) {
@@ -211,5 +208,78 @@ public class UserDAOImpl implements UserDAO {
         }
         return userList;
     }
+
+    @Override
+    public List<String> sendData1(String phoneTail) {
+        List<String> sD = new ArrayList<>();
+        String sql = "SELECT userName, phoneTail FROM user WHERE phoneTail=?";
+
+        try {
+            // 2줄이 뜰 수 도 있으니까 생각
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, phoneTail);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString(1);
+                String tail = rs.getString(2);
+
+                sD.add(name+"|"+tail);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(pstmt);
+        }
+        return sD;
+    }
+
+    @Override
+    public int getUserByCode(String name, String tail) {
+        int id = 0;
+        // 이름이랑 뒷 번호가 같은 사람이 존재할 수 도 있겠넹???
+        // 하지만 생각하지 않기! 너무 빡세다.
+        String sql = "SELECT userCode FROM user WHERE phoneTail=? AND userName=?";
+
+        try {
+            // 2줄이 뜰 수 도 있지만 생각하지 않기로 확률상 적다.
+            // 이런 경우 예외를 만들어 두기 위해서 회원가입을 할 때 조건을 만들어 주면 좋을 것 같다.
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, tail);
+            pstmt.setString(2, name);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                id = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(pstmt);
+        }
+        return id;
+
+    }
     
+    @Override
+    public void attendance(String name, String tail, int code, LocalTime time, LocalDate date) {
+
+        String sql = "INSERT INTO attendance (userTail, userName, doHealthDate, doHealthTime, userCode) VALUES (?, ?, ?, ?, ?)";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, tail);
+            pstmt.setString(2, name);
+            pstmt.setDate(3, Date.valueOf(date));
+            pstmt.setTime(4, Time.valueOf(time));
+            pstmt.setInt(5, code);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.close(pstmt);
+        }
+    }
+
+
 }
+

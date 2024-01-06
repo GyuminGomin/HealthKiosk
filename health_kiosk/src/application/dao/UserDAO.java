@@ -1,5 +1,7 @@
 package application.dao;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import application.dto.User;
@@ -21,15 +23,19 @@ public interface UserDAO {
     // 활성화 된 회원 중 성별비 조회
     int UserGenderNum(String gen);
 
-    // // 모든 사용자 받아오기
-    // List<User> userManage();
-
     // userManagement 페이지의 테이블 뷰에 넣기 위해 조회 후 저장
     List<UserChild> userManage();
+
+    // 서버에서 클라이언트로 확인 후 첫번째 전송해주기 위한 부분
+    List<String> sendData1(String phoneTail);
+
+    // 사용자 기반으로 userCode 조회
+    int getUserByCode(String name, String tail);
+
+    // userCode, name, tail로 Attendance DB에 데이터 저장
+    void attendance(String name, String tail, int Code, LocalTime time, LocalDate date);
 
     // userAttendance 페이지의 테이블 뷰에 넣기 위해 조회 후 저장
     // 클라이언트에서 데이터를 받아와서 DB에 올리는 부분
     List<UserAtten> userAtten();
-
-    
 }

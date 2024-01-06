@@ -32,7 +32,7 @@ CREATE TABLE `manager` (
   `managerEmail` varchar(20) DEFAULT NULL,
   `managerPhone` varchar(13) DEFAULT NULL,
   PRIMARY KEY (`managerCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `manager` (
 
 LOCK TABLES `manager` WRITE;
 /*!40000 ALTER TABLE `manager` DISABLE KEYS */;
-INSERT INTO `manager` VALUES (1,'manager1','1234','매니저1','남자',NULL,NULL,NULL);
+INSERT INTO `manager` VALUES (1,'manager1','1234','매니저1','남자',NULL,NULL,NULL),(2,'m','1','매니저이','남자',NULL,'','');
 /*!40000 ALTER TABLE `manager` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-02 10:51:35
+-- Dump completed on 2024-01-07  1:49:05
