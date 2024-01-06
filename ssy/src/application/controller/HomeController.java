@@ -225,7 +225,7 @@ public class HomeController implements Initializable {
         salManage = (AnchorPane)panel.getChildren().get(6);
         salStatistic = (AnchorPane)panel.getChildren().get(7);
         locker = (AnchorPane)panel.getChildren().get(4);
-        
+
         // 로그아웃 버튼 클릭
         logout.setOnAction(e-> {
             Stage stage = null;
@@ -249,32 +249,38 @@ public class HomeController implements Initializable {
                 return;
             }
         }); // 로그아웃 버튼 클릭
-        
+
         // 회원 세모박스 클릭
         btnLayout1.setOnMouseClicked(e -> {
             if (custFlag) {
                 // custFlag가 true일 때
                 panel.getChildren().removeAll(custManage, attendance);
- //----------------------------------------------------------------------------------
-                btnLayout1.setImage(new Image("/application/img/윗방향화살표.png"));
- //----------------------------------------------------------------------------------
+                // 세모박스를 클릭했을때 색(이미지) 변환
+                btnLayout1.setImage(new Image("/application/img/아래화살표_빨강.png"));
             } else {
                 // custFlag가 false일 때
                 panel.getChildren().add(2, custManage);
                 panel.getChildren().add(3, attendance);
-                btnLayout1.getImage();
+                // 세모박스를 클릭했을때 원래이미지로 돌아옴
+                btnLayout1.setImage(new Image("/application/img/아래화살표.png"));
             }
             custFlag = !custFlag;
         }); // 회원 세모박스 클릭
-        
+
         // 회계 세모박스 클릭
         btnLayout2.setOnMouseClicked(e -> {
             if (salFlag) {
                 // salFlag가 true일 때
                 panel.getChildren().removeAll(salManage,salStatistic);
+                // 세모박스를 클릭했을때 색(이미지) 변환
+                btnLayout2.setImage(new Image("/application/img/아래화살표_빨강.png"));
+
             } else {
                 // salFlag가 false일 때
                 panel.getChildren().addAll(salManage, salStatistic);
+                // 세모박스를 클릭했을때 원래이미지로 돌아옴
+                btnLayout2.setImage(new Image("/application/img/아래화살표.png"));
+
             }
             salFlag = !salFlag;
         }); // 회계 세모박스 클릭
@@ -295,25 +301,20 @@ public class HomeController implements Initializable {
                 stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
-                
+
             } catch (IOException e1) {
                 e1.printStackTrace();
                 return;
             }
         }); // 회원 등록 버튼 클릭
-        
 
         // 고객 관리 버튼 클릭
         custManage.setOnMouseClicked(e-> {
             Stage stage = null;
-            FXMLLoader loader = null;
-            Parent managementPage = null;
-            
             try {
                 stage = new Stage(StageStyle.DECORATED);
-
-                loader = new FXMLLoader(getClass().getResource("/application/fxml/UserManagementPage.fxml"));
-                managementPage = loader.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/UserManagementPage.fxml"));
+                Parent managementPage = loader.load();
 
                 stage.setScene(new Scene(managementPage));
                 stage.setTitle("고객 관리 페이지");
@@ -321,7 +322,25 @@ public class HomeController implements Initializable {
                 stage.show();
                 Stage homePage = (Stage)logout.getScene().getWindow();
                 homePage.close();
-
+                // 고객관리에서 종료키 클릭시 homePage로 돌아감
+                stage.setOnCloseRequest(e1->{  
+                    Stage stage1 = null;
+                	FXMLLoader loader1 = null;
+        			Parent homePage1 = null;
+        			try {
+        				stage1 = new Stage(StageStyle.DECORATED);
+        				loader1 = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
+        				homePage1 = loader1.load();
+        				
+        				stage1.setScene(new Scene(homePage1));
+        				stage1.setTitle("홈 페이지");
+        				stage1.setResizable(false);
+        				stage1.show();
+                        
+        			} catch (IOException e2) {
+        				e2.printStackTrace();
+        			}
+                });
             } catch (IOException e1) {
                 e1.printStackTrace();
                 return;
@@ -331,14 +350,10 @@ public class HomeController implements Initializable {
         // 출석부 버튼 클릭
         attendance.setOnMouseClicked(e-> {
             Stage stage = null;
-            FXMLLoader loader = null;
-            Parent attendancePage = null;
-            
             try {
                 stage = new Stage(StageStyle.DECORATED);
-
-                loader = new FXMLLoader(getClass().getResource("/application/fxml/UserAttendancePage.fxml"));
-                attendancePage = loader.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/UserAttendancePage.fxml"));
+                Parent attendancePage = loader.load();
 
                 stage.setScene(new Scene(attendancePage));
                 stage.setTitle("출석부 페이지");
@@ -346,7 +361,29 @@ public class HomeController implements Initializable {
                 stage.show();
                 Stage homePage = (Stage)logout.getScene().getWindow();
                 homePage.close();
+                // 출석부에서 종료키 클릭시 homePage로 돌아감
+                stage.setOnCloseRequest(e1->{
+                    
 
+                	Stage stage1 = null;
+                	FXMLLoader loader1 = null;
+        			Parent homePage1 = null;
+        			try {
+        				stage1 = new Stage(StageStyle.DECORATED);
+        				loader1 = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
+        				homePage1 = loader1.load();
+        				
+        				stage1.setScene(new Scene(homePage1));
+        				stage1.setTitle("홈 페이지");
+        				stage1.setResizable(false);
+        				stage1.show();
+                        // 서버 종료
+                        UserAttendanceController controller = loader.getController();
+                        controller.stopServer();
+        			} catch (IOException e2) {
+        				e2.printStackTrace();
+        			}
+                });
             } catch (IOException e1) {
                 e1.printStackTrace();
                 return;
@@ -378,7 +415,6 @@ public class HomeController implements Initializable {
         }); // 락커 버튼 클릭
         
         // 마우스 이벤트 (들어왔을 때)
-        //----------------------------------------------------------------------------------
         custManage.setOnMouseEntered(e -> {
         	custManage.setStyle("-fx-background-color : yellowgreen; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         	Label l = (Label)custManage.getChildren().get(0);
@@ -402,10 +438,8 @@ public class HomeController implements Initializable {
         	Label l = (Label)salStatistic.getChildren().get(0);
         	l.setUnderline(true);
         });
-        //----------------------------------------------------------------------------------
-        
+
         // 마우스 이벤트 (나왔을 때)
-        //----------------------------------------------------------------------------------
         custManage.setOnMouseExited(e -> {
         	custManage.setStyle("-fx-background-color : null;");
         	custManage.setStyle("-fx-border-width : 0 0 1 0; -fx-border-color : black;");
@@ -434,7 +468,6 @@ public class HomeController implements Initializable {
         	Label l = (Label)salStatistic.getChildren().get(0);
         	l.setUnderline(false);
         });
-        //----------------------------------------------------------------------------------
 	}
 
 }
