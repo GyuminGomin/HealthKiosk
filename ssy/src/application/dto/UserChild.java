@@ -3,6 +3,7 @@ package application.dto;
 import java.time.LocalDate;
 
 // Table View에 저장하기 위해서 순서대로 가져와야 해 상속은 포기
+// 이 dto는 UserManagement를 다루기 위한 객체
 public class UserChild{
     
     private Boolean checked; // checkBox
@@ -11,10 +12,11 @@ public class UserChild{
     private String userName; // 이름
     private String gender; // 성별
     private String userPhone; // 연락처
+    private LocalDate userReg; // 회원 등록 일
     private LocalDate userStartDate; // 시작일
     private LocalDate userEndDate; // 종료일
 
-    public UserChild(Boolean checked, int userCode, String userStatus, String userName, String gender, String userPhone,
+    public UserChild(Boolean checked, int userCode, String userStatus, String userName, String gender, String userPhone, LocalDate userReg, 
             LocalDate userStartDate, LocalDate userEndDate) {
         this.checked = checked;
         this.userCode = userCode;
@@ -22,6 +24,7 @@ public class UserChild{
         this.userName = userName;
         this.gender = gender;
         this.userPhone = userPhone;
+        this.userReg = userReg;
         this.userStartDate = userStartDate;
         this.userEndDate = userEndDate;
     }
@@ -73,6 +76,18 @@ public class UserChild{
     }
     public void setUserEndDate(LocalDate userEndDate) {
         this.userEndDate = userEndDate;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public LocalDate getUserReg() {
+        return userReg;
+    }
+
+    public void setUserReg(LocalDate userReg) {
+        this.userReg = userReg;
     }
     
 
