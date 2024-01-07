@@ -22,8 +22,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane layoutY="200.0" prefHeight="350.0" prefWidth="800.0" style="-fx-border-color: silver;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -43,7 +42,7 @@
                                     <Font name="굵은안상수체" size="16.0" />
                                  </font>
                               </Label>
-                              <ProgressBar layoutX="83.0" layoutY="19.0" prefHeight="18.0" prefWidth="687.0" progress="0.0" />
+                              <ProgressBar fx:id="ticketBar" layoutX="83.0" layoutY="19.0" prefHeight="18.0" prefWidth="687.0" progress="0.0" />
                               <Label layoutX="83.0" layoutY="3.0" text="2024-01-05">
                                  <font>
                                     <Font size="11.0" />
@@ -51,20 +50,20 @@
                               </Label>
                               <HBox alignment="CENTER_LEFT" layoutX="92.0" layoutY="37.0" prefHeight="49.0" prefWidth="685.0">
                                  <children>
-                                    <ComboBox prefHeight="22.0" prefWidth="170.0" promptText="프리미엄 통합 회원권" />
-                                    <TextField alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="153.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
+                                    <ComboBox fx:id="ticketBox" prefHeight="22.0" prefWidth="170.0" promptText="프리미엄 통합 회원권" />
+                                    <TextField fx:id="startDate" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="153.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </TextField>
                                     <Label text="~" />
-                                    <TextField prefHeight="23.0" prefWidth="180.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
+                                    <TextField fx:id="endDate" prefHeight="23.0" prefWidth="180.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </TextField>
-                                    <Label prefHeight="14.0" prefWidth="77.0" text="31일 남음" textFill="#6f6e6e" />
-                                    <ProgressIndicator prefHeight="49.0" prefWidth="35.0" progress="0.0" scaleX="1.15" scaleY="1.15" />
+                                    <Label fx:id="restDays" prefHeight="14.0" prefWidth="77.0" text="31일 남음" textFill="#6f6e6e" />
+                                    <ProgressIndicator fx:id="ticketIndicator" prefHeight="49.0" prefWidth="35.0" progress="0.0" scaleX="1.15" scaleY="1.15" />
                                  </children>
                                  <opaqueInsets>
                                     <Insets />
@@ -195,7 +194,7 @@
                               </LineChart>
                            </children>
                         </AnchorPane>
-                        <Label layoutX="10.0" layoutY="134.0" prefHeight="21.0" prefWidth="118.0" text="▷일별 출석률">
+                        <Label layoutX="10.0" layoutY="134.0" prefHeight="24.0" prefWidth="143.0" text="▷일별 출석률">
                            <font>
                               <Font name="휴먼중간팸체" size="20.0" />
                            </font>
@@ -208,7 +207,7 @@
       </TabPane>
       <AnchorPane prefHeight="200.0" prefWidth="253.0" style="-fx-border-color: silver;">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="2.0" prefHeight="20.0" prefWidth="79.0" style="-fx-border-color: silver; -fx-border-radius: 5 5 0 0;" text="이준호 님">
+            <Label fx:id="userName" alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="2.0" prefHeight="20.0" prefWidth="79.0" style="-fx-border-color: silver; -fx-border-radius: 5 5 0 0;">
                <font>
                   <Font size="14.0" />
                </font>
@@ -218,7 +217,7 @@
                   <Image url="@../img/프로필아이콘.png" />
                </image>
             </ImageView>
-            <Label layoutX="97.0" layoutY="33.0" prefHeight="21.0" prefWidth="73.0" style="-fx-font-color: red;" text="※인적사항 " textFill="#141414">
+            <Label layoutX="84.0" layoutY="33.0" prefHeight="23.0" prefWidth="99.0" style="-fx-font-color: red;" text="※인적사항 " textFill="#141414">
                <font>
                   <Font name="휴먼중간팸체" size="18.0" />
                </font>
@@ -238,14 +237,14 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <ToggleButton layoutX="5.0" layoutY="21.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="79.0" style="-fx-background-color: lightblue;" text="활 성" />
+            <ToggleButton fx:id="active" layoutX="5.0" layoutY="21.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="79.0" style="-fx-background-color: lightblue;" text="활 성" />
             <Label layoutX="5.0" layoutY="162.0" text="No." textFill="#8d8888">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
             <TextField fx:id="userNo" layoutX="26.0" layoutY="158.0" prefHeight="22.0" prefWidth="61.0" style="-fx-border-color: white;" />
-            <ImageView fitHeight="54.0" fitWidth="61.0" layoutX="186.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="54.0" fitWidth="61.0" layoutX="195.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/헬스2.png" />
                </image>

@@ -85,6 +85,5 @@ public class User {
         this.userStatus = userStatus;
     }
 
-
     
 }
