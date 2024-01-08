@@ -29,7 +29,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -106,23 +105,27 @@ public class UserManagementController implements Initializable{
 
                 // 더블 클릭
                 if (btn == MouseButton.PRIMARY && e.getClickCount() == 2) {   
-                    Stage stage = null;
+                    
+                	Stage stage = null;
                     FXMLLoader loader = null;
-                    Parent lockerPage = null;
+                    Parent userPage = null;
                     
                     try {
-                        UserChild user = tableView.getSelectionModel().getSelectedItem();
+                    	UserChild user = tableView.getSelectionModel().getSelectedItem();
+    
                         stage = new Stage(StageStyle.DECORATED);
         
                         loader = new FXMLLoader(getClass().getResource("/application/fxml/UserPage.fxml"));
-                        lockerPage = loader.load();
-        
-                        stage.setScene(new Scene(lockerPage));
+                        userPage = loader.load();
+                        stage.setScene(new Scene(userPage));
                         stage.setTitle("유저 페이지");
                         stage.setResizable(false);
                         stage.initModality(Modality.APPLICATION_MODAL);
-                        UserController con = loader.getController();
+
+                        UserController con= loader.getController();
                         con.setUserData(user);
+                    	
+                        
                         stage.show();
         
                     } catch (IOException e1) {
@@ -131,6 +134,7 @@ public class UserManagementController implements Initializable{
                     }
                 }
             });
+
 
             // txt 이름으로, 전화번호 뒷자리로 검색
             // 테이블 필터링
@@ -203,6 +207,7 @@ public class UserManagementController implements Initializable{
             FXMLLoader loader = null;
             Parent homePage = null;
             try {
+            	
                 stage = new Stage(StageStyle.DECORATED);
 
                 loader = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));

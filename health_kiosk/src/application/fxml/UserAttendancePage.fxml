@@ -9,9 +9,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UserAttendanceController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/userAttendance.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UserAttendanceController">
    <children>
       <TableView fx:id="tableView" layoutY="76.0" prefHeight="524.0" prefWidth="800.0">
         <columns>
@@ -28,7 +31,7 @@
             <TableColumn prefWidth="170.0" text="출석 날짜" />
         </columns>
       </TableView>
-      <Label fx:id="label" layoutX="6.0" layoutY="5.0" text="출석부" textAlignment="CENTER" textFill="#f8a602">
+      <Label fx:id="label" layoutX="6.0" layoutY="5.0" text="출석부" textAlignment="CENTER" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -42,8 +45,24 @@
          <font>
             <Font size="30.0" />
          </font>
+         <textFill>
+            <RadialGradient centerX="0.48895027624309395" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.6352941393852234" blue="0.019607843831181526" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
       </Label>
-      <Label fx:id="totalAtten" layoutX="11.0" layoutY="53.0" text="전체 목록 : " />
+      <Label fx:id="totalAtten" layoutX="11.0" layoutY="53.0" text="전체 목록 : " textFill="WHITE" />
       <TextField fx:id="searchField" layoutX="120.0" layoutY="48.0" promptText="이름, 연락처 검색" />
       <Button fx:id="startServer" layoutX="666.0" layoutY="17.0" mnemonicParsing="true" prefHeight="22.0" prefWidth="115.0" text="Start _Server" />
    </children>

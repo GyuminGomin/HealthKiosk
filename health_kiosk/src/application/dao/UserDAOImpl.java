@@ -30,7 +30,8 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void join(User user) {
 
-        String sql = "INSERT INTO user (userName, userstartDate, userGender, phoneHeader, phoneMiddle, phoneTail, userStatus) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (userName, userstartDate, userGender, phoneHeader,"
+        		+ " phoneMiddle, phoneTail, userStatus, membership) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             pstmt = conn.prepareStatement(sql);
@@ -45,7 +46,7 @@ public class UserDAOImpl implements UserDAO {
             pstmt.setString(5, user.getPhoneMiddle());
             pstmt.setString(6, user.getPhoneTail());
             pstmt.setBoolean(7, user.getUserStatus());
-
+            pstmt.setString(8, user.getMembership());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
