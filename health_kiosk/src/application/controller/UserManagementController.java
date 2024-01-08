@@ -125,7 +125,6 @@ public class UserManagementController implements Initializable{
                         UserController con= loader.getController();
                         con.setUserData(user);
                     	
-                        
                         stage.show();
         
                     } catch (IOException e1) {
