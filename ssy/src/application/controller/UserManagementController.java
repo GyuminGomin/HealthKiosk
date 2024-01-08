@@ -31,6 +31,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -103,10 +104,29 @@ public class UserManagementController implements Initializable{
                     }
                 }
 
-                // // 더블 클릭
-                // if (btn == MouseButton.PRIMARY && e.getClickCount() == 2) {
-
-                // }
+                // 더블 클릭
+                if (btn == MouseButton.PRIMARY && e.getClickCount() == 2) {   
+                    Stage stage = null;
+                    FXMLLoader loader = null;
+                    Parent lockerPage = null;
+                    
+                    try {
+                        stage = new Stage(StageStyle.DECORATED);
+        
+                        loader = new FXMLLoader(getClass().getResource("/application/fxml/UserPage.fxml"));
+                        lockerPage = loader.load();
+        
+                        stage.setScene(new Scene(lockerPage));
+                        stage.setTitle("유저 페이지");
+                        stage.setResizable(false);
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.show();
+        
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                        return;
+                    }
+                }
             });
 
 
