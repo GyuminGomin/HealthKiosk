@@ -37,6 +37,9 @@ public class UserController implements Initializable {
 		
 				
 	}
+	public void setUserData(UserChild user) {
+
+	}
 	
 }
 		

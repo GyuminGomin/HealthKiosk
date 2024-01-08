@@ -14,11 +14,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomeController">
+<BorderPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomeController">
    <center>
       <AnchorPane fx:id="center" style="-fx-border-color: black; -fx-border-width: 1 0 1 1;" BorderPane.alignment="CENTER">
          <children>
@@ -264,20 +265,20 @@
                   <Font size="30.0" />
                </font>
                <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
                         <Stop>
-                           <color>
-                              <Color red="0.7105262875556946" green="0.7105262875556946" blue="0.7105262875556946" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
                            <color>
                               <Color red="1.0" green="0.6352941393852234" blue="0.019607843831181526" />
                            </color>
                         </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
                      </stops>
-                  </LinearGradient>
+                  </RadialGradient>
                </textFill>
             </Label>
          </children>
