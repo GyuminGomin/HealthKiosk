@@ -17,14 +17,15 @@
         <columns>
           <TableColumn prefWidth="30.0">
                <graphic>
-                  <CheckBox fx:id="checkBox" disable="true" mnemonicParsing="false" />
+                  <CheckBox disable="true" mnemonicParsing="false" />
                </graphic>
             </TableColumn>
-          <TableColumn fx:id="mdmberId" prefWidth="40.0" text="NO" />
-            <TableColumn fx:id="userName" prefWidth="130.0" text="이름" />
-            <TableColumn fx:id="userGender" prefWidth="90.0" text="성별" />
-            <TableColumn fx:id="phone" prefWidth="255.0" text="전화번호" />
-            <TableColumn fx:id="attendStartDay" prefWidth="255.0" text="출석 시간" />
+          <TableColumn prefWidth="40.0" text="NO" />
+            <TableColumn prefWidth="130.0" text="이름" />
+            <TableColumn prefWidth="90.0" text="성별" />
+            <TableColumn prefWidth="170.0" text="전화번호" />
+            <TableColumn prefWidth="170.0" text="출석 시간" />
+            <TableColumn prefWidth="170.0" text="출석 날짜" />
         </columns>
       </TableView>
       <Label fx:id="label" layoutX="6.0" layoutY="5.0" text="출석부" textAlignment="CENTER" textFill="#f8a602">
@@ -36,7 +37,7 @@
          </font>
       </Label>
       <Button fx:id="searching" layoutX="740.0" layoutY="48.0" mnemonicParsing="false" text="검색" />
-      <DatePicker fx:id="endDate" layoutX="553.0" layoutY="48.0" prefHeight="22.0" prefWidth="170.0" promptText="검색 날짜" />
+      <DatePicker fx:id="searchingDate" layoutX="553.0" layoutY="48.0" prefHeight="22.0" prefWidth="170.0" promptText="검색 날짜" />
       <Label fx:id="labelHome" layoutX="315.0" layoutY="9.0" text="Health Kiosk">
          <font>
             <Font size="30.0" />

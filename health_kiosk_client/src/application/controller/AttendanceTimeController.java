@@ -83,7 +83,7 @@ public class AttendanceTimeController implements Initializable{
             LocalTime time = LocalTime.now(); // 현재 시간
             while (isRun) {
                 time = time.plusNanos(10000000);
-                String timeData = "현재시간 " + time.format(DateTimeFormatter.ofPattern("hh:mm:ss"));
+                String timeData = "현재시간 " + time.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
                 Platform.runLater(() -> {
                     currentTime.setText(timeData);
