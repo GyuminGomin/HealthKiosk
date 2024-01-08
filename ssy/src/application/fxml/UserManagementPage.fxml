@@ -9,9 +9,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@../css/userManagement.css" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UserManagementController">
+<AnchorPane prefHeight="800.0" prefWidth="900.0" stylesheets="@../css/userManagement.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UserManagementController">
    <children>
       <TableView fx:id="tableView" layoutY="125.0" prefHeight="674.0" prefWidth="900.0">
         <columns>
@@ -46,7 +49,7 @@
                </items></Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="15.0" layoutY="9.0" text="회원 목록" textFill="#ff9500">
+      <Label layoutX="15.0" layoutY="9.0" text="회원 목록" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font></Label>
@@ -54,6 +57,22 @@
          <font>
             <Font size="30.0" />
          </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.6352941393852234" blue="0.019607843831181526" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
       </Label>
    </children>
 </AnchorPane>

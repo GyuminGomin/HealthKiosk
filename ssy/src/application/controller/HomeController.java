@@ -118,7 +118,6 @@ public class HomeController implements Initializable {
         inactLockerBar.setProgress(progress);
 
         // pieChartGender View
-        
         pieChartGender.setTitle("활성 회원 성별 비");
         ObservableList<PieChart.Data> glist = FXCollections.observableArrayList();
         glist.add(new PieChart.Data("남자", dao.UserGenderNum("남자")));
@@ -440,25 +439,25 @@ public class HomeController implements Initializable {
 
         // 마우스 이벤트 (들어왔을 때)
         custManage.setOnMouseEntered(e -> {
-        	custManage.setStyle("-fx-background-color : #A75544; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
+        	custManage.setStyle("-fx-background-color : yellowgreen; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         	Label l = (Label)custManage.getChildren().get(0);
         	l.setUnderline(true);
         });
         attendance.setOnMouseEntered(e -> {
-        	attendance.setStyle("-fx-background-color : #A75544; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
+        	attendance.setStyle("-fx-background-color : yellowgreen; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         	Label l = (Label)attendance.getChildren().get(0);
         	l.setUnderline(true);
         });
         locker.setOnMouseEntered(e ->{
-        	locker.setStyle("-fx-background-color : #D88231; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
+        	locker.setStyle("-fx-background-color : orange; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         });
         salManage.setOnMouseEntered(e -> {
-        	salManage.setStyle("-fx-background-color : #A75544; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
+        	salManage.setStyle("-fx-background-color : yellowgreen; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         	Label l = (Label)salManage.getChildren().get(0);
         	l.setUnderline(true);
         });
         salStatistic.setOnMouseEntered(e -> {
-        	salStatistic.setStyle("-fx-background-color : #A75544; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
+        	salStatistic.setStyle("-fx-background-color : yellowgreen; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         	Label l = (Label)salStatistic.getChildren().get(0);
         	l.setUnderline(true);
         });

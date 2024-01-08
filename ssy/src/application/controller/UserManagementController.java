@@ -111,6 +111,7 @@ public class UserManagementController implements Initializable{
                     Parent lockerPage = null;
                     
                     try {
+                        UserChild user = tableView.getSelectionModel().getSelectedItem();
                         stage = new Stage(StageStyle.DECORATED);
         
                         loader = new FXMLLoader(getClass().getResource("/application/fxml/UserPage.fxml"));
@@ -120,6 +121,8 @@ public class UserManagementController implements Initializable{
                         stage.setTitle("유저 페이지");
                         stage.setResizable(false);
                         stage.initModality(Modality.APPLICATION_MODAL);
+                        UserController con = loader.getController();
+                        con.setUserData(user);
                         stage.show();
         
                     } catch (IOException e1) {
@@ -128,7 +131,6 @@ public class UserManagementController implements Initializable{
                     }
                 }
             });
-
 
             // txt 이름으로, 전화번호 뒷자리로 검색
             // 테이블 필터링
