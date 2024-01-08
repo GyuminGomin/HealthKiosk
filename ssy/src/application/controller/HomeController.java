@@ -118,6 +118,7 @@ public class HomeController implements Initializable {
         inactLockerBar.setProgress(progress);
 
         // pieChartGender View
+        
         pieChartGender.setTitle("활성 회원 성별 비");
         ObservableList<PieChart.Data> glist = FXCollections.observableArrayList();
         glist.add(new PieChart.Data("남자", dao.UserGenderNum("남자")));
@@ -274,13 +275,11 @@ public class HomeController implements Initializable {
                 panel.getChildren().removeAll(salManage,salStatistic);
                 // 세모박스를 클릭했을때 색(이미지) 변환
                 btnLayout2.setImage(new Image("/application/img/아래화살표_빨강.png"));
-
             } else {
                 // salFlag가 false일 때
                 panel.getChildren().addAll(salManage, salStatistic);
                 // 세모박스를 클릭했을때 원래이미지로 돌아옴
                 btnLayout2.setImage(new Image("/application/img/아래화살표.png"));
-
             }
             salFlag = !salFlag;
         }); // 회계 세모박스 클릭
@@ -414,27 +413,52 @@ public class HomeController implements Initializable {
             }
         }); // 락커 버튼 클릭
         
+        // 매출통계 버튼 클릭
+        salStatistic.setOnMouseClicked(e-> {
+            Stage stage = null;
+            FXMLLoader loader = null;
+            Parent lockerPage = null;
+            
+            try {
+                stage = new Stage(StageStyle.DECORATED);
+
+                loader = new FXMLLoader(getClass().getResource("/application/fxml/SalesPage.fxml"));
+                lockerPage = loader.load();
+
+                stage.setScene(new Scene(lockerPage));
+                stage.setTitle("매출 통계 페이지");
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
+            }
+        });
+
+
         // 마우스 이벤트 (들어왔을 때)
         custManage.setOnMouseEntered(e -> {
-        	custManage.setStyle("-fx-background-color : yellowgreen; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
+        	custManage.setStyle("-fx-background-color : #A75544; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         	Label l = (Label)custManage.getChildren().get(0);
         	l.setUnderline(true);
         });
         attendance.setOnMouseEntered(e -> {
-        	attendance.setStyle("-fx-background-color : yellowgreen; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
+        	attendance.setStyle("-fx-background-color : #A75544; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         	Label l = (Label)attendance.getChildren().get(0);
         	l.setUnderline(true);
         });
         locker.setOnMouseEntered(e ->{
-        	locker.setStyle("-fx-background-color : orange; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
+        	locker.setStyle("-fx-background-color : #D88231; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         });
         salManage.setOnMouseEntered(e -> {
-        	salManage.setStyle("-fx-background-color : yellowgreen; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
+        	salManage.setStyle("-fx-background-color : #A75544; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         	Label l = (Label)salManage.getChildren().get(0);
         	l.setUnderline(true);
         });
         salStatistic.setOnMouseEntered(e -> {
-        	salStatistic.setStyle("-fx-background-color : yellowgreen; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
+        	salStatistic.setStyle("-fx-background-color : #A75544; -fx-border-width : 0 0 1 0; -fx-border-color : black;");
         	Label l = (Label)salStatistic.getChildren().get(0);
         	l.setUnderline(true);
         });

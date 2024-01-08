@@ -1,8 +1,9 @@
 package application.dto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
+// Attendance 페이지
 public class UserAtten {
     
     private Boolean checked; // checkBox
@@ -10,11 +11,11 @@ public class UserAtten {
     private String userName; // 이름
     private String userGender; // 성별
     private String userPhone; // 연락처
-    private LocalDateTime doHealthTime; // 출석 시간
+    private LocalTime doHealthTime; // 출석 시간
     private LocalDate doHealthDate; // 출석한 날짜
 
 
-    public UserAtten(Boolean checked, int userCode, String userName, String userGender, String userPhone, LocalDateTime doHealthTime,
+    public UserAtten(Boolean checked, int userCode, String userName, String userGender, String userPhone, LocalTime doHealthTime,
             LocalDate doHealthDate) {
         this.checked = checked;
         this.userCode = userCode;
@@ -49,10 +50,10 @@ public class UserAtten {
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
-    public LocalDateTime getDoHealthTime() {
+    public LocalTime getDoHealthTime() {
         return doHealthTime;
     }
-    public void setDoHealthTime(LocalDateTime doHealthTime) {
+    public void setDoHealthTime(LocalTime doHealthTime) {
         this.doHealthTime = doHealthTime;
     }
     public LocalDate getDoHealthDate() {

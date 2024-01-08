@@ -33,6 +33,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -72,7 +73,57 @@ public class UserAttendanceController implements Initializable{
 			}
         });
 
+        Platform.runLater(()-> {
+            Stage curStage = (Stage)tableView.getScene().getWindow();
 
+            curStage.getScene().setOnKeyPressed(e -> {
+                if (e.getCode() == KeyCode.F5) {
+                    ObservableList<UserAtten> userList = FXCollections.observableArrayList();
+                    for (UserAtten u : dao.userAtten()) {
+                        userList.add(u);
+                    }
+                    // 첫 번째 TableColumn에 CheckBox 추가
+                    TableColumn<UserAtten, Boolean> checkBoxColumn = (TableColumn<UserAtten, Boolean>)tableView.getColumns().get(0);
+
+                    checkBoxColumn.setCellValueFactory(new PropertyValueFactory<>("checked"));
+
+                    // 체크박스 셀의 내용을 표시하는 방법 지정 (옵션)
+                    checkBoxColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkBoxColumn));
+
+                    checkBoxColumn.setEditable(false);
+
+                    ObservableList<TableColumn<UserAtten, ?>> columnList = tableView.getColumns();
+                    Field[] fields = UserAtten.class.getDeclaredFields();
+                    for (int i=1; i<fields.length-1; i++) {
+                        String fieldName = fields[i].getName();
+                        TableColumn<UserAtten, ?> columnName = columnList.get(i);
+                        columnName.setCellValueFactory(new PropertyValueFactory<>(fieldName));
+                    }
+
+                    tableView.setItems(userList);
+
+                    // TableCell에 대한 업데이트를 처리하는 셀 팩토리 설정
+                    checkBoxColumn.setCellFactory(col -> new CheckBoxTableCell<UserAtten, Boolean>(){
+                        @Override
+                        public void updateItem(Boolean item, boolean empty) {
+                            super.updateItem(item, empty);
+                            
+                            if (empty || getIndex() < 0) {
+                                setGraphic(null);
+                            } else {
+                                UserAtten user = getTableView().getItems().get(getIndex());
+                                CheckBox checkBox = (CheckBox)getGraphic();
+                                if (checkBox != null && user != null) {
+                                    checkBox.setSelected(user.isChecked());
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        });            
+
+        
         // tableView Data 설정
         Platform.runLater(() -> {
             ObservableList<UserAtten> userList = FXCollections.observableArrayList();
@@ -206,8 +257,9 @@ public class UserAttendanceController implements Initializable{
             public void run() {
                 System.out.println("[서버 시작]");
                 while (true) {
-                    System.out.println("client 연결 대기 중..");
-                    try (Socket client = server.accept()) {
+                    try {
+                        System.out.println("client 연결 대기 중..");
+                        Socket client = server.accept();
                         String address = client.getRemoteSocketAddress().toString();
                         System.out.println("연결 수락 : "+address);
                         serverPool.submit(new ServerTask(client, UserAttendanceController.this));
