@@ -4,12 +4,22 @@ import java.time.LocalDate;
 
 public class User {
     
-    private int userCode;
+    @Override
+	public String toString() {
+		return "User [userCode=" + userCode + ", userName=" + userName + ", userGender=" + userGender + ", phoneHeader="
+				+ phoneHeader + ", phoneMiddle=" + phoneMiddle + ", phoneTail=" + phoneTail + ", userStartDate="
+				+ userStartDate + ", userStatus=" + userStatus + ", membership=" + membership + "]";
+	}
+
+	private int userCode;
     private String userName, userGender, phoneHeader, phoneMiddle, phoneTail;
     private LocalDate userStartDate;
     private Boolean userStatus = true; // user 활성화 비활성화 상태
+    private String membership;
 
-    public User() {}
+	
+
+	public User() {}
 
     public User(int userCode, String userName, String userGender, String phoneHeader, String phoneMiddle,
             String phoneTail, LocalDate userStartDate, Boolean userStatus) {
@@ -32,8 +42,20 @@ public class User {
         this.phoneTail = phoneTail;
         this.userStartDate = userStartDate;
     } // 회원 생성할 때 필요
+    
 
-    public int getUserCode() {
+    public User(String userName, LocalDate userStartDate, String userGender, String phoneHeader,
+            String phoneMiddle, String phoneTail, String membership) {
+		this.userName = userName;
+		this.userGender = userGender;
+		this.phoneHeader = phoneHeader;
+		this.phoneMiddle = phoneMiddle;
+		this.phoneTail = phoneTail;
+		this.userStartDate = userStartDate;
+		this.membership = membership;
+	}
+
+	public int getUserCode() {
         return userCode;
     }
     public void setUserCode(int userCode) {
@@ -84,6 +106,13 @@ public class User {
     public void setUserStatus(Boolean userStatus) {
         this.userStatus = userStatus;
     }
+    public String getMembership() {
+		return membership;
+	}
+
+	public void setMembership(String membership) {
+		this.membership = membership;
+	}
 
     
 }

@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
@@ -12,7 +13,10 @@ import application.dao.UserDAOImpl;
 import application.dto.User;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -22,7 +26,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class CreateUserController implements Initializable{
 
@@ -38,7 +44,8 @@ public class CreateUserController implements Initializable{
     // DB에서 받아온 데이터를 저장하는 객체(VO)
     private UserDAO dao = new UserDAOImpl();
     // User VO
-    private User user;
+    public static User user;
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -116,9 +123,9 @@ public class CreateUserController implements Initializable{
                 return;
             }
 
+            // User 객체 받아오기
             // 성별 선택
             RadioButton value = (RadioButton)gender.selectedToggleProperty().getValue();
-
             // 데이터 받아오기
             String name = txtName.getText().trim();
             LocalDate date = startDate.getValue();
@@ -126,18 +133,35 @@ public class CreateUserController implements Initializable{
             String firstPhone = firstNum.getText().trim();
             String middlePhone = middleNum.getText().trim();
             String lastPhone = lastNum.getText().trim();
-
-            // User VO 생성
+            
             user = new User(name, date, gen, firstPhone, middlePhone, lastPhone);
-
+            
+            // MembershipPage로 넘어가기
             Alert info1 = new Alert(AlertType.CONFIRMATION);
-            info1.setHeaderText("등록하시겠습니까?");
+            info1.setHeaderText("회원권 등록 페이지로 넘어가시겠습니까?");
             Optional<ButtonType> result = info1.showAndWait(); 
             if(result.get() == ButtonType.OK) {
-            	dao.join(user);
-            	Alert info = new Alert(AlertType.INFORMATION);
-                info.setHeaderText("회원등록 완료");
-                info.showAndWait();
+            	
+            	Stage stage = null;
+                FXMLLoader loader = null;
+                Parent membershipPage = null;
+                try {
+                    stage = new Stage(StageStyle.DECORATED);
+
+                    loader = new FXMLLoader(getClass().getResource("/application/fxml/MembershipPage.fxml"));
+                    membershipPage = loader.load();
+
+                    stage.setScene(new Scene(membershipPage));
+                    stage.setTitle("회원권 등록 페이지");
+                    stage.setResizable(false);
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    //-------------------------------------------------//
+                    stage.showAndWait();
+                    //-------------------------------------------------//
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                    return;
+                }
             }else {
             	Alert info = new Alert(AlertType.INFORMATION);
             	info.setHeaderText("재입력해주세요.");
@@ -145,13 +169,20 @@ public class CreateUserController implements Initializable{
             	return;
             }
             
-            Stage stage = (Stage)btnNext.getScene().getWindow();
+//            Stage stage = (Stage)btnNext.getScene().getWindow();
             
-            stage.close(); // DB에 유저 넣고 나면, 창 종료
+//            stage.close(); // DB에 유저 넣고 나면, 창 종료
 
         }); // 회원 추가 버튼 클릭
 
 
     }
-    
+    //-------------------------------------------------//
+    public User setUserDatas(String membership) {
+        // User VO 생성
+        User u = new User(user.getUserName(), user.getUserStartDate(), user.getUserGender(), user.getPhoneHeader(), user.getPhoneMiddle(), user.getPhoneTail(), membership);
+        return u;
+    }
+    //-------------------------------------------------//
+
 }

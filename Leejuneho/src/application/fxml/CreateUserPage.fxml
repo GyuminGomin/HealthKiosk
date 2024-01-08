@@ -90,7 +90,7 @@
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <Button fx:id="btnNext" alignment="CENTER" layoutX="1.0" layoutY="557.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="500.0" style="-fx-background-color: crimson;" text="회원 추가" textFill="WHITE">
+      <Button fx:id="btnNext" alignment="CENTER" layoutY="557.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="501.0" style="-fx-background-color: crimson;" text="다음" textFill="WHITE">
          <font>
             <Font name="태 나무" size="15.0" />
          </font>
