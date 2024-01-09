@@ -85,7 +85,6 @@ public class UserDAOImpl implements UserDAO {
         int actFalse = 0;
         String sql = "SELECT sum(CASE WHEN userStatus=1 THEN 1 ELSE 0 END), sum(CASE WHEN userStatus=0 THEN 1 ELSE 0 END) FROM user";
 
-
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);

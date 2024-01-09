@@ -145,9 +145,9 @@ public class AttendanceTimeController implements Initializable{
                     Thread.sleep(100);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
-                }
+                } // receive 받은 데이터를 기다려야 하는데... 비동기로 처리를 못해서 기다림
 
-                // receive 받은 데이터를 기다려야 하는데... 비동기로 처리를 못해서 기다림
+                
                 if (AttendanceTimeController.userList.size() != 0) {
                     Stage stage = new Stage(StageStyle.UNDECORATED);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/ListViewPage.fxml"));

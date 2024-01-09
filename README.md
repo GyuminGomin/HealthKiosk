@@ -1,10 +1,13 @@
 # 프로젝트 (Health Kiosk)
 
 ## 설계도
-<img src="./README_IMG/순서도.png">
+<img src="./README_IMG/순서도.png" />
 
 ## DB 클래스 다이어그램
-<img src="./README_IMG/클래스다이어그램.png">
+<img src="./README_IMG/클래스다이어그램.png" />
+
+## 출석부 서버 설계도
+<img src="./README_IMG/출석부서버순서도.png" />
 
 ## 간단한 설명
 `헬스 키오스크 도메인을 주제로 실제 헬스장에서 사용되고 있는`  

@@ -10,8 +10,17 @@ AnchorPane {
 #menuBar {
 	-fx-background-color: #927D75;
 	-fx-border-color: white;
-	-fx-border-wibdth: 1 0 1 0;
+	-fx-border-width: 1 0 1 0;
 }
 #menuBar .label {
 	-fx-text-fill: white;
+}
+.menu-item {
+	-fx-background-color: #927D75;
+	-fx-border-color: #927D75;
+	-fx-border-width: 1 1 1 1;
+}
+.menu-item:hover {
+	-fx-cursor: hand;
+	-fx-background-color: RoyalBlue;
 }
