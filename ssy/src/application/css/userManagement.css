@@ -15,3 +15,12 @@ AnchorPane {
 #menuBar .label {
 	-fx-text-fill: white;
 }
+.menu-item {
+	-fx-background-color: #927D75;
+	-fx-border-color: #927D75;
+	-fx-border-width: 1 1 1 1;
+}
+.menu-item:hover {
+	-fx-cursor: hand;
+	-fx-background-color: RoyalBlue;
+}
