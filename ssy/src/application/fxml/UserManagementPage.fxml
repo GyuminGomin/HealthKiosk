@@ -10,13 +10,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="800.0" prefWidth="900.0" stylesheets="@../css/userManagement.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UserManagementController">
    <children>
-      <TableView fx:id="tableView" layoutY="125.0" prefHeight="674.0" prefWidth="900.0">
+      <TableView fx:id="tableView" layoutY="113.0" prefHeight="686.0" prefWidth="900.0">
         <columns>
           <TableColumn fx:id="checkBox" prefWidth="30.0">
                <graphic>
@@ -58,7 +58,7 @@
             <Font size="30.0" />
          </font>
          <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                <stops>
                   <Stop>
                      <color>
@@ -71,7 +71,7 @@
                      </color>
                   </Stop>
                </stops>
-            </LinearGradient>
+            </RadialGradient>
          </textFill>
       </Label>
    </children>
