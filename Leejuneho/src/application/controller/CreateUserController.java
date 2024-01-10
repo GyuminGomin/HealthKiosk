@@ -39,7 +39,7 @@ public class CreateUserController implements Initializable{
     @FXML
     private Button btnNext;
     @FXML
-    private DatePicker startDate;
+    private DatePicker userRegDate;
 
     // DB에서 받아온 데이터를 저장하는 객체(VO)
     private UserDAO dao = new UserDAOImpl();
@@ -66,14 +66,14 @@ public class CreateUserController implements Initializable{
         	if(e1.getCode() == KeyCode.ENTER) lastNum.requestFocus();
         });
         lastNum.setOnKeyPressed(e1->{
-        	if(e1.getCode() == KeyCode.ENTER) startDate.requestFocus();
+        	if(e1.getCode() == KeyCode.ENTER) userRegDate.requestFocus();
         });
-        startDate.setOnKeyPressed(e1->{
+        userRegDate.setOnKeyPressed(e1->{
         	if(e1.getCode() == KeyCode.ENTER) btnNext.fire();
         });
 
         // 회원 추가 버튼 클릭
-        btnNext.setOnAction(e -> {
+        btnNext.setOnAction(e-> {
 
             Stage s = (Stage)txtName.getScene().getWindow();
 
@@ -112,14 +112,14 @@ public class CreateUserController implements Initializable{
             }
 
             // 시작 날짜 설정
-            if (startDate.getValue() == null) {
-                LogonController.warnPage("날짜 선택 필수", "시작할 날짜를 입력해 주세요.", startDate);
+            if(userRegDate.getValue() == null) {
+                LogonController.warnPage("날짜 선택 필수", "시작할 날짜를 입력해 주세요.", userRegDate);
                 return;
             }
             // 날짜가 현재 날짜보다 더 이전으로 설정한다면 경고발생
-            Period period = Period.between(LocalDate.now(), startDate.getValue());
+            Period period = Period.between(LocalDate.now(), userRegDate.getValue());
             if (period.getDays() < 0) {
-                LogonController.warnPage("날짜 선택 오류", "시작 날짜가 현재보다 이전일 수 없습니다.", startDate);
+                LogonController.warnPage("날짜 선택 오류", "시작 날짜가 현재보다 이전일 수 없습니다.", userRegDate);
                 return;
             }
 
@@ -128,7 +128,7 @@ public class CreateUserController implements Initializable{
             RadioButton value = (RadioButton)gender.selectedToggleProperty().getValue();
             // 데이터 받아오기
             String name = txtName.getText().trim();
-            LocalDate date = startDate.getValue();
+            LocalDate date = userRegDate.getValue();
             String gen = value.getText();
             String firstPhone = firstNum.getText().trim();
             String middlePhone = middleNum.getText().trim();
@@ -147,17 +147,16 @@ public class CreateUserController implements Initializable{
                 Parent membershipPage = null;
                 try {
                     stage = new Stage(StageStyle.DECORATED);
-
                     loader = new FXMLLoader(getClass().getResource("/application/fxml/MembershipPage.fxml"));
                     membershipPage = loader.load();
-
                     stage.setScene(new Scene(membershipPage));
                     stage.setTitle("회원권 등록 페이지");
                     stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
-                    //-------------------------------------------------//
-                    stage.showAndWait();
-                    //-------------------------------------------------//
+                    // 회원 추가 스테이지 전달
+                    MembershipController controller = loader.getController();
+                    controller.setOwnerStage(s);
+                    stage.show();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                     return;
@@ -168,21 +167,14 @@ public class CreateUserController implements Initializable{
             	info.showAndWait();
             	return;
             }
-            
-//            Stage stage = (Stage)btnNext.getScene().getWindow();
-            
-//            stage.close(); // DB에 유저 넣고 나면, 창 종료
-
         }); // 회원 추가 버튼 클릭
 
-
     }
-    //-------------------------------------------------//
-    public User setUserDatas(String membership) {
+    
+    public User setUserDatas(String membership, LocalDate startDate1, LocalDate endDate1) {
         // User VO 생성
-        User u = new User(user.getUserName(), user.getUserStartDate(), user.getUserGender(), user.getPhoneHeader(), user.getPhoneMiddle(), user.getPhoneTail(), membership);
+        User u = new User(user.getUserName(), user.getUserRegDate(), user.getUserGender(), user.getPhoneHeader(), user.getPhoneMiddle(), user.getPhoneTail(), membership
+        		, startDate1, endDate1);
         return u;
     }
-    //-------------------------------------------------//
-
 }

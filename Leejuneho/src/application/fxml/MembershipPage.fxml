@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
@@ -33,5 +34,10 @@
          </font>
       </Label>
       <TextArea layoutY="196.0" prefHeight="161.0" prefWidth="503.0" text="* 운동복, 개인락커 포함!&#10;&#10;[지급 되는 운동복의 사이즈와 락커의 위치는 회원권 구매 후 선택하시면 됩니다.]&#10;&#10;* 회원 이용 시간 안내 *&#10;- 평일 : [ 09:00 ] ~ [ 16:30 ]  &quot;입실 및 퇴실 QR코드 필수!!&quot;&#10;              [ 16:30 ] ~ [ 17:30 ] &quot;자유시간&quot;&#10;- 토요일 : [ 09:00 ]  ~ [ 20:00 ] &#10;- 일요일 및 공휴일  : [ 09:00 ] ~ [ 20:00 ]" />
+      <DatePicker fx:id="startDate" layoutY="139.0" style="-fx-background-color: silver;" />
+      <Label layoutX="4.0" layoutY="123.0" text="▷ 시작일" />
+      <Separator layoutX="186.0" layoutY="138.0" prefHeight="22.0" prefWidth="129.0" />
+      <Label layoutX="319.0" layoutY="123.0" text="▶ 종료일" />
+      <DatePicker fx:id="endDate" layoutX="315.0" layoutY="139.0" style="-fx-background-color: silver;" />
    </children>
 </AnchorPane>

@@ -12,14 +12,17 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomeController">
+<BorderPane prefHeight="800.0" prefWidth="1000.0" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomeController">
    <center>
-      <AnchorPane style="-fx-border-color: black; -fx-border-width: 1 0 1 1;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="center" style="-fx-border-color: black; -fx-border-width: 1 0 1 1;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="150.0" text="Home">
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="150.0" text="Home" textFill="WHITE">
                <font>
                   <Font size="50.0" />
                </font></Label>
@@ -27,67 +30,67 @@
             <PieChart fx:id="pieChartLocker" layoutX="316.0" layoutY="304.0" prefHeight="300.0" prefWidth="250.0" startAngle="90.0" />
             <VBox layoutX="39.0" layoutY="125.0" prefWidth="235.0">
                <children>
-                  <Label fx:id="totalUser" text="전체 회원 0명">
+                  <Label fx:id="totalUser" text="전체 회원 0명" textFill="#fffefe">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="allUser" text="만료를 포함한 등록된 회원은 총 0명 입니다." />
+                  <Label fx:id="allUser" text="만료를 포함한 등록된 회원은 총 0명 입니다." textFill="#fffefe" />
                   <ProgressBar fx:id="allUserBar" layoutX="38.0" layoutY="162.0" prefHeight="20.0" prefWidth="227.0" progress="0.0" />
                </children>
             </VBox>
             <VBox layoutX="322.0" layoutY="122.0" prefWidth="235.0">
                <children>
-                  <Label fx:id="activateUser" text="활성 회원 0명">
+                  <Label fx:id="activateUser" text="활성 회원 0명" textFill="#fffafa">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="actUser" text="전체 회원 중 활성 회원은 0명 입니다." />
+                  <Label fx:id="actUser" text="전체 회원 중 활성 회원은 0명 입니다." textFill="#fffafa" />
                   <ProgressBar fx:id="actUserBar" layoutX="316.0" layoutY="162.0" prefHeight="20.0" prefWidth="227.0" progress="0.0" />
                </children>
             </VBox>
             <VBox layoutX="588.0" layoutY="121.0" prefWidth="235.0">
                <children>
-                  <Label fx:id="inactivateUser" text="비활성 회원 0명">
+                  <Label fx:id="inactivateUser" text="비활성 회원 0명" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="inactUser" text="전체 회원 중 비활성화 회원은 0명 입니다." />
+                  <Label fx:id="inactUser" text="전체 회원 중 비활성화 회원은 0명 입니다." textFill="WHITE" />
                   <ProgressBar fx:id="inactUserBar" layoutX="583.0" layoutY="162.0" prefHeight="20.0" prefWidth="232.0" progress="0.0" />
                </children>
             </VBox>
             <VBox layoutX="629.0" layoutY="315.0">
                <children>
-                  <Label fx:id="totalLocker" text="전체 락커 : 0개">
+                  <Label fx:id="totalLocker" text="전체 락커 : 0개" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="총 락커 갯수" />
+                  <Label text="총 락커 갯수" textFill="WHITE" />
                   <ProgressBar fx:id="allLockerBar" layoutX="625.0" layoutY="348.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
             <VBox layoutX="629.0" layoutY="421.0">
                <children>
-                  <Label fx:id="activateLocker" text="활성 락커 : 0개">
+                  <Label fx:id="activateLocker" text="활성 락커 : 0개" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="활성화 된 락커 갯수" />
+                  <Label text="활성화 된 락커 갯수" textFill="WHITE" />
                   <ProgressBar fx:id="actLockerBar" layoutX="625.0" layoutY="454.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
             <VBox layoutX="629.0" layoutY="534.0">
                <children>
-                  <Label fx:id="inactivateLocker" text="비활성화 락커 : 0개">
+                  <Label fx:id="inactivateLocker" text="비활성화 락커 : 0개" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="비활성화 락커 갯수" />
+                  <Label text="비활성화 락커 갯수" textFill="WHITE" />
                   <ProgressBar fx:id="inactLockerBar" layoutX="626.0" layoutY="565.0" prefHeight="20.0" prefWidth="146.0" progress="0.0" />
                </children>
             </VBox>
@@ -101,9 +104,9 @@
    <left>
       <VBox fx:id="panel" spacing="0.1" style="-fx-border-color: black; -fx-border-width: 0 0 1 1;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 1 0 1 0;">
+            <HBox fx:id="hometop" alignment="CENTER" prefHeight="50.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 1 0 1 0;">
                <children>
-                  <Label text="홈">
+                  <Label text="홈" textFill="WHITE">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -113,9 +116,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <AnchorPane prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
+            <AnchorPane fx:id="member" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
-                  <Label layoutX="11.0" prefHeight="30.0" prefWidth="40.0" text="회원">
+                  <Label fx:id="aaa" layoutX="30.0" prefHeight="30.0" prefWidth="40.0" text="회원" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -128,16 +131,21 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
+                  <ImageView fitHeight="28.0" fitWidth="22.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/프로필아이콘.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
-                  <Label layoutX="51.0" prefHeight="30.0" prefWidth="80.0" text="고객관리">
+                  <Label layoutX="45.0" prefHeight="30.0" prefWidth="80.0" text="회원관리" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Circle fill="#1f93ff00" layoutX="33.0" layoutY="15.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circle1" fill="#1f93ff00" layoutX="30.0" layoutY="16.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -145,32 +153,37 @@
             </AnchorPane>
             <AnchorPane fx:id="attendance" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
-                  <Label layoutX="51.0" prefHeight="30.0" prefWidth="80.0" text="출석부">
+                  <Label layoutX="45.0" prefHeight="30.0" prefWidth="80.0" text="출석부" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Circle fill="#1f93ff00" layoutX="33.0" layoutY="15.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circle2" fill="#1f93ff00" layoutX="30.0" layoutY="16.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
-            <AnchorPane prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
+            <AnchorPane fx:id="locker1" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
-                  <Label layoutX="11.0" text="락커">
+                  <Label layoutX="31.0" prefHeight="30.0" prefWidth="40.0" text="락커" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="28.0" fitWidth="22.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/락커.png" />
+                     </image>
+                  </ImageView>
                </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </AnchorPane>
-            <AnchorPane prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
+            <AnchorPane fx:id="accounting" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
-                  <Label layoutX="11.0" prefHeight="30.0" prefWidth="40.0" text="회계">
+                  <Label layoutX="31.0" prefHeight="30.0" prefWidth="40.0" text="회계" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -183,16 +196,21 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/회계.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
-                  <Label layoutX="51.0" prefHeight="30.0" prefWidth="80.0" text="매출관리">
+                  <Label layoutX="45.0" prefHeight="30.0" prefWidth="80.0" text="매출관리" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Circle fill="#1f93ff00" layoutX="33.0" layoutY="15.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circle3" fill="#1f93ff00" layoutX="30.0" layoutY="16.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -200,12 +218,12 @@
             </AnchorPane>
             <AnchorPane prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;">
                <children>
-                  <Label layoutX="51.0" prefHeight="30.0" prefWidth="80.0" text="매출통계">
+                  <Label layoutX="45.0" prefHeight="30.0" prefWidth="80.0" text="매출통계" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Circle fill="#1f93ff00" layoutX="33.0" layoutY="15.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="circle4" fill="#1f93ff00" layoutX="30.0" layoutY="16.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" />
                </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -223,12 +241,44 @@
             <Label fx:id="loginManager" layoutX="557.0" layoutY="13.0" text="로그인한 관리자 이름:id">
                <font>
                   <Font size="20.0" />
-               </font></Label>
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7105262875556946" green="0.7105262875556946" blue="0.7105262875556946" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill></Label>
             <Button fx:id="logout" focusTraversable="false" layoutX="786.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="로그아웃" />
             <Label layoutX="14.0" layoutY="7.0" text="Health Kiosk">
                <font>
                   <Font size="30.0" />
                </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7105262875556946" green="0.7105262875556946" blue="0.7105262875556946" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="0.6352941393852234" blue="0.019607843831181526" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
          </children>
       </AnchorPane>

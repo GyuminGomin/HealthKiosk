@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateUserController">
+<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateUserController">
    <children>
       <Separator layoutX="1.0" layoutY="8.0" prefHeight="8.0" prefWidth="500.0" style="-fx-background-color: peachpuff;" />
       <Label layoutX="174.0" layoutY="24.0" prefHeight="25.0" prefWidth="137.0" text="신규 회원추가">
@@ -90,7 +90,7 @@
             <Font size="15.0" />
          </font>
       </RadioButton>
-      <Button fx:id="btnNext" alignment="CENTER" layoutY="557.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="501.0" style="-fx-background-color: crimson;" text="다음" textFill="WHITE">
+      <Button fx:id="btnNext" alignment="CENTER" layoutX="1.0" layoutY="557.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="500.0" style="-fx-background-color: crimson;" text="회원 추가" textFill="WHITE">
          <font>
             <Font name="태 나무" size="15.0" />
          </font>
@@ -100,7 +100,7 @@
       </Button>
       <Label layoutX="71.0" layoutY="206.0" text="-" />
       <Label layoutX="215.0" layoutY="207.0" text="-" />
-      <DatePicker fx:id="startDate" layoutX="211.0" layoutY="507.0" prefHeight="22.0" prefWidth="280.0" />
+      <DatePicker fx:id="userRegDate" layoutX="211.0" layoutY="507.0" prefHeight="22.0" prefWidth="280.0" />
       <Label layoutX="11.0" layoutY="509.0" text="시작날짜를 선택해주세요">
          <font>
             <Font size="13.0" />
