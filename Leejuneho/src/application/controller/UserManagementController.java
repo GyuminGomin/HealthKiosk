@@ -118,7 +118,6 @@ public class UserManagementController implements Initializable{
                     
                     try {
                     	UserChild user = tableView.getSelectionModel().getSelectedItem();
-    
                         stage = new Stage(StageStyle.DECORATED);
         
                         loader = new FXMLLoader(getClass().getResource("/application/fxml/UserPage.fxml"));

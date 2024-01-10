@@ -49,14 +49,18 @@
                               </Label>
                               <HBox alignment="CENTER_LEFT" layoutX="92.0" layoutY="37.0" prefHeight="49.0" prefWidth="685.0">
                                  <children>
-                                    <ComboBox fx:id="ticketBox" prefHeight="22.0" prefWidth="170.0" promptText="프리미엄 통합 회원권" />
-                                    <TextField fx:id="startDate" alignment="CENTER_RIGHT" editable="false" prefHeight="23.0" prefWidth="153.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
+                                    <Label fx:id="nowDate1" prefHeight="22.0" prefWidth="170.0" text="프리미엄 통합 이용권">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="startDate" alignment="CENTER_RIGHT" editable="false" prefHeight="23.0" prefWidth="77.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </TextField>
                                     <Label text="~" />
-                                    <TextField fx:id="endDate" editable="false" prefHeight="23.0" prefWidth="180.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
+                                    <TextField fx:id="endDate" editable="false" prefHeight="23.0" prefWidth="253.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
@@ -85,18 +89,18 @@
                               <HBox alignment="CENTER_LEFT" layoutX="93.0" layoutY="21.0" prefHeight="49.0" prefWidth="685.0">
                                  <children>
                                     <ComboBox prefHeight="22.0" prefWidth="170.0" promptText="락커이용권 [ 1 ]" />
-                                    <TextField alignment="CENTER_RIGHT" editable="false" prefHeight="23.0" prefWidth="153.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
+                                    <TextField fx:id="lockerStartDate" alignment="CENTER_RIGHT" editable="false" prefHeight="23.0" prefWidth="81.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </TextField>
                                     <Label text="~" />
-                                    <TextField editable="false" prefHeight="23.0" prefWidth="108.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
+                                    <TextField fx:id="lockerEndDate" editable="false" prefHeight="23.0" prefWidth="141.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </TextField>
-                                    <Label prefHeight="14.0" prefWidth="70.0" text="미배정" underline="true" />
+                                    <Label prefHeight="14.0" prefWidth="105.0" text="미배정" underline="true" />
                                     <Label prefHeight="14.0" prefWidth="77.0" text="31일 남음" textFill="#6f6e6e" />
                                     <ProgressIndicator prefHeight="49.0" prefWidth="35.0" progress="0.0" scaleX="1.15" scaleY="1.15" />
                                  </children>

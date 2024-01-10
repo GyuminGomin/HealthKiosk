@@ -39,5 +39,7 @@
       <Separator layoutX="186.0" layoutY="138.0" prefHeight="22.0" prefWidth="129.0" />
       <Label layoutX="319.0" layoutY="123.0" text="▶ 종료일" />
       <DatePicker fx:id="endDate" layoutX="315.0" layoutY="139.0" style="-fx-background-color: silver;" />
+      <Button fx:id="lockerbtn" layoutX="215.0" layoutY="162.0" mnemonicParsing="false" text="락커 등록" />
    </children>
+   
 </AnchorPane>

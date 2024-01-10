@@ -6,7 +6,8 @@ public class User {
 
 	private int userCode;
     private String userName, userGender, phoneHeader, phoneMiddle, phoneTail;
-    private LocalDate userRegDate, startDate, endDate;
+
+	private LocalDate userRegDate, startDate, endDate;
     private Boolean userStatus = true; // user 활성화 비활성화 상태
     private String membership;
 
@@ -114,6 +115,7 @@ public class User {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
+	
 
 	@Override
 	public String toString() {
