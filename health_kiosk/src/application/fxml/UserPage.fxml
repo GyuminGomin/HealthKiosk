@@ -49,19 +49,18 @@
                               </Label>
                               <HBox alignment="CENTER_LEFT" layoutX="92.0" layoutY="37.0" prefHeight="49.0" prefWidth="685.0">
                                  <children>
-                                    <ComboBox fx:id="ticketBox" prefHeight="22.0" prefWidth="170.0" promptText="프리미엄 통합 회원권" />
-                                    <TextField fx:id="startDate" alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="153.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
+                                    <TextField fx:id="startDate" alignment="CENTER_RIGHT" editable="false" prefHeight="23.0" prefWidth="77.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </TextField>
                                     <Label text="~" />
-                                    <TextField fx:id="endDate" prefHeight="23.0" prefWidth="180.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
+                                    <TextField fx:id="endDate" editable="false" prefHeight="23.0" prefWidth="253.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </TextField>
-                                    <Label fx:id="restDays" prefHeight="14.0" prefWidth="77.0" text="31일 남음" textFill="#6f6e6e" />
+                                    <Label fx:id="restDays" prefHeight="14.0" prefWidth="175.0" text="31일 남음" textFill="#6f6e6e" />
                                     <ProgressIndicator fx:id="ticketIndicator" prefHeight="49.0" prefWidth="35.0" progress="0.0" scaleX="1.15" scaleY="1.15" />
                                  </children>
                                  <opaqueInsets>
@@ -84,19 +83,23 @@
                               </Label>
                               <HBox alignment="CENTER_LEFT" layoutX="93.0" layoutY="21.0" prefHeight="49.0" prefWidth="685.0">
                                  <children>
-                                    <ComboBox prefHeight="22.0" prefWidth="170.0" promptText="락커이용권 [ 1 ]" />
-                                    <TextField alignment="CENTER_RIGHT" prefHeight="23.0" prefWidth="153.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
+                                    <Label fx:id="lockerTic" prefHeight="22.0" prefWidth="100.0" text="락커 이용권">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="lockerStartDate" alignment="CENTER_RIGHT" editable="false" prefHeight="23.0" prefWidth="81.0" promptText="2024-01-05" style="-fx-background-color: ivory;">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </TextField>
                                     <Label text="~" />
-                                    <TextField prefHeight="23.0" prefWidth="108.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
+                                    <TextField fx:id="lockerEndDate" editable="false" prefHeight="23.0" prefWidth="141.0" promptText="2024-02-05" style="-fx-background-color: ivory;">
                                        <font>
                                           <Font size="13.0" />
                                        </font>
                                     </TextField>
-                                    <Label prefHeight="14.0" prefWidth="70.0" text="미배정" underline="true" />
+                                    <Label prefHeight="14.0" prefWidth="105.0" text="미배정" underline="true" />
                                     <Label prefHeight="14.0" prefWidth="77.0" text="31일 남음" textFill="#6f6e6e" />
                                     <ProgressIndicator prefHeight="49.0" prefWidth="35.0" progress="0.0" scaleX="1.15" scaleY="1.15" />
                                  </children>
@@ -241,7 +244,7 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <TextField fx:id="userNo" layoutX="26.0" layoutY="158.0" prefHeight="22.0" prefWidth="61.0" style="-fx-border-color: white;" />
+            <TextField fx:id="userNo" editable="false" layoutX="26.0" layoutY="158.0" prefHeight="22.0" prefWidth="61.0" style="-fx-border-color: white;" />
             <ImageView fitHeight="54.0" fitWidth="61.0" layoutX="195.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/헬스2.png" />
@@ -250,9 +253,9 @@
             <Label fx:id="active" alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="20.0" prefHeight="20.0" prefWidth="79.0" style="-fx-background-color: ivory;" text="활성" />
          </children>
       </AnchorPane>
-      <TextField fx:id="userGender" layoutX="138.0" layoutY="67.0" prefHeight="22.0" prefWidth="55.0" style="-fx-border-color: white;" />
-      <TextField fx:id="userPhone" layoutX="137.0" layoutY="112.0" prefHeight="22.0" prefWidth="105.0" style="-fx-border-color: white;" />
-      <TextField fx:id="userDate" layoutX="137.0" layoutY="157.0" prefHeight="22.0" prefWidth="87.0" style="-fx-border-color: white;" />
+      <TextField fx:id="userGender" editable="false" layoutX="138.0" layoutY="67.0" prefHeight="22.0" prefWidth="55.0" style="-fx-border-color: white;" />
+      <TextField fx:id="userPhone" editable="false" layoutX="137.0" layoutY="112.0" prefHeight="22.0" prefWidth="105.0" style="-fx-border-color: white;" />
+      <TextField fx:id="userDate" editable="false" layoutX="137.0" layoutY="157.0" prefHeight="22.0" prefWidth="87.0" style="-fx-border-color: white;" />
       <TextArea layoutX="253.0" opacity="0.64" prefHeight="200.0" prefWidth="547.0" promptText="특이사항">
          <cursor>
             <Cursor fx:constant="TEXT" />

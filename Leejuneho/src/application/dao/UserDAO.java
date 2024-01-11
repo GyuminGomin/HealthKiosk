@@ -39,4 +39,5 @@ public interface UserDAO {
     // userAttendance 페이지의 테이블 뷰에 넣기 위해 조회 후 저장
     // 클라이언트에서 데이터를 받아와서 DB에 올리는 부분
     List<UserAtten> userAtten();
+
 }

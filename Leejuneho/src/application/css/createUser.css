@@ -1,0 +1,25 @@
+Label {
+	-fx-text-fill: white;
+}
+RadioButton {
+	-fx-text-fill: white;
+}
+AnchorPane {
+	-fx-background-color: #615855; 
+}
+Separator {
+	-fx-background-color:  crimson;
+	-fx-border-color:  crimson;
+}
+#required {
+	-fx-text-fill: red;
+}
+#required1 {
+	-fx-text-fill: red;
+}
+#required2 {
+	-fx-text-fill: red;
+}
+#required3 {
+	-fx-text-fill: red;	
+}

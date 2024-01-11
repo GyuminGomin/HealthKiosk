@@ -2,16 +2,25 @@ AnchorPane {
     -fx-background-color: #3B3B3B;
 }
 .table-view .column-header .label {
-	-fx-background-color: #927D75;
-	-fx-border-color: #927D75;
-	-fx-border-width: 1 1 1 1;
-	-fx-text-fill: white;
+   -fx-background-color: #927D75;
+   -fx-border-color: #927D75;
+   -fx-border-width: 1 1 1 1;
+   -fx-text-fill: white;
 }
 #menuBar {
-	-fx-background-color: #927D75;
-	-fx-border-color: white;
-	-fx-border-wibdth: 1 0 1 0;
+   -fx-background-color: #927D75;
+   -fx-border-color: white;
+   -fx-border-width: 1 0 1 0;
 }
 #menuBar .label {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
+}
+.menu-item {
+   -fx-background-color: #927D75;
+   -fx-border-color: #927D75;
+   -fx-border-width: 1 1 1 1;
+}
+.menu-item:hover {
+   -fx-cursor: hand;
+   -fx-background-color: RoyalBlue;
 }

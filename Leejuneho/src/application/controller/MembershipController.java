@@ -16,20 +16,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MembershipController implements Initializable {
 
 	@FXML
 	private ComboBox<String> comboBox;
 	@FXML
-	private Button btnAdd;
+	private Button btnAdd, lockerbtn;
 	@FXML
 	private DatePicker startDate, endDate;
 	
@@ -121,11 +124,47 @@ public class MembershipController implements Initializable {
 			Stage stage = (Stage) btnAdd.getScene().getWindow();
 			stage.close();
 		});
+		
+		// 락커등록 버튼 눌렸을때 LockerPage로 이동
+	      lockerbtn.setOnAction(e-> {
+	         Stage s = (Stage)lockerbtn.getScene().getWindow();
+	         
+	         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+	         alert.setHeaderText("락커를 등록하시겠습니까 ?");
+	         
+	         ButtonType yesButton = new ButtonType("예", ButtonBar.ButtonData.YES);
+	         ButtonType noButton = new ButtonType("아니오", ButtonBar.ButtonData.NO);
+	         
+	         alert.getButtonTypes().setAll(yesButton, noButton);
+	         
+	         Optional<ButtonType> result = alert.showAndWait();
+	               
+	          if (result.isPresent() && result.get() == yesButton) {
+	              try {
+	                  // FXMLLoader로 Loader를 생성하고 LockerPage를 로드합니다.
+	                  FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/LockerPage.fxml"));
+	                  Parent lockerPage = loader.load();
 
-	}
+	                  // Scene을 LockerPage로 설정합니다.
+	                  Scene scene = new Scene(lockerPage);
 
-	public void setOwnerStage(Stage s) {
-		this.ownerStage = s;
+	                  // 새로운 Stage를 생성하고 Scene을 설정합니다.
+	                  Stage newStage = new Stage(StageStyle.DECORATED);
+	                  newStage.setScene(scene);
+	                  // 새로운 Stage를 표시합니다.
+	                  newStage.show();
+	              } catch (IOException ex) {
+	                  ex.printStackTrace();
+	              }
+	          }
+	      });
+
 		
 	}
+	
+	
+	public void setOwnerStage(Stage s) {
+		this.ownerStage = s;
+	}
+	
 }

@@ -28,6 +28,7 @@ public class UserChild{
         this.userStartDate = userStartDate;
         this.userEndDate = userEndDate;
     }
+    
 
     public Boolean isChecked() {
         return checked;

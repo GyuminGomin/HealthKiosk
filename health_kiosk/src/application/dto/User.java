@@ -3,57 +3,51 @@ package application.dto;
 import java.time.LocalDate;
 
 public class User {
-    
-    @Override
-	public String toString() {
-		return "User [userCode=" + userCode + ", userName=" + userName + ", userGender=" + userGender + ", phoneHeader="
-				+ phoneHeader + ", phoneMiddle=" + phoneMiddle + ", phoneTail=" + phoneTail + ", userStartDate="
-				+ userStartDate + ", userStatus=" + userStatus + ", membership=" + membership + "]";
-	}
 
 	private int userCode;
     private String userName, userGender, phoneHeader, phoneMiddle, phoneTail;
-    private LocalDate userStartDate;
+
+	private LocalDate userRegDate, startDate, endDate;
     private Boolean userStatus = true; // user 활성화 비활성화 상태
     private String membership;
-
-	
 
 	public User() {}
 
     public User(int userCode, String userName, String userGender, String phoneHeader, String phoneMiddle,
-            String phoneTail, LocalDate userStartDate, Boolean userStatus) {
+            String phoneTail, LocalDate userRegDate, Boolean userStatus) {
         this.userCode = userCode;
         this.userName = userName;
         this.userGender = userGender;
         this.phoneHeader = phoneHeader;
         this.phoneMiddle = phoneMiddle;
         this.phoneTail = phoneTail;
-        this.userStartDate = userStartDate;
+        this.userRegDate = userRegDate;
         this.userStatus = userStatus;
     } // 회원 조회할 때 필요
 
-    public User(String userName, LocalDate userStartDate, String userGender, String phoneHeader,
+    public User(String userName, LocalDate userRegDate, String userGender, String phoneHeader,
             String phoneMiddle, String phoneTail) {
         this.userName = userName;
         this.userGender = userGender;
         this.phoneHeader = phoneHeader;
         this.phoneMiddle = phoneMiddle;
         this.phoneTail = phoneTail;
-        this.userStartDate = userStartDate;
+        this.userRegDate = userRegDate;
     } // 회원 생성할 때 필요
     
+    public User(String userName, LocalDate userRegDate, String userGender, String phoneHeader,
+    		String phoneMiddle, String phoneTail, String membership, LocalDate startDate, LocalDate endDate) {
+    	this.userName = userName;
+    	this.userGender = userGender;
+    	this.phoneHeader = phoneHeader;
+    	this.phoneMiddle = phoneMiddle;
+    	this.phoneTail = phoneTail;
+    	this.userRegDate = userRegDate;
+    	this.membership = membership;
+    	this.startDate = startDate;
+    	this.endDate = endDate;
+    } // 회원권 생성시 필요
 
-    public User(String userName, LocalDate userStartDate, String userGender, String phoneHeader,
-            String phoneMiddle, String phoneTail, String membership) {
-		this.userName = userName;
-		this.userGender = userGender;
-		this.phoneHeader = phoneHeader;
-		this.phoneMiddle = phoneMiddle;
-		this.phoneTail = phoneTail;
-		this.userStartDate = userStartDate;
-		this.membership = membership;
-	}
 
 	public int getUserCode() {
         return userCode;
@@ -67,7 +61,12 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
+    public LocalDate getUserRegDate() {
+    	return userRegDate;
+    }
+    public void setUserRegDate(LocalDate userRegDate) {
+    	this.userRegDate = userRegDate;
+    }
     public String getUserGender() {
         return userGender;
     }
@@ -92,27 +91,37 @@ public class User {
     public void setPhoneTail(String phoneTail) {
         this.phoneTail = phoneTail;
     }
-    public LocalDate getUserStartDate() {
-        return userStartDate;
-    }
-    public void setUserStartDate(LocalDate userStartDate) {
-        this.userStartDate = userStartDate;
-    }
-
     public Boolean getUserStatus() {
         return userStatus;
     }
-
     public void setUserStatus(Boolean userStatus) {
         this.userStatus = userStatus;
     }
     public String getMembership() {
 		return membership;
 	}
-
 	public void setMembership(String membership) {
 		this.membership = membership;
 	}
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
+	
 
+	@Override
+	public String toString() {
+		return "User [userCode=" + userCode + ", userName=" + userName + ", userGender=" + userGender + ", phoneHeader="
+				+ phoneHeader + ", phoneMiddle=" + phoneMiddle + ", phoneTail=" + phoneTail + ", userRegDate="
+				+ userRegDate + ", userStatus=" + userStatus + ", membership=" + membership + "]";
+	}
     
 }
