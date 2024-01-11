@@ -15,14 +15,13 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UserController">
+<AnchorPane prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UserController">
    <children>
       <TabPane layoutY="200.0" prefHeight="350.0" prefWidth="800.0" style="-fx-border-color: silver;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -43,7 +42,7 @@
                                  </font>
                               </Label>
                               <ProgressBar fx:id="ticketBar" layoutX="83.0" layoutY="19.0" prefHeight="18.0" prefWidth="687.0" progress="0.0" />
-                              <Label layoutX="83.0" layoutY="3.0" text="2024-01-05">
+                              <Label fx:id="nowDate" layoutX="83.0" layoutY="3.0" text="2024-01-05">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -119,7 +118,7 @@
                                     <Font name="굵은안상수체" size="17.0" />
                                  </font>
                               </Label>
-                              <ProgressBar layoutX="83.0" layoutY="19.0" prefHeight="18.0" prefWidth="687.0" progress="0.0" />
+                              <ProgressBar fx:id="ticketBar2" layoutX="83.0" layoutY="19.0" prefHeight="18.0" prefWidth="687.0" progress="0.0" />
                               <Label layoutX="83.0" layoutY="3.0" text="2024-01-05">
                                  <font>
                                     <Font size="11.0" />
@@ -237,7 +236,6 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <ToggleButton fx:id="active" layoutX="5.0" layoutY="21.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="79.0" style="-fx-background-color: lightblue;" text="활 성" />
             <Label layoutX="5.0" layoutY="162.0" text="No." textFill="#8d8888">
                <font>
                   <Font size="11.0" />
@@ -249,6 +247,7 @@
                   <Image url="@../img/헬스2.png" />
                </image>
             </ImageView>
+            <Label fx:id="active" alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="20.0" prefHeight="20.0" prefWidth="79.0" style="-fx-background-color: ivory;" text="활성" />
          </children>
       </AnchorPane>
       <TextField fx:id="userGender" layoutX="138.0" layoutY="67.0" prefHeight="22.0" prefWidth="55.0" style="-fx-border-color: white;" />
