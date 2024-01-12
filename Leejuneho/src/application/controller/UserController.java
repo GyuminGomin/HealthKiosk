@@ -1,6 +1,10 @@
 package application.controller;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,7 +12,9 @@ import java.util.ResourceBundle;
 
 import application.dao.UserDAO;
 import application.dao.UserDAOImpl;
+import application.dto.User;
 import application.dto.UserChild;
+import application.utils.DBUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -22,7 +28,7 @@ public class UserController implements Initializable {
 	@FXML
     private Label userName, active;
 	@FXML
-	private Label nowDate, restDays, lockerTic;
+	private Label nowDate, restDays, membershipTic, lockerTic;
 	@FXML
 	private ProgressBar ticketBar, ticketBar2;
 	@FXML
@@ -32,13 +38,20 @@ public class UserController implements Initializable {
     @FXML
     private TextField lockerStartDate, lockerEndDate;
     
+    private Connection conn = DBUtil.getConnection();
+    private PreparedStatement pstmt;
+    private ResultSet rs;
+    
     UserDAO dao = new UserDAOImpl();
+    User u = new User();
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// ProgressBar 위 현재 날짜
 		LocalDate now = LocalDate.now();
 		String nowDate1 = now.toString();
 		nowDate.setText(nowDate1);
+		
+		
 	}
 
 	public void setUserData(UserChild user) {
@@ -78,8 +91,11 @@ public class UserController implements Initializable {
 		String restDay1 = betweenDays + "일 남음";
 		restDays.setText(restDay1);
 		// ProgressBar에 남은 일수 표현
+		LocalDateTime firstDay = startDate1.atStartOfDay();
+		int allDays = (int) Duration.between(firstDay, endingDay).toDays();
+		// 회원권 전체 일수로 나누기
 		double maxValue = 0;
-		if(betweenDays > 31) {
+		if(allDays > 31) {
 			maxValue = 91;
 			}else {
 		maxValue = 31;
@@ -89,11 +105,28 @@ public class UserController implements Initializable {
 		ticketBar.setProgress(progress);
 		ticketIndicator.setProgress(progress);
 		
-		
+		String checkMembership = getMemberData(userName1);
+		System.out.println(checkMembership);
+		membershipTic.setText(checkMembership);
 	}
-	
-	
-	
+	// 회원 당 어떤 회원권을 등록했는지 확인
+	public String getMemberData(String name) {
+		String memberCard = null;
+		String sql = "SELECT userName, membership FROM user WHERE userName=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String memberCard1  = rs.getString(2);
+				
+				memberCard = memberCard1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return memberCard;
+	}
 	
 }
 		
