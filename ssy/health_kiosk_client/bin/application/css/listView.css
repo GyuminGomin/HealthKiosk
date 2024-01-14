@@ -1,0 +1,6 @@
+BorderPane {
+	-fx-background-color: #615855;
+}
+Label {
+	-fx-text-fill: white;
+}

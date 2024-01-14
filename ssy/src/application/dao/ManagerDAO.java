@@ -1,7 +1,6 @@
 package application.dao;
 
 import application.dto.Manager;
-import application.dto.User;
 
 public interface ManagerDAO {
     

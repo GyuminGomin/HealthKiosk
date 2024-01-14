@@ -1,0 +1,12 @@
+AnchorPane {
+	-fx-background-color: #615855;
+}
+BorderPane {
+	-fx-background-color: #927D75;
+}
+#currentTime {
+	-fx-text-fill: white;
+}
+#currentDate {
+	-fx-text-fill: white;
+}
