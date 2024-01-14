@@ -25,15 +25,17 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userCode` int NOT NULL AUTO_INCREMENT,
   `userName` varchar(20) NOT NULL,
-  `userStartDate` date NOT NULL,
+  `userRegDate` date NOT NULL,
   `userGender` char(2) NOT NULL,
   `phoneHeader` varchar(3) NOT NULL,
   `phoneMiddle` varchar(4) NOT NULL,
   `phoneTail` varchar(4) NOT NULL,
   `userStatus` tinyint NOT NULL,
   `membership` varchar(100) NOT NULL,
+  `userStartDate` date NOT NULL,
+  `userEndDate` date NOT NULL,
   PRIMARY KEY (`userCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +44,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'송상엽','2024-01-01','남자','010','1234','5678',1,'프리미엄 통합 회원권'),(2,'이준호','2024-01-02','남자','010','2345','6789',1,'프리미엄 회원권'),(3,'김규민','2024-01-03','남자','010','3456','7890',0,'프리미엄 통합 회원권'),(4,'최기근','2024-01-04','여자','010','1233','5678',0,'프리미엄 회원권');
+INSERT INTO `user` VALUES (1,'홍길동','2024-01-14','남자','010','1234','5678',1,'프리미엄 회원권 [1개월] + 운동복 + 개인락커                                 * 가격  :  200,000원','2024-01-15','2024-02-14');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-08 14:06:53
+-- Dump completed on 2024-01-14 23:13:08

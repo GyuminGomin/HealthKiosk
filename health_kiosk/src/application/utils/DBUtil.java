@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,9 +18,9 @@ public class DBUtil {
 		// conn field에서 참조하는 객체값이 없으면 Connection 객체 생성
 		if (conn == null) {
 			try {
-				File file = new File("src/application/prop/mysql.properties");
+				InputStream input = DBUtil.class.getResourceAsStream("/application/prop/mysql.properties");
 				Properties prop = new Properties();
-				prop.load(new FileReader(file));
+				prop.load(input);
 				
 				String driver = prop.getProperty("driver");
 				String url = prop.getProperty("url");

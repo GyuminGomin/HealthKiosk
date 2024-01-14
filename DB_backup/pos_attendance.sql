@@ -32,7 +32,7 @@ CREATE TABLE `attendance` (
   PRIMARY KEY (`id`),
   KEY `userCode_idx` (`userCode`),
   CONSTRAINT `userCode` FOREIGN KEY (`userCode`) REFERENCES `user` (`userCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
-INSERT INTO `attendance` VALUES (1,'5678','송상엽','2024-01-07','12:00:00',1),(2,'6789','이준호','2024-01-07','01:23:44',2),(3,'7890','김규민','2024-01-07','01:27:35',3);
+INSERT INTO `attendance` VALUES (1,'5678','홍길동','2024-01-15','12:00:00',1);
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-07  1:49:05
+-- Dump completed on 2024-01-14 23:13:08

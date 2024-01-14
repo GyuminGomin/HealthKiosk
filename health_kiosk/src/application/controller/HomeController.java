@@ -370,11 +370,10 @@ public class HomeController implements Initializable {
 
                 // 출석부에서 종료키 클릭시 homePage로 돌아감
                 stage.setOnCloseRequest(e1->{
-                    e1.consume(); // X를 비활성화
                     Button btnServer = (Button)stage.getScene().lookup("#startServer"); // server 버튼을 가져오고
-                    System.out.println(btnServer.getText());
                     // 서버가 가동중일 때, X 클릭
                     if (btnServer.getText().equals("Stop S_erver")) {
+                        e1.consume(); // X를 비활성화
                         Alert info1 = new Alert(AlertType.CONFIRMATION);
                         info1.setHeaderText("서버가 가동중입니다. 종료하시겠습니까?");
                         Optional<ButtonType> result = info1.showAndWait();
