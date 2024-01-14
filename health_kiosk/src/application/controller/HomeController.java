@@ -2,6 +2,7 @@ package application.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.dao.LockerDAO;
@@ -9,6 +10,7 @@ import application.dao.LockerDAOImpl;
 import application.dao.UserDAO;
 import application.dao.UserDAOImpl;
 import application.dto.Manager;
+import application.utils.DBUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +20,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -200,6 +205,11 @@ public class HomeController implements Initializable {
         // f5를 눌러서 Stage 리다이렉트
         Platform.runLater(()-> {
             Stage curStage = (Stage)panel.getScene().getWindow();
+            
+            // DB 연결 종료
+            curStage.setOnCloseRequest(e-> {
+                DBUtil.close(DBUtil.getConnection());
+            });
 
             curStage.getScene().setOnKeyPressed(e -> {
                 if (e.getCode() == KeyCode.F5) {
@@ -243,7 +253,6 @@ public class HomeController implements Initializable {
                 stage.setResizable(false);
                 stage.show();
                 homePage.close();
-
             } catch (IOException e1) {
                 e1.printStackTrace();
                 return;
@@ -347,9 +356,8 @@ public class HomeController implements Initializable {
 
         // 출석부 버튼 클릭
         attendance.setOnMouseClicked(e-> {
-            Stage stage = null;
             try {
-                stage = new Stage(StageStyle.DECORATED);
+                Stage stage = new Stage(StageStyle.DECORATED);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/fxml/UserAttendancePage.fxml"));
                 Parent attendancePage = loader.load();
 
@@ -359,32 +367,63 @@ public class HomeController implements Initializable {
                 stage.show();
                 Stage homePage = (Stage)logout.getScene().getWindow();
                 homePage.close();
+
                 // 출석부에서 종료키 클릭시 homePage로 돌아감
                 stage.setOnCloseRequest(e1->{
-                    
+                    e1.consume(); // X를 비활성화
+                    Button btnServer = (Button)stage.getScene().lookup("#startServer"); // server 버튼을 가져오고
+                    System.out.println(btnServer.getText());
+                    // 서버가 가동중일 때, X 클릭
+                    if (btnServer.getText().equals("Stop S_erver")) {
+                        Alert info1 = new Alert(AlertType.CONFIRMATION);
+                        info1.setHeaderText("서버가 가동중입니다. 종료하시겠습니까?");
+                        Optional<ButtonType> result = info1.showAndWait();
+                        if (result.get() == ButtonType.OK) {
+                            Stage stage1 = null;
+                            FXMLLoader loader1 = null;
+                            Parent homePage1 = null;
+                            try {
+                                stage1 = new Stage(StageStyle.DECORATED);
+                                loader1 = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
+                                homePage1 = loader1.load();
+                                
+                                stage1.setScene(new Scene(homePage1));
+                                stage1.setTitle("홈 페이지");
+                                stage1.setResizable(false);
+                                stage1.show();
+                                // 서버 종료
+                                UserAttendanceController controller = loader.getController();
+                                controller.stopServer();
+                                stage.close();
+                            } catch (IOException e2) {
+                                e2.printStackTrace();
+                            }
+                        } else {
+                            // 서버 종료안하겠다면, 아무런 변화없이 그대로
+                            return;
+                        }
+                    } else { // 서버가 가동중이 아닐 때, X 클릭
+                        Stage stage1 = null;
+                        FXMLLoader loader1 = null;
+                        Parent homePage1 = null;
+                        try {
+                            stage1 = new Stage(StageStyle.DECORATED);
+                            loader1 = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
+                            homePage1 = loader1.load();
+                            
+                            stage1.setScene(new Scene(homePage1));
+                            stage1.setTitle("홈 페이지");
+                            stage1.setResizable(false);
+                            stage1.show();
 
-                	Stage stage1 = null;
-                	FXMLLoader loader1 = null;
-        			Parent homePage1 = null;
-        			try {
-        				stage1 = new Stage(StageStyle.DECORATED);
-        				loader1 = new FXMLLoader(getClass().getResource("/application/fxml/HomePage.fxml"));
-        				homePage1 = loader1.load();
-        				
-        				stage1.setScene(new Scene(homePage1));
-        				stage1.setTitle("홈 페이지");
-        				stage1.setResizable(false);
-        				stage1.show();
-                        // 서버 종료
-                        UserAttendanceController controller = loader.getController();
-                        controller.stopServer();
-        			} catch (IOException e2) {
-        				e2.printStackTrace();
-        			}
+        
+                        } catch (IOException e2) {
+                            e2.printStackTrace();
+                        }
+                    }
                 });
             } catch (IOException e1) {
                 e1.printStackTrace();
-                return;
             }
         }); // 출석부 버튼 클릭
 
@@ -490,8 +529,7 @@ public class HomeController implements Initializable {
         	salStatistic.setStyle("-fx-border-width : 0 0 1 0; -fx-border-color : black;");
         	Label l = (Label)salStatistic.getChildren().get(0);
         	l.setUnderline(false);
-        });
+        });   
 	}
-
 }
 

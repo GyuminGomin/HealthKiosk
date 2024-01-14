@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="500.0" stylesheets="@../css/createuser.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateUserController">
+<AnchorPane prefHeight="600.0" prefWidth="500.0" stylesheets="@../css/createuser.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CreateUserController">
    <children>
       <Label layoutX="165.0" layoutY="15.0" prefHeight="33.0" prefWidth="170.0" text="신규 회원추가" textFill="RED">
          <font>
@@ -98,7 +98,7 @@
       </Button>
       <Label layoutX="71.0" layoutY="206.0" text="-" />
       <Label layoutX="215.0" layoutY="207.0" text="-" />
-      <DatePicker fx:id="startDate" layoutX="211.0" layoutY="507.0" prefHeight="22.0" prefWidth="280.0" />
+      <DatePicker fx:id="regDate" layoutX="211.0" layoutY="507.0" prefHeight="22.0" prefWidth="280.0" />
       <Label layoutX="11.0" layoutY="509.0" text="시작날짜를 선택해주세요">
          <font>
             <Font size="13.0" />

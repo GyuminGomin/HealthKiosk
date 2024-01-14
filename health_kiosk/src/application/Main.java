@@ -1,5 +1,6 @@
 package application;
 
+import application.utils.DBUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,11 @@ public class Main extends Application {
             primaryStage.setTitle("Login 페이지");
             primaryStage.setResizable(false);
             primaryStage.show();
+
+            primaryStage.setOnCloseRequest(e -> {
+                DBUtil.close(DBUtil.getConnection());
+            });
+
         } catch (Exception e) {
             e.printStackTrace();
         }

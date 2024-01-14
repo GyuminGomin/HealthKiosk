@@ -3,7 +3,6 @@ package application.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
@@ -39,7 +38,7 @@ public class CreateUserController implements Initializable{
     @FXML
     private Button btnNext;
     @FXML
-    private DatePicker startDate;
+    private DatePicker regDate;
 
     // DB에서 받아온 데이터를 저장하는 객체(VO)
     private UserDAO dao = new UserDAOImpl();
@@ -51,6 +50,10 @@ public class CreateUserController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         
         LogonController.focusMove(txtName, firstNum, middleNum, lastNum);
+
+        // 등록날짜는 무조건 오늘
+        regDate.setValue(LocalDate.now());
+        regDate.setEditable(false);
 
         Platform.runLater(()->{
         	txtName.requestFocus();
@@ -66,9 +69,9 @@ public class CreateUserController implements Initializable{
         	if(e1.getCode() == KeyCode.ENTER) lastNum.requestFocus();
         });
         lastNum.setOnKeyPressed(e1->{
-        	if(e1.getCode() == KeyCode.ENTER) startDate.requestFocus();
+        	if(e1.getCode() == KeyCode.ENTER) regDate.requestFocus();
         });
-        startDate.setOnKeyPressed(e1->{
+        regDate.setOnKeyPressed(e1->{
         	if(e1.getCode() == KeyCode.ENTER) btnNext.fire();
         });
 
@@ -111,29 +114,26 @@ public class CreateUserController implements Initializable{
             	return;
             }
 
-            // 시작 날짜 설정
-            if (startDate.getValue() == null) {
-                LogonController.warnPage("날짜 선택 필수", "시작할 날짜를 입력해 주세요.", startDate);
+            if (!dao.selectUser(txtName.getText(), lastNum.getText())) { // 같은 이름 또는 전화번호 뒷자리가 존재한다면, 이미 존재하는 회원입니다.
+                // 원래는 같은 전화번호 뒷자리에다 같은 이름이라면, 전화번호 분석을 통해 유저 코드를 새로 바꾸는 로직이 필요할 수도 있지만, 지금은 작은 프로세스이므로
+                LogonController.warnPage(s, "회원 중복", "이미 존재하는 회원입니다.", txtName, middleNum, lastNum);
                 return;
             }
-            // 날짜가 현재 날짜보다 더 이전으로 설정한다면 경고발생
-            Period period = Period.between(LocalDate.now(), startDate.getValue());
-            if (period.getDays() < 0) {
-                LogonController.warnPage("날짜 선택 오류", "시작 날짜가 현재보다 이전일 수 없습니다.", startDate);
-                return;
-            }
+
+            // 등록날짜는 무조건 오늘
+            regDate.setValue(LocalDate.now());
 
             // User 객체 받아오기
             // 성별 선택
             RadioButton value = (RadioButton)gender.selectedToggleProperty().getValue();
             // 데이터 받아오기
             String name = txtName.getText().trim();
-            LocalDate date = startDate.getValue();
+            LocalDate date = regDate.getValue();
             String gen = value.getText();
             String firstPhone = firstNum.getText().trim();
             String middlePhone = middleNum.getText().trim();
             String lastPhone = lastNum.getText().trim();
-            
+
             user = new User(name, date, gen, firstPhone, middlePhone, lastPhone);
             
             // MembershipPage로 넘어가기
@@ -147,15 +147,16 @@ public class CreateUserController implements Initializable{
                 Parent membershipPage = null;
                 try {
                     stage = new Stage(StageStyle.DECORATED);
-
                     loader = new FXMLLoader(getClass().getResource("/application/fxml/MembershipPage.fxml"));
                     membershipPage = loader.load();
-
                     stage.setScene(new Scene(membershipPage));
                     stage.setTitle("회원권 등록 페이지");
                     stage.setResizable(false);
                     stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.showAndWait();
+                    // 회원 추가 스테이지 전달
+                    MembershipController controller = loader.getController();
+                    controller.setOwnerStage(s);
+                    stage.show();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                     return;
@@ -170,9 +171,10 @@ public class CreateUserController implements Initializable{
 
     }
     
-    public User setUserDatas(String membership) {
+    public User setUserDatas(String membership, LocalDate regDate1, LocalDate endDate1, Boolean userStatus) {
         // User VO 생성
-        User u = new User(user.getUserName(), user.getUserStartDate(), user.getUserGender(), user.getPhoneHeader(), user.getPhoneMiddle(), user.getPhoneTail(), membership);
+        User u = new User(user.getUserName(), user.getUserRegDate(), user.getUserGender(), user.getPhoneHeader(), user.getPhoneMiddle(), user.getPhoneTail(), membership
+        		, regDate1, endDate1, userStatus);
         return u;
     }
 }

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import application.dao.ManagerDAO;
 import application.dao.ManagerDAOImpl;
 import application.dto.Manager;
+import application.utils.DBUtil;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -135,7 +136,6 @@ public class LoginController implements Initializable{
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.showAndWait();
         });
-
     } // end initialize
 
 }
