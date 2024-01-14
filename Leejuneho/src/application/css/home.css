@@ -1,0 +1,43 @@
+#main {
+	
+	-fx-border-color : black;
+	-fx-border-width : 1 0 0 1;
+	-fx-background-color : #3B3B3B;
+}
+#panel {
+	-fx-background-color : #927D75;
+}
+#center {
+-fx-background-color : #615855;
+}
+#hometop {
+	-fx-background-color : #615855;
+}
+#member {
+	-fx-background-color : #615855;
+}
+#locker1 {
+	-fx-background-color : #615855;
+}
+#accounting {
+	-fx-background-color : #615855;
+}
+#circle1 {
+	-fx-fill: #3B3B3B;
+	-fx-stroke: #3B3B3B;
+}
+#circle2 {
+	-fx-fill: #3B3B3B;
+	-fx-stroke: #3B3B3B;
+}
+#circle3 {
+	-fx-fill: #3B3B3B;
+	-fx-stroke: #3B3B3B;
+}
+#circle4 {
+	-fx-fill: #3B3B3B;
+	-fx-stroke: #3B3B3B;
+}
+.chart-pie-label { 
+	-fx-fill: white;
+}

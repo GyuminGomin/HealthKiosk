@@ -3,6 +3,7 @@ package application.controller;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -44,7 +45,7 @@ public class UserManagementController implements Initializable{
     private MenuBar menuBar;
     @FXML
     private TextField searchField;
-
+    
     UserDAO dao = new UserDAOImpl();
     
 
@@ -89,6 +90,11 @@ public class UserManagementController implements Initializable{
             }
 
             tableView.setItems(userList);
+            
+            
+            
+            // 시작일 설정
+            
 
             // 테이블 뷰를 (한번) 클릭 (더블) 클릭
             tableView.setOnMouseClicked(e -> {
@@ -112,7 +118,6 @@ public class UserManagementController implements Initializable{
                     
                     try {
                     	UserChild user = tableView.getSelectionModel().getSelectedItem();
-    
                         stage = new Stage(StageStyle.DECORATED);
         
                         loader = new FXMLLoader(getClass().getResource("/application/fxml/UserPage.fxml"));
@@ -224,4 +229,5 @@ public class UserManagementController implements Initializable{
             }
         }); // HealthKiosk 버튼 클릭
     }
+    
 }

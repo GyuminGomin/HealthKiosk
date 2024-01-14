@@ -28,6 +28,7 @@ public class UserChild{
         this.userStartDate = userStartDate;
         this.userEndDate = userEndDate;
     }
+    
 
     public Boolean isChecked() {
         return checked;
@@ -89,15 +90,7 @@ public class UserChild{
     public void setUserReg(LocalDate userReg) {
         this.userReg = userReg;
     }
+    
 
-	@Override
-	public String toString() {
-		return "UserChild [checked=" + checked + ", userCode=" + userCode + ", userStatus=" + userStatus + ", userName="
-				+ userName + ", gender=" + gender + ", userPhone=" + userPhone + ", userReg=" + userReg
-				+ ", userStartDate=" + userStartDate + ", userEndDate=" + userEndDate + "]";
-	}
-    
-    
-    
     
 }

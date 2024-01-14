@@ -98,7 +98,7 @@
       </Button>
       <Label layoutX="71.0" layoutY="206.0" text="-" />
       <Label layoutX="215.0" layoutY="207.0" text="-" />
-      <DatePicker fx:id="startDate" layoutX="211.0" layoutY="507.0" prefHeight="22.0" prefWidth="280.0" />
+      <DatePicker fx:id="userRegDate" layoutX="211.0" layoutY="507.0" prefHeight="22.0" prefWidth="280.0" />
       <Label layoutX="11.0" layoutY="509.0" text="시작날짜를 선택해주세요">
          <font>
             <Font size="13.0" />

@@ -1,11 +1,11 @@
 AnchorPane {
-	-fx-background-color: #615855; 
+   -fx-background-color: #615855; 
 }
 
 #userid {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }
 
 #userpw {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }

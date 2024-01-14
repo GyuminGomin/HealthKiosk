@@ -3,9 +3,7 @@ package application.dao;
 import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -30,15 +28,15 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void join(User user) {
 
-        String sql = "INSERT INTO user (userName, userstartDate, userGender, phoneHeader,"
-        		+ " phoneMiddle, phoneTail, userStatus, membership) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (userName, userRegDate, userGender, phoneHeader,"
+        		+ " phoneMiddle, phoneTail, userStatus, membership, userStartDate, userEndDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user.getUserName());
             Date date = null;
-            if (user.getUserStartDate() != null) {
-                date = Date.valueOf(user.getUserStartDate());
+            if (user.getUserRegDate() != null) {
+                date = Date.valueOf(user.getUserRegDate());
             }
             pstmt.setDate(2, date);
             pstmt.setString(3, user.getUserGender());
@@ -47,6 +45,10 @@ public class UserDAOImpl implements UserDAO {
             pstmt.setString(6, user.getPhoneTail());
             pstmt.setBoolean(7, user.getUserStatus());
             pstmt.setString(8, user.getMembership());
+            Date startDate = Date.valueOf(user.getStartDate());
+            Date endDate = Date.valueOf(user.getEndDate());
+            pstmt.setDate(9, startDate);
+            pstmt.setDate(10, endDate);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,6 +56,7 @@ public class UserDAOImpl implements UserDAO {
             DBUtil.close(pstmt);
         }
     }
+    
 
     @Override
     public int countUser() {
@@ -139,7 +142,7 @@ public class UserDAOImpl implements UserDAO {
         return userStatusInt;
     }
 
-    // 수정해야함
+    // startDate, endDate DB 설정 완료
     @Override
     public List<UserChild> userManage() {
         List<UserChild> userList = new ArrayList<>();
@@ -152,16 +155,18 @@ public class UserDAOImpl implements UserDAO {
             while (rs.next()) {
                 int userCode = rs.getInt(1);
                 String userName = rs.getString(2);
-                Date userStartDate = rs.getDate(3);
+                Date userRegDate = rs.getDate(3);
                 String userGender = rs.getString(4);
                 String phoneHeader = rs.getString(5);
                 String phoneMiddle = rs.getString(6);
                 String phoneTail = rs.getString(7);
                 Boolean userStatus = rs.getBoolean(8);
-
-                LocalDate userReg = userStartDate.toLocalDate();
-                LocalDate startDate = null;
-                LocalDate endDate = null;
+                Date userStartDate = rs.getDate(10);
+                Date userEndDate = rs.getDate(11);
+                
+                LocalDate userReg = userRegDate.toLocalDate();
+                LocalDate startDate = userStartDate.toLocalDate();
+                LocalDate endDate = userEndDate.toLocalDate();
 
                 String phone = phoneHeader+"-"+phoneMiddle+"-"+phoneTail;
 
@@ -280,7 +285,6 @@ public class UserDAOImpl implements UserDAO {
             DBUtil.close(pstmt);
         }
     }
-
 
 }
 

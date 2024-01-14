@@ -1,31 +1,31 @@
 AnchorPane {
-	-fx-background-color: #615855; 
+   -fx-background-color: #615855; 
 }
 
 #newid {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }
 #newpw {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }
 #againpw {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }
 #newname {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }
 #date {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }
 #gender1 {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }
 #email1 {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }
 #number {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }
 RadioButton {
-	-fx-text-fill: white;
+   -fx-text-fill: white;
 }

@@ -99,6 +99,9 @@ public class ServerTask implements Runnable{
 					System.out.println(ip+"에서 접속했습니다.");
 				}
 				
+				
+				// 받아오는 데이터를 이용해서 db에서 유저를 찾기
+				// 클라이언트 구성
 			} catch (IOException e) {
 				e.printStackTrace();
 				isRun = false;
