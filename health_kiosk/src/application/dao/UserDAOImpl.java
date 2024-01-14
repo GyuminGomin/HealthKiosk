@@ -183,7 +183,7 @@ public class UserDAOImpl implements UserDAO {
     public boolean selectUser(String userName, String phoneTail) {
         boolean isChecked = true; // 존재하지 않으면
 
-        String sql = "SELECT * FROM manager WHERE userName = ? AND phoneTail = ?";
+        String sql = "SELECT * FROM user WHERE userName = ? AND phoneTail = ?";
 
         try {
             pstmt = conn.prepareStatement(sql);
