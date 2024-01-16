@@ -18,6 +18,6 @@
 `javafx 라이브러리, Scene Builder를 활용하여 프로젝트 실시`
 
 ## 시연 영상 v1.0.0
-https://youtu.be/jvKexQAeGUE  
+https://youtu.be/pihXkSRuF08
 
 `이 시연 영상은 말이 없습니다. (따라서 이해하기 어려운 부분도 있습니다. 간단히 어떻게 굴러간다는 것만 확인해 주시길 바랍니다.)`
